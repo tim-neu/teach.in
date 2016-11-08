@@ -1,5 +1,9 @@
-console.log('I am alive!');
+import React from 'react';
+import { render } from 'react-dom';
 
-if (module.hot) {
-module.hot.accept();
-}
+import routes from './router';
+
+// Render
+render(
+  routes, document.getElementById('app')
+);
