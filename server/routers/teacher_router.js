@@ -9,7 +9,6 @@ teacherRouter.route('/')
 teacherRouter.route('/signup')
 .post(authMiddleware.isValidEmail, authMiddleware.hashPassword, teacherController.SIGNUP);
 
-<<<<<<< 63b17faa1194aedeafff6e75287370992760f8ec
 teacherRouter.route('/signin')
 .post(authMiddleware.verifyPassword, teacherController.SIGNIN);
 
@@ -18,6 +17,4 @@ teacherRouter.route('/dashboard')
 	res.send('i was redirected and im at dashboard where i should be getting data and sending it back');
 });
 
-=======
->>>>>>> [add]-Sessions are working
 module.exports = teacherRouter;
