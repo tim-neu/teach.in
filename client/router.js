@@ -5,7 +5,7 @@ import { Router, Route, browserHistory } from 'react-router';
 // Components
 import App from './app.js';
 import Graph from './shared_components/graph.js';
-import CreateClass from './create_class/CreateClass.js';
+import CreateClass from './components/create_class/CreateClass.js';
 
 // Routes
 const routes = (
