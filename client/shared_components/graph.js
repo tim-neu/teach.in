@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2';
 
 const data = {
@@ -28,10 +28,13 @@ const data = {
   ]
 };
 
-export default React.createClass({
-  displayName: 'LineExample',
-
-  render() {
+  class Graph extends React.Component {
+  constructor (props) {
+    super(props)
+    
+    this.state = {};
+  };
+  render () {
     return (
       <div>
         <h2>Line Example</h2>
@@ -39,4 +42,6 @@ export default React.createClass({
       </div>
     );
   }
-});
+}
+
+export default Graph

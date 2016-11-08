@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Signup from './components/signup/signup.js'; 
 
 class App extends React.Component {
   constructor (props) {
@@ -9,7 +10,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <section><h1 className="text-center">Hoop.in</h1></section>
+        <Signup />
         { this.props.children }
       </div>
     );
