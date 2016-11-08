@@ -19,6 +19,9 @@ app.use(session({
   cookie: { secure: true },
 }));
 app.use(express.static(path.join(__dirname, '../public')));
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../public', 'index.html'))
+})
 //app.get('/api', function(req,res){res.send('i made it')});
 //app.use('/api', rootRouter);
 app.listen(PORT, () => console.log('Server running on port', PORT));
