@@ -9,7 +9,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <section><h1 className="text-center">Hasdffasdoop.in</h1></section>
+        <section><h1 className="text-center">Hoop.in</h1></section>
         { this.props.children }
       </div>
     );
