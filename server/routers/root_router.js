@@ -1,7 +1,7 @@
 const rootRouter = require('express').Router();
-const teacherRouter = require('./teacher_router');
+const teacherRouter = require('./teacher_router/teacher_router');
 rootRouter.use('/teacher', teacherRouter);
-rootRouter.get('/', function (req,res) {
+rootRouter.get('/', function (req, res) {
 	console.log(req.cookies);
 	console.log('==========');
 	console.log(req.session);
