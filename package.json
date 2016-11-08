@@ -35,11 +35,7 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
-<<<<<<< HEAD
     "browser-history": "^1.0.1",
-=======
-    "chart.js": "^1.1.1",
->>>>>>> shared-components
     "cors": "^2.8.1",
     "express-session": "^1.14.2",
     "immutable": "^3.8.1",
@@ -49,12 +45,7 @@
     "pg": "^6.1.0",
     "pg-hstore": "^2.3.2",
     "react": "^15.3.2",
-<<<<<<< HEAD
     "react-dom": "^15.3.2",
     "react-router": "^3.0.0"
-=======
-    "react-chartjs-2": "^1.5.0",
-    "react-dom": "^15.3.2"
->>>>>>> shared-components
   }
 }

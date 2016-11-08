@@ -3,17 +3,9 @@ import ReactDOM from 'react-dom';
 
 class App extends React.Component {
   constructor (props) {
-<<<<<<< HEAD
     super(props),
     this.state = {};
   };
-
-=======
-    super(props)
-    
-    this.state = {};
-  };
->>>>>>> shared-components
   render () {
     return (
       <div>
