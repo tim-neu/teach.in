@@ -7,6 +7,7 @@ import App from './app.js';
 import Graph from './shared_components/graph.js';
 import CreateClass from './components/create_class/CreateClass.js';
 import Signup from './components/signup/signup.js';
+import Signin from './components/signin/signin.js';
 
 // Routes
 const routes = (
@@ -14,6 +15,7 @@ const routes = (
     <Route path="/" component={App} />
     <Route path="/graph" component={Graph} />
     <Route path="/signup" component={Signup} />
+    <Route path="/signin" component={Signin} />
     <Route path='/create_class' component={CreateClass} />
   </Router>
 );
