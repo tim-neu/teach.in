@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
-import {browserHistory} from 'react-router';
 import axios from 'axios';
 
-  class Signup extends React.Component {
+  class Signin extends React.Component {
   constructor (props) {
     super(props)
     
-    this.state = {name: '', email:'', password:''};
-    this.handleNameChange = this.handleNameChange.bind(this);
+    this.state = {email:'', password:''};
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
-  handleNameChange(event) {
-    this.setState({name: event.target.value});
-  }
   handleEmailChange(event) {
     this.setState({email: event.target.value});
   }
@@ -23,20 +18,18 @@ import axios from 'axios';
   }
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('/api/teacher/signup',{
-      name: this.state.name,
+    axios.post('/api/teacher/signin',{
       email: this.state.email,
       password: this.state.password
 
     }).then(function(response){
-      browserHistory.push('/signin')
+      console.log('the signin response is:', response);
     })
   }
 
   render () {
     return (
         <form onSubmit={this.handleSubmit}>
-          <input value = {this.state.name} type="text" onChange={this.handleNameChange}></input>
           <input value = {this.state.email} type="email" onChange={this.handleEmailChange}></input>
           <input value = {this.state.password} type="password" onChange={this.handlePasswordChange}></input>
           <input type="submit" value="Submit" />
@@ -45,4 +38,4 @@ import axios from 'axios';
   }
 }
 
-export default Signup
+export default Signin
