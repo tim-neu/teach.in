@@ -8,6 +8,7 @@ import Graph from './shared_components/graph.js';
 import CreateClass from './components/create_class/CreateClass.js';
 import Signup from './components/signup/signup.js';
 import Signin from './components/signin/signin.js';
+import TeacherDashboard from './components/teacher_dashboard/teacher_dashboard.js';
 
 // Routes
 const routes = (
@@ -17,6 +18,7 @@ const routes = (
     <Route path="/signup" component={Signup} />
     <Route path="/signin" component={Signin} />
     <Route path='/create_class' component={CreateClass} />
+    <Route path='/dashboard' component={TeacherDashboard} />
   </Router>
 );
 export default routes;
