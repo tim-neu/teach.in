@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Signup from './components/signup/signup.js'; 
+import HomeNav from './shared_components/home_nav.js'; 
 
 class App extends React.Component {
   constructor (props) {
@@ -10,7 +10,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <Signup />
+        <HomeNav />
         { this.props.children }
       </div>
     );

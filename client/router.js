@@ -6,12 +6,14 @@ import { Router, Route, browserHistory } from 'react-router';
 import App from './app.js';
 import Graph from './shared_components/graph.js';
 import CreateClass from './components/create_class/CreateClass.js';
+import Signup from './components/signup/signup.js';
 
 // Routes
 const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App} />
     <Route path="/graph" component={Graph} />
+    <Route path="/signup" component={Signup} />
     <Route path='/create_class' component={CreateClass} />
   </Router>
 );
