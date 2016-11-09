@@ -8,7 +8,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx', '.css']
   },
   module: {
     loaders: [
@@ -16,6 +16,7 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel-loader'
       },
+       { test: /\.css$/, loaders: ["style", "css"] }
     ]
   }
 }
