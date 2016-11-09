@@ -21,6 +21,7 @@ const GroupMessages = require('./models/groupMessages_model');
 Class.belongsTo(Teacher);
 Resource.belongsTo(Class);
 Class.belongsToMany(Student, { through: 'ClassStudent' });
+Student.belongsToMany(Class, { through: 'ClassStudent' });
 ClassGPA.belongsTo(Class);
 Assignment.belongsTo(Student);
 Assignment.belongsTo(Class);
@@ -45,17 +46,52 @@ sequelize.sync({ force: true }).then(function () {
 	var class1 = Class.build({
 		name: 'class1Teacher1',
 	});
+
+	var student1 = Student.build({
+		name: 'student1',
+	});
 	var resource1 = Resource.build({
 		url: 'url1forclass1',
 	});
-	teacher1.save().then(function () {
-		class1.save().then(function () {
+	teacher1.save().then(function (savedTeacher) {
+		class1.save().then(function (savedClass) {
 			// teacher1.setClass(this);
-			this.setTeacher(teacher1);
+			savedClass.setTeacher(savedTeacher);
+			student1.save().then(function (savedStudent) {
+				// console.log('the saved student is:', savedStudent);
+				// Student.findOne({
+				// 	where: { id: 1 },
+				// })
+				// .then(function (student) {
+				// 	Class.findOne({
+				// 		where:{ id: 1 },
+				// 	})
+				// 	.then(function (foundClass) {
+				// 		student.setClass(foundClass);
+				// 	});
+				// });
+				savedClass.addStudent(savedStudent);
+				// savedStudent.setClass(savedClass);
+				// this.setClass([class1]);
+				// class1.setStudent([student1]);
+			});
+
 			resource1.save().then(function () {
 				this.setClass(class1);
 			});
 		});
 	});
+
+	// Student.findOne({
+	// 	where: { id: 1 },
+	// })
+	// .then(function (student) {
+	// 	Class.findOne({
+	// 		where:{ id: 1 },
+	// 	})
+	// 	.then(function (foundClass) {
+	// 		student.setClass(foundClass);
+	// 	});
+	// });
 });
 
