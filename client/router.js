@@ -9,6 +9,7 @@ import CreateClass from './components/create_class/CreateClass.js';
 import Signup from './components/signup/signup.js';
 import Signin from './components/signin/signin.js';
 import TeacherDashboard from './components/teacher_dashboard/teacher_dashboard.js';
+import Calendar from './shared_components/Calendar.js';
 
 // Routes
 const routes = (
@@ -19,6 +20,7 @@ const routes = (
     <Route path="/signin" component={Signin} />
     <Route path='/create_class' component={CreateClass} />
     <Route path='/dashboard' component={TeacherDashboard} />
+    <Route path='/calendar' component={Calendar} />
   </Router>
 );
 export default routes;
