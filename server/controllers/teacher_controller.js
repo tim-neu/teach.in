@@ -8,6 +8,7 @@ teacherController.SIGNUP = (req, res) => {
 		email: req.body.email,
 		password: req.body.password,
 	}).then((teacher) => {
+		console.log(teacher,"teacher")
 		return teacher;
 	})
 	.catch((err) => {
