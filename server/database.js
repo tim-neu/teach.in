@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 //const sequelize = new Sequelize('postgres://tuwsxvul:0OSNKxucNX7vVVKD1_NXsFoWqC5nL3SN@elmer.db.elephantsql.com:5432/tuwsxvul');
-const sequelize = new Sequelize('postgres://hmfhocyp:fD7IzCJTB-7g5AMH6e0FKWzXqBmMmnVL@elmer.db.elephantsql.com:5432/hmfhocyp');
+// const sequelize = new Sequelize('postgres://hmfhocyp:fD7IzCJTB-7g5AMH6e0FKWzXqBmMmnVL@elmer.db.elephantsql.com:5432/hmfhocyp');
 //const sequelize = new Sequelize('postgres://nhhfsvxl:PmfmyAew57jYcGCbVPbLg2A2n13rEyXD@elmer.db.elephantsql.com:5432/nhhfsvxl');
 
 module.exports = {
