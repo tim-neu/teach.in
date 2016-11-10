@@ -1,6 +1,52 @@
 var teacherController = {};
 const Teacher = require('../models/teacher_model');
+const Class = require('../models/class_model');
+const Student = require('../models/student_model');
+const Assignment = require('../models/assignment_model');
 teacherController.SIGNUP = (req, res) => {
+
+	//seeding two classes automatically for this teacher
+	var classArr = [];
+	for (let i = 0; i < 2; i++) {
+		let classI = Class.build({
+			name: 'class ' + i,
+		});
+		classArr.push(classI);
+	};
+
+	var studentArr1 = [];
+	for (let i = 0; i < 10; i++) {
+		let studentI = Student.build({
+			name: 'student' + i,
+		});
+		studentArr1.push(studentI.save());
+	}
+
+	var studentArr2 = [];
+	for (let i = 10; i < 20; i++) {
+		let studentI = Student.build({
+			name: 'student' + i,
+		});
+		studentArr2.push(studentI.save());
+	}
+
+	var assignmentArr1 = [];
+	for (let i = 0; i < 4; i++) {
+		let assignmentI = Assignment.build({
+			name: 'Assignment' + i,
+		});
+		assignmentArr1.push(assignmentI.save());
+	}
+
+	var student1Assignment1 = studentArr1.concat(assignmentArr1);
+	var assignmentArr2 = [];
+	for (let i = 4; i < 8; i++) {
+		let assignmentI = Assignment.build({
+			name: 'Assignment' + i,
+		});
+		assignmentArr2.push(assignmentI.save());
+	}
+	var student2Assignment2 = studentArr2.concat(assignmentArr2);
 
 	console.log('i changed the password from 123 to:', req.body.password);
 	Teacher.create({
@@ -9,11 +55,98 @@ teacherController.SIGNUP = (req, res) => {
 		password: req.body.password,
 	}).then((teacher) => {
 		console.log(teacher,"teacher")
+
+		//Code below seeds two classes to the teacher;
+		for (let i = 0; i < classArr.length; i++) {
+			classArr[i].save().then(function (savedClass) {
+				savedClass.setTeacher(teacher);
+				if (i === 0) {
+					Promise.all(student1Assignment1)
+						.then(function (results) {
+							console.log('the results should be a list of students and the length should be 14', results, results.length);
+
+							for (let j = 0; j < 10; j++) {
+								var studentJ = results[j];
+								savedClass.addStudent(studentJ);
+							}
+
+							for (let k = 10; k < results.length; k++) {
+								var assignmentK = results[k];
+
+								for (let m = 0; m < 10; m++) {
+									var studentM = results[m];
+									assignmentK.addStudent(studentM, {
+										grade: 100 - Math.floor((Math.random() * 30)),
+									});
+								};
+							}
+
+						});
+				};
+
+				if (i === 1) {
+					Promise.all(student2Assignment2)
+						.then(function (results) {
+							console.log('the results should be a list of students and the length should be 14', results, results.length);
+
+							for (let j = 0; j < 10; j++) {
+								var studentJ = results[j];
+								savedClass.addStudent(studentJ);
+							}
+
+							for (let k = 10; k < results.length; k++) {
+								var assignmentK = results[k];
+
+								for (let m = 0; m < 10; m++) {
+									var studentM = results[m];
+									assignmentK.addStudent(studentM, {
+										grade: 100 - Math.floor((Math.random() * 30)),
+									});
+								};
+							}
+
+						});
+				};
+				
+				// //savedClass.setStudents(studentArr1);
+				// if (i === 0) {
+				// 	// for (let k = 0; k < assignmentArr1.length; k++) {
+				// 	// 	assignmentArr1[k].save().then(function (savedAssignment) {
+				// 	// 		savedAssignment.addStudent(savedStudent, {
+				// 	// 			grade: 100 - Math.floor((Math.random() * 30)),
+				// 	// 		});
+				// 	// 	});
+				// 	// }
+				// 	for (let j = 0; j < studentArr1.length; j++) {
+				// 			studentArr1[j].save().then(function (savedStudent) {
+				// 				classArr[i].addStudent(savedStudent);
+				// 				// for (let k = 0; k < assignmentArr1.length; k++) {
+				// 				// 	assignmentArr1[k].save().then(function (savedAssignment) {
+				// 				// 		savedAssignment.addStudent(savedStudent, {
+				// 				// 			grade: 100 - Math.floor((Math.random() * 30)),
+				// 				// 		});
+				// 				// 	});
+				// 				// }
+				// 		});
+				// 	}
+				// };
+
+				// if (i === 1) {
+				// 	for (let j = 0; j < studentArr2.length; j++) {
+				// 			studentArr2[j].save().then(function (savedStudent) {
+				// 				classArr[i].addStudent(savedStudent);
+				// 		});
+				// 	}
+				// }
+			});
+		};
+
 		return teacher;
 	})
 	.catch((err) => {
 		console.log('err in creating teacher signup:', err);
 	});
+
 	res.send(req.body);
 };
 

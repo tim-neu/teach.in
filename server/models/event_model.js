@@ -18,4 +18,4 @@ const Event = sequelize.define('events', {
 
 });
 
-module.exports = Resource;
+module.exports = Event;

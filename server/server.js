@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const sequelize = require('./database').sequelize;
 const rootRouter = require('./routers/root_router');
+const seed = require('./seed');
 const PORT = 8000;
 const app = express();
 
