@@ -1,0 +1,10 @@
+const Assignment = require('./models/assignment_model');
+const Class = require('./models/class_model');
+const classGPA = require('./models/classGPA_model');
+const Event = require('./models/event_model');
+const Group = require('./models/group_model');
+const GroupMessages = require('./models/groupMessages_model');
+const Resource = require('./models/resource_model');
+const Student = require('./models/student_model');
+const Teacher = require('./models/teacher_model');
+module.exports = {};
