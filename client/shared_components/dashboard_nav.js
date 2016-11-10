@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
 
-  class HomeNav extends React.Component {
+  class DashboardNav extends React.Component {
   constructor (props) {
     super(props)
     
@@ -11,13 +11,13 @@ import {Link} from 'react-router';
     return (
       <nav className="navbar navbar-default">
         <div className="row">
-          <span>Teach.in</span>
-          <Link to="/signin" className="btn btn-default navbar-btn">LOGIN</Link>
-          <Link to="/signup" className="btn btn-default navbar-btn">SIGN UP</Link>
+          <Link to="/"><span>Teach.in</span></Link>
+          <Link to="/dashboard" className="btn btn-default navbar-btn">DASHBOARD</Link>
+          <Link to="#" className="btn btn-default navbar-btn">CLASSES</Link>
         </div>
       </nav>
     );
   }
 }
 
-export default HomeNav; 
+export default DashboardNav; 
