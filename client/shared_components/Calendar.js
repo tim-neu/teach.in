@@ -11,6 +11,7 @@ export default class Calendar extends Component {
 	}
 
   render(){
+  console.log(new Date(2015, 3, 12, 10, 30, 0, 0));
   const events =
   	[
   		{
@@ -26,13 +27,13 @@ export default class Calendar extends Component {
   		},
   		{
   		  'title': 'DTS STARTS',
-  		  'start': new Date(2016, 2, 13, 0, 0, 0),
-  		  'end': new Date(2016, 2, 20, 0, 0, 0)
+  		  'start': new Date(2015, 3, 13, 0, 0, 0),
+  		  'end': new Date(2015, 3, 20, 0, 0, 0)
   		},
   		{
   		  'title': 'DTS ENDS',
-  		  'start': new Date(2016, 10, 6, 0, 0, 0),
-  		  'end': new Date(2016, 10, 13, 0, 0, 0)
+  		  'start': new Date(2015, 10, 6, 0, 0, 0),
+  		  'end': new Date(2015, 10, 13, 0, 0, 0)
   		},
   		{
   		  'title': 'Some Event',
@@ -47,14 +48,14 @@ export default class Calendar extends Component {
   		},
   		{
   		  'title': 'Meeting',
-  		  'start': new Date(2015, 3, 12, 10, 30, 0, 0),
-  		  'end': new Date(2015, 3, 12, 12, 30, 0, 0),
+  		  'start': new Date(2015, 3, 12, 10, 30, 0),
+  		  'end': new Date(2015, 3, 12, 12, 30, 0),
   		  'desc': 'Pre-meeting meeting, to prepare for the meeting'
   		},
   		{
   		  'title': 'Lunch',
-  		  'start':new Date(2015, 3, 12, 12, 0, 0, 0),
-  		  'end': new Date(2015, 3, 12, 13, 0, 0, 0),
+  		  'start':new Date(2015, 3, 12, 12, 1),
+  		  'end': new Date(2015, 3, 12, 13, 1),
   		  'desc': 'Power lunch'
   		},
   		{
@@ -91,6 +92,7 @@ export default class Calendar extends Component {
       		style={{height: "500px"}}
       		startAccessor={events.start}
       		endAccessor={events.end}
+          scrollToTime={new Date(1970, 1, 1, 7)}
       		defaultDate={new Date(2015, 3, 12)}
      		/>
   		</div>

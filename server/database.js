@@ -17,6 +17,7 @@ const ClassGPA = require('./models/classGPA_model');
 const Assignment = require('./models/assignment_model');
 const Group = require('./models/group_model');
 const GroupMessages = require('./models/groupMessages_model');
+const Event = require('./models/event_model');
 // Teacher.hasOne(Class);
 Class.belongsTo(Teacher);
 Resource.belongsTo(Class);
@@ -29,6 +30,7 @@ Group.belongsTo(Assignment);
 Group.belongsToMany(Student, { through: 'groupStudent' });
 GroupMessages.belongsTo(Group);
 GroupMessages.hasMany(GroupMessages, { as: 'nestedMessages'});
+Event.belongsTo(Class);
 
 // Teacher.create({
 // 	name: 'teacher1',

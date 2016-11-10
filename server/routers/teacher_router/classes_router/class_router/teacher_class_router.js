@@ -21,6 +21,11 @@ teacherClassRouter.route('/event')
 	res.send(' i should eb quertying the data base for events for that class');
 });
 
+teacherClassRouter.route('/event')
+.post(authMiddleware.checkSignIn, function (req, res) {
+	res.send(' i should eb quertying the data base for events for that class');
+});
+
 teacherClassRouter.route('/assignments')
 .get(authMiddleware.checkSignIn, function (req, res) {
 	res.send(' i should be querying the data base for assignments for that class');
