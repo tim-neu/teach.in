@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('postgres://tuwsxvul:0OSNKxucNX7vVVKD1_NXsFoWqC5nL3SN@elmer.db.elephantsql.com:5432/tuwsxvul');
+const sequelize = new Sequelize('postgres://hneyzgav:R_xlKaR5gCI_H7xZrP3Frq7iYttXuFfp@elmer.db.elephantsql.com:5432/hneyzgav');
 //const sequelize = new Sequelize('postgres://hmfhocyp:fD7IzCJTB-7g5AMH6e0FKWzXqBmMmnVL@elmer.db.elephantsql.com:5432/hmfhocyp');
 //const sequelize = new Sequelize('postgres://nhhfsvxl:PmfmyAew57jYcGCbVPbLg2A2n13rEyXD@elmer.db.elephantsql.com:5432/nhhfsvxl');
 
@@ -17,19 +17,21 @@ const ClassGPA = require('./models/classGPA_model');
 const Assignment = require('./models/assignment_model');
 const Group = require('./models/group_model');
 const GroupMessages = require('./models/groupMessages_model');
+const AssignmentStudents = require('./models/assignmentStudents_model.js');
 // Teacher.hasOne(Class);
 Class.belongsTo(Teacher);
 Resource.belongsTo(Class);
-Class.belongsToMany(Student, { through: 'ClassStudent' });
-Student.belongsToMany(Class, { through: 'ClassStudent' });
+Class.belongsToMany(Student, { through: 'classStudents' });
+Student.belongsToMany(Class, { through: 'classStudents' });
 ClassGPA.belongsTo(Class);
-Assignment.belongsTo(Student);
+Assignment.belongsToMany(Student, { through: AssignmentStudents });
+Student.belongsToMany(Assignment, { through: AssignmentStudents });
 Assignment.belongsTo(Class);
 Group.belongsTo(Class);
 Group.belongsTo(Assignment);
-Group.belongsToMany(Student, { through: 'groupStudent' });
+Group.belongsToMany(Student, { through: 'groupStudents' });
 GroupMessages.belongsTo(Group);
-GroupMessages.hasMany(GroupMessages, { as: 'nestedMessages'});
+GroupMessages.hasMany(GroupMessages, { as: 'nestedMessages' });
 
 // Teacher.create({
 // 	name: 'teacher1',
@@ -37,6 +39,7 @@ GroupMessages.hasMany(GroupMessages, { as: 'nestedMessages'});
 // 	password: 'teacher1pw'
 // })
 //Class.hasOne(resource);
+
 sequelize.sync({ force: true }).then(function () {
 	var teacher1 = Teacher.build({
 		name: 'teacher1',
@@ -58,20 +61,8 @@ sequelize.sync({ force: true }).then(function () {
 			// teacher1.setClass(this);
 			savedClass.setTeacher(savedTeacher);
 			student1.save().then(function (savedStudent) {
-				// console.log('the saved student is:', savedStudent);
-				// Student.findOne({
-				// 	where: { id: 1 },
-				// })
-				// .then(function (student) {
-				// 	Class.findOne({
-				// 		where:{ id: 1 },
-				// 	})
-				// 	.then(function (foundClass) {
-				// 		student.setClass(foundClass);
-				// 	});
-				// });
 				savedClass.addStudent(savedStudent);
-				// savedStudent.setClass(savedClass);
+				// savedStudent.addClass(savedClass);
 				// this.setClass([class1]);
 				// class1.setStudent([student1]);
 			});
