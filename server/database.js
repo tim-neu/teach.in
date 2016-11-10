@@ -18,6 +18,7 @@ const Assignment = require('./models/assignment_model');
 const Group = require('./models/group_model');
 const GroupMessages = require('./models/groupMessages_model');
 const AssignmentStudents = require('./models/assignmentStudents_model.js');
+const Event = require('./models/event_model');
 // Teacher.hasOne(Class);
 Class.belongsTo(Teacher);
 Resource.belongsTo(Class);
@@ -31,7 +32,8 @@ Group.belongsTo(Class);
 Group.belongsTo(Assignment);
 Group.belongsToMany(Student, { through: 'groupStudents' });
 GroupMessages.belongsTo(Group);
-GroupMessages.hasMany(GroupMessages, { as: 'nestedMessages' });
+GroupMessages.hasMany(GroupMessages, { as: 'nestedMessages'});
+Event.belongsTo(Class);
 
 // Teacher.create({
 // 	name: 'teacher1',
