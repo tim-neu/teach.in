@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const sequelize = require('./database').sequelize;
 const rootRouter = require('./routers/root_router');
+const seed = require('./seed');
 const PORT = 8000;
 const app = express();
 
@@ -20,10 +21,11 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
-app.use(express.static(path.join(__dirname, '../public')));
+app.use('/', express.static(path.join(__dirname, '../public')));
+app.use('/api', rootRouter);
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../public', 'index.html'))
 })
 //app.get('/api', function(req,res){res.send('i made it')});
-app.use('/api', rootRouter);
+
 app.listen(PORT, () => console.log('Server running on port', PORT));

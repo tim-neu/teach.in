@@ -81,7 +81,7 @@ export default class Calendar extends Component {
   		}
 		];
     return (
-      <div>
+      <div className="col-lg-6">
       	<BigCalendar
       		{...this.props}
       		selectable
