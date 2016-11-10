@@ -24,7 +24,7 @@ teacherController.SIGNIN = (req, res) => {
 	//2 ways: redirect directly to public folder, or pretend its like
 	// a get request to the /api/teachers/dashboard endpoint and give the 
 	// data to the client to render
-	res.redirect('/api/teacher/dashboard');
+	res.redirect('/dashboard');
 };
 
 module.exports = teacherController;

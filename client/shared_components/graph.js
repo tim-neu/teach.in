@@ -38,7 +38,7 @@ import {Line} from 'react-chartjs-2';
   render () {
     return (
       <div className="col-lg-4">
-        <h2>Line Example</h2>
+        <h2>GPA</h2>
         <Line data={this.state.data} />
       </div>
     );

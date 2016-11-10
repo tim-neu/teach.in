@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 import axios from 'axios';
+import HomeNav from '../../shared_components/home_nav.js';
 
   class Signup extends React.Component {
   constructor (props) {
@@ -35,12 +36,15 @@ import axios from 'axios';
 
   render () {
     return (
-        <form onSubmit={this.handleSubmit}>
-          <input value = {this.state.name} type="text" onChange={this.handleNameChange}></input>
-          <input value = {this.state.email} type="email" onChange={this.handleEmailChange}></input>
-          <input value = {this.state.password} type="password" onChange={this.handlePasswordChange}></input>
-          <input type="submit" value="Submit" />
-        </form>
+        <div>
+        <HomeNav />
+          <form onSubmit={this.handleSubmit}>
+            <input value = {this.state.name} type="text" onChange={this.handleNameChange}></input>
+            <input value = {this.state.email} type="email" onChange={this.handleEmailChange}></input>
+            <input value = {this.state.password} type="password" onChange={this.handlePasswordChange}></input>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
     );
   }
 }

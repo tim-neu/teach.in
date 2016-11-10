@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {browserHistory} from 'react-router';
+import HomeNav from '../../shared_components/home_nav.js';
 
   class Signin extends React.Component {
   constructor (props) {
@@ -24,16 +26,22 @@ import axios from 'axios';
 
     }).then(function(response){
       console.log('the signin response is:', response);
+      browserHistory.push("dashboard")
+    }).catch(function(error){
+      console.log('error with sign in')
     })
   }
 
   render () {
     return (
-        <form onSubmit={this.handleSubmit}>
-          <input value = {this.state.email} type="email" onChange={this.handleEmailChange}></input>
-          <input value = {this.state.password} type="password" onChange={this.handlePasswordChange}></input>
-          <input type="submit" value="Submit" />
-        </form>
+        <div>
+          <HomeNav />
+          <form onSubmit={this.handleSubmit}>
+            <input value = {this.state.email} type="email" onChange={this.handleEmailChange}></input>
+            <input value = {this.state.password} type="password" onChange={this.handlePasswordChange}></input>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
     );
   }
 }
