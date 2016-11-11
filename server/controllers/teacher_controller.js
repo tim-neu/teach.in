@@ -87,30 +87,6 @@ teacherController.SIGNUP = (req, res) => {
 
 						});
 				};
-
-				if (i === 1) {
-					Promise.all(student2Assignment2)
-						.then(function (results) {
-							console.log('the results should be a list of students and the length should be 14', results, results.length);
-
-							for (let j = 0; j < 10; j++) {
-								var studentJ = results[j];
-								savedClass.addStudent(studentJ);
-							}
-
-							for (let k = 10; k < results.length; k++) {
-								var assignmentK = results[k];
-
-								for (let m = 0; m < 10; m++) {
-									var studentM = results[m];
-									assignmentK.addStudent(studentM, {
-										grade: 100 - Math.floor((Math.random() * 30)),
-									});
-								};
-							}
-
-						});
-				};
 				
 				let students2 = {};
 				if (i === 1) {
