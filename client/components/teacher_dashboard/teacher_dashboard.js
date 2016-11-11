@@ -6,12 +6,29 @@ import UserInformation from '../../shared_components/User_information.js';
 
 
 const TeacherDashboard = function(){
-  return <div className="row">
-  <DashboardNav />
-  <UserInformation />
-  <Graph />
-  <Calendar />
-  </div>
+	return (
+  	<div className="row">
+  		<DashboardNav />
+  		<div className="container">
+  			<div className="row">
+  				<div className="col-lg-4">
+  					<UserInformation />
+  				</div>
+  				<div className="col-lg-8">
+  					 <Calendar />
+  				</div>
+  			</div>
+  			<div className="row">
+  				<div className="col-lg-4">
+  					FPO
+  				</div>
+  				<div className="col-lg-8">
+  					<Graph />
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+	)
 }
 
 export default TeacherDashboard
