@@ -4,16 +4,20 @@ const sequelize = require('../database.js').sequelize;
 
 const Event = sequelize.define('events', {
 
-  name: {
+  title: {
     type: Sequelize.STRING,
   },
 
   date: {
-    type: Sequelize.STRING,
+    type: Sequelize.DATE,
   },
 
-  time: {
-  	type: Sequelize.STRING,
+  startTime: {
+  	type: Sequelize.DATE,
+  },
+
+  endTime: {
+  	type: Sequelize.DATE,
   },
 
 });
