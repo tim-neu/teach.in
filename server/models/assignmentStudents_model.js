@@ -8,4 +8,5 @@ const AssignmentStudents = sequelize.define('assignmentStudents', {
 	timestamp: false
 });
 
+
 module.exports = AssignmentStudents;

@@ -20,7 +20,7 @@ const Student = sequelize.define('students', {
   },
 
   gpa: {
-    type: Sequelize.DECIMAL,
+    type: Sequelize.FLOAT,
   },
 });
 
