@@ -9,7 +9,7 @@ import React, { Component } from 'react';
   render () {
     return (
       <div>
-        <h1>Mr. Neumann</h1>
+        <h4>Mr. Neumann</h4>
         <img src={this.state.path} />
       </div>
     );
