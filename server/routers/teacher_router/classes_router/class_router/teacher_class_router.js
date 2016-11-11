@@ -1,7 +1,8 @@
 const teacherClassRouter = require('express').Router();
 const authMiddleware = require('../../../../middlewares/auth.js');
 const getClassGpa = require('../../../../controllers/teacher_controller').getClassGpa;
-
+const Event = require('../../../../models/event_model.js');
+const Class = require('../../../../models/class_model.js');
 teacherClassRouter.route('/')
 .get(authMiddleware.checkSignIn, function (req, res) {
 	res.send('i should be querying the databse for this class');
@@ -22,6 +23,7 @@ teacherClassRouter.route('/event')
 
 teacherClassRouter.route('/event')
 .post(authMiddleware.checkSignIn, function (req, res) {
+	console.log('i made it to /api/teacher/classes/class/event');
 	res.send(' i should eb quertying the data base for events for that class');
 });
 

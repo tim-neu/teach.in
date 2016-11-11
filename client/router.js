@@ -23,6 +23,7 @@ const routes = (
 	  	<Route path="signup" component={Signup} />
 		<Route path="dashboard" component={TeacherDashboard} />
 		<Route path="graph" component={Graph} />
+		<Route path="create_class" component={CreateClass} />
 	</Route>
   </Router>
 );
