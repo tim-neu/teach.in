@@ -11,9 +11,11 @@ import {Link} from 'react-router';
     return (
       <nav className="navbar navbar-default">
         <div className="row">
-          <span>Teach.in</span>
+          <Link to="/home" id="nav-logo">Teach.in</Link>
+          <section id="nav-links">
           <Link to="/signin" className="btn btn-default navbar-btn">LOGIN</Link>
           <Link to="/signup" className="btn btn-default navbar-btn">SIGN UP</Link>
+          </section>
         </div>
       </nav>
     );
