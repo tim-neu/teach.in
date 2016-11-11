@@ -13,7 +13,7 @@ teacherClassRouter.route('/resources')
 });
 
 teacherClassRouter.route('/classGPA')
-.get(getClassGpa);
+.get(authMiddleware.checkSignIn, getClassGpa);
 
 teacherClassRouter.route('/event')
 .get(authMiddleware.checkSignIn, function (req, res) {
