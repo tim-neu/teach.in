@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
   class UserInformation extends React.Component {
   constructor (props) {
@@ -6,6 +7,11 @@ import React, { Component } from 'react';
     
     this.state = {path: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Einstein-formal_portrait-35.jpg/220px-Einstein-formal_portrait-35.jpg"}
   };
+
+  getUserInformation(){
+    axios.get()
+  }
+
   render () {
     return (
       <div>

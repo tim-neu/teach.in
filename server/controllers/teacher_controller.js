@@ -3,6 +3,7 @@ const Teacher = require('../models/teacher_model');
 const Class = require('../models/class_model');
 const Student = require('../models/student_model');
 const Assignment = require('../models/assignment_model');
+const assignmentStudents = require('../models/assignmentStudents_model');
 teacherController.SIGNUP = (req, res) => {
 
 	//seeding two classes automatically for this teacher
@@ -18,6 +19,7 @@ teacherController.SIGNUP = (req, res) => {
 	for (let i = 0; i < 10; i++) {
 		let studentI = Student.build({
 			name: 'student' + i,
+			gpa: 4 - (Math.random()*3).toFixed(2)
 		});
 		studentArr1.push(studentI.save());
 	}
@@ -26,6 +28,7 @@ teacherController.SIGNUP = (req, res) => {
 	for (let i = 10; i < 20; i++) {
 		let studentI = Student.build({
 			name: 'student' + i,
+			gpa: 4 - (Math.random()*3).toFixed(2)
 		});
 		studentArr2.push(studentI.save());
 	}
@@ -72,7 +75,7 @@ teacherController.SIGNUP = (req, res) => {
 
 							for (let k = 10; k < results.length; k++) {
 								var assignmentK = results[k];
-
+								assignmentK.setClass(savedClass);
 								for (let m = 0; m < 10; m++) {
 									var studentM = results[m];
 									assignmentK.addStudent(studentM, {
@@ -83,31 +86,35 @@ teacherController.SIGNUP = (req, res) => {
 
 						});
 				};
-
+				let students2 = {};
 				if (i === 1) {
 					Promise.all(student2Assignment2)
 						.then(function (results) {
-							console.log('the results should be a list of students and the length should be 14', results, results.length);
+							//console.log('the results should be a list of students and the length should be 14', results, results.length);
 
 							for (let j = 0; j < 10; j++) {
 								var studentJ = results[j];
-								savedClass.addStudent(studentJ);
+								savedClass.addStudent(studentJ).then(function(){
+									console.log("this is a promise")
+								})
 							}
-
 							for (let k = 10; k < results.length; k++) {
 								var assignmentK = results[k];
-
+								assignmentK.setClass(savedClass);
 								for (let m = 0; m < 10; m++) {
-									var studentM = results[m];
+									let studentM = results[m];
+									
+									let assignments = [];
 									assignmentK.addStudent(studentM, {
 										grade: 100 - Math.floor((Math.random() * 30)),
+									}).then(function(){
+					
 									});
+
 								};
 							}
-
 						});
 				};
-				
 				// //savedClass.setStudents(studentArr1);
 				// if (i === 0) {
 				// 	// for (let k = 0; k < assignmentArr1.length; k++) {
@@ -140,8 +147,11 @@ teacherController.SIGNUP = (req, res) => {
 				// }
 			});
 		};
-
-		return teacher;
+		// console.log("before for")
+		// for(var key in students2){
+		// 	cosole.log(key)
+		// }
+        return teacher;
 	})
 	.catch((err) => {
 		console.log('err in creating teacher signup:', err);
@@ -157,7 +167,19 @@ teacherController.SIGNIN = (req, res) => {
 	//2 ways: redirect directly to public folder, or pretend its like
 	// a get request to the /api/teachers/dashboard endpoint and give the 
 	// data to the client to render
-	res.redirect('/dashboard');
+	res.redirect('/api/teacher/dashboard');
+};
+
+teacherController.getClassGpa = (req, res) => {
+	Student.findAll({})
+	.then(function(students){
+		let studentsGPA = students.reduce(function(total, item){
+			return total + item.dataValues.gpa
+		}, 0) / 20;
+		console.log(studentsGPA)
+		res.send(studentsGPA.toFixed(2).toString());
+	});
+
 };
 
 module.exports = teacherController;
