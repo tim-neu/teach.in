@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
+const dotenv = require('dotenv').load();
 
-//const sequelize = new Sequelize('postgres://hneyzgav:R_xlKaR5gCI_H7xZrP3Frq7iYttXuFfp@elmer.db.elephantsql.com:5432/hneyzgav');
+const sequelize = new Sequelize(process.env.DB_URL);
 //const sequelize = new Sequelize('postgres://hmfhocyp:fD7IzCJTB-7g5AMH6e0FKWzXqBmMmnVL@elmer.db.elephantsql.com:5432/hmfhocyp');
 //const sequelize = new Sequelize('postgres://nhhfsvxl:PmfmyAew57jYcGCbVPbLg2A2n13rEyXD@elmer.db.elephantsql.com:5432/nhhfsvxl');
 
@@ -18,11 +19,13 @@ const Assignment = require('./models/assignment_model');
 const Group = require('./models/group_model');
 const GroupMessages = require('./models/groupMessages_model');
 const AssignmentStudents = require('./models/assignmentStudents_model.js');
+const ClassStudents = require('./models/classStudents_model.js');
+const Event = require('./models/event_model.js');
 // Teacher.hasOne(Class);
 Class.belongsTo(Teacher);
 Resource.belongsTo(Class);
-Class.belongsToMany(Student, { through: 'classStudents' });
-Student.belongsToMany(Class, { through: 'classStudents' });
+Class.belongsToMany(Student, { through: ClassStudents });
+Student.belongsToMany(Class, { through: ClassStudents });
 ClassGPA.belongsTo(Class);
 Assignment.belongsToMany(Student, { through: AssignmentStudents });
 Student.belongsToMany(Assignment, { through: AssignmentStudents });
@@ -41,37 +44,37 @@ GroupMessages.hasMany(GroupMessages, { as: 'nestedMessages' });
 //Class.hasOne(resource);
 
 sequelize.sync({ force: true }).then(function () {
-	var teacher1 = Teacher.build({
-		name: 'teacher1',
-		email: 'teacher1@gmail.com',
-		password: 'teacher1pw',
-	});
-	var class1 = Class.build({
-		name: 'class1Teacher1',
-	});
+	// var teacher1 = Teacher.build({
+	// 	name: 'teacher1',
+	// 	email: 'teacher1@gmail.com',
+	// 	password: 'teacher1pw',
+	// });
+	// var class1 = Class.build({
+	// 	name: ''Mr. Neumann'',
+	// });
 
-	var student1 = Student.build({
-		name: 'student1',
-	});
-	var resource1 = Resource.build({
-		url: 'url1forclass1',
-	});
-	teacher1.save().then(function (savedTeacher) {
-		class1.save().then(function (savedClass) {
-			// teacher1.setClass(this);
-			savedClass.setTeacher(savedTeacher);
-			student1.save().then(function (savedStudent) {
-				savedClass.addStudent(savedStudent);
-				// savedStudent.addClass(savedClass);
-				// this.setClass([class1]);
-				// class1.setStudent([student1]);
-			});
+	// var student1 = Student.build({
+	// 	name: 'student1',
+	// });
+	// var resource1 = Resource.build({
+	// 	url: 'url1forclass1',
+	// });
+	// teacher1.save().then(function (savedTeacher) {
+	// 	class1.save().then(function (savedClass) {
+	// 		// teacher1.setClass(this);
+	// 		savedClass.setTeacher(savedTeacher);
+	// 		student1.save().then(function (savedStudent) {
+	// 			savedClass.addStudent(savedStudent);
+	// 			// savedStudent.addClass(savedClass);
+	// 			// this.setClass([class1]);
+	// 			// class1.setStudent([student1]);
+	// 		});
 
-			resource1.save().then(function () {
-				this.setClass(class1);
-			});
-		});
-	});
+	// 		resource1.save().then(function () {
+	// 			this.setClass(class1);
+	// 		});
+	// 	});
+	// });
 
 	// Student.findOne({
 	// 	where: { id: 1 },

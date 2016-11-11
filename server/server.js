@@ -21,10 +21,13 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
-app.use(express.static(path.join(__dirname, '../public')));
+app.get('/a', function(req,res){
+	res.redirect('/calendar');
+})
+app.use('/', express.static(path.join(__dirname, '../public')));
+app.use('/api', rootRouter);
 app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, '../public', 'index.html'))
+  res.sendFile(path.join(__dirname, '../public/index.html'))
 })
 //app.get('/api', function(req,res){res.send('i made it')});
-app.use('/api', rootRouter);
 app.listen(PORT, () => console.log('Server running on port', PORT));

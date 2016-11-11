@@ -9,7 +9,7 @@ const Event = sequelize.define('events', {
   },
 
   date: {
-    type: Sequelize.STRING,
+    type: Sequelize.DATE,
   },
 
   time: {
