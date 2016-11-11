@@ -3,9 +3,39 @@ const authMiddleware = require('../../../../middlewares/auth.js');
 const getClassGpa = require('../../../../controllers/teacher_controller').getClassGpa;
 const Event = require('../../../../models/event_model.js');
 const Class = require('../../../../models/class_model.js');
+const ClassStudents = require('../../../../models/classStudents_model.js');
 teacherClassRouter.route('/')
 .get(authMiddleware.checkSignIn, function (req, res) {
-	res.send('i should be querying the databse for this class');
+	Class.findOne({
+		where: {
+			name: req.query.className,
+		},
+	})
+	.then(function(foundClass){
+		foundClass.getStudents().then(function(foundStudents){
+			var dataObjects = foundStudents.map(function(student){
+				return student.dataValues;
+			});
+			var PromiseArr = [];
+			for (let i = 0; i < dataObjects.length; i++) {
+				PromiseArr.push(ClassStudents.findOne({
+					where: {
+						classId: foundClass.id,
+						studentId: dataObjects[i].id,
+					},
+				}))
+			}
+			Promise.all(PromiseArr)
+			.then(function(foundPairs){
+				for (let i = 0; i < foundPairs.length; i++) {
+					var foundPair = foundPairs[i];
+					var dataObject = dataObjects[i];
+					dataObject.classGrade = foundPair.grade;
+				}
+				res.send(dataObjects);
+			})
+		});
+	})
 });
 
 teacherClassRouter.route('/resources')
