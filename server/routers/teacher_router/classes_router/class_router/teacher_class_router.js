@@ -22,6 +22,11 @@ teacherClassRouter.route('/event')
 });
 
 teacherClassRouter.route('/event')
+.get(authMiddleware.checkSignIn, function (req, res) {
+	res.send(' i should be quertying the data base for events for that class');
+});
+
+teacherClassRouter.route('/event')
 .post(authMiddleware.checkSignIn, function (req, res) {
 	console.log('i made it to /api/teacher/classes/class/event');
 	console.log('req.body is: ', 'req.body');
