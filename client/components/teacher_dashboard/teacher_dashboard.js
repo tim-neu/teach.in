@@ -7,7 +7,6 @@ import UserInformation from '../../shared_components/User_information.js';
 
 const TeacherDashboard = function(){
   return <div className="row">
-
   <DashboardNav />
   <UserInformation />
   <Graph />

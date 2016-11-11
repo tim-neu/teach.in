@@ -43,7 +43,7 @@ sequelize.sync({ force: true }).then(function () {
 		password: 'teacher1pw',
 	});
 	var class1 = Class.build({
-		name: 'class1Teacher1',
+		name: 'Mr. Neumann',
 	});
 	var resource1 = Resource.build({
 		url: 'url1forclass1',
