@@ -36,11 +36,13 @@ import HomeNav from '../../shared_components/home_nav.js';
     return (
         <div>
           <HomeNav />
+          <div id="form-container">
           <form onSubmit={this.handleSubmit}>
-            <input value = {this.state.email} type="email" onChange={this.handleEmailChange}></input>
-            <input value = {this.state.password} type="password" onChange={this.handlePasswordChange}></input>
+            <input placeholder="email" value = {this.state.email} type="email" onChange={this.handleEmailChange}></input>
+            <input placeholder="password" value = {this.state.password} type="password" onChange={this.handlePasswordChange}></input>
             <input type="submit" value="Submit" />
           </form>
+          </div>
         </div>
     );
   }

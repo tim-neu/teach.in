@@ -39,9 +39,9 @@ import HomeNav from '../../shared_components/home_nav.js';
         <div>
         <HomeNav />
           <form onSubmit={this.handleSubmit}>
-            <input value = {this.state.name} type="text" onChange={this.handleNameChange}></input>
-            <input value = {this.state.email} type="email" onChange={this.handleEmailChange}></input>
-            <input value = {this.state.password} type="password" onChange={this.handlePasswordChange}></input>
+            <input id="signin-input" placeholder="name" value = {this.state.name} type="text" onChange={this.handleNameChange}></input>
+            <input id="signin-input" placeholder="email" value = {this.state.email} type="email" onChange={this.handleEmailChange}></input>
+            <input id="signin-input" placeholder="password" value = {this.state.password} type="password" onChange={this.handlePasswordChange}></input>
             <input type="submit" value="Submit" />
           </form>
         </div>
