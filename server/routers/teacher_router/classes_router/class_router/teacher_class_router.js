@@ -1,5 +1,6 @@
 const teacherClassRouter = require('express').Router();
 const authMiddleware = require('../../../../middlewares/auth.js');
+const getClassGpa = require('../../../../controllers/teacher_controller').getClassGpa;
 
 teacherClassRouter.route('/')
 .get(authMiddleware.checkSignIn, function (req, res) {
@@ -12,9 +13,7 @@ teacherClassRouter.route('/resources')
 });
 
 teacherClassRouter.route('/classGPA')
-.get(authMiddleware.checkSignIn, function (req, res) {
-	res.send('i should be querying the databse for the class gpa history over time');
-});
+.get(getClassGpa);
 
 teacherClassRouter.route('/event')
 .get(authMiddleware.checkSignIn, function (req, res) {
