@@ -2,6 +2,7 @@ const teacherClassRouter = require('express').Router();
 const authMiddleware = require('../../../../middlewares/auth.js');
 const getClassGpa = require('../../../../controllers/teacher_controller').getClassGpa;
 const getAllEvents = require('../../../../controllers/teacher_controller').getAllEvents;
+const addAssignment = require('../../../../controllers/teacher_controller').addAssignment;
 const Event = require('../../../../models/event_model.js');
 const Class = require('../../../../models/class_model.js');
 const ClassStudents = require('../../../../models/classStudents_model.js');
@@ -55,6 +56,12 @@ teacherClassRouter.route('/classGPA')
 // teacherClassRouter.route('/event')
 // .get(authMiddleware.checkSignIn, getAllEvents);
 
+teacherClassRouter.route('/assignment')
+.post(addAssignment);
+
+teacherClassRouter.route('/assignment')
+.post(addAssignment);
+
 teacherClassRouter.route('/event')
 .post(authMiddleware.checkSignIn, function (req, res) {
 	console.log('i made it to /api/teacher/classes/class/event');
@@ -65,6 +72,9 @@ teacherClassRouter.route('/event')
  	//  endTime: '01:00',
  	//  date: '2016-11-11' 
   // }
+
+	
+  
 
     var startTime = req.body.startTime;
  		var data = req.body.date.replace(/-0/g, ', ').replace(/-/g, ', ') + ', '+ req.body.startTime.replace(/:/gi, ', ').replace(/\b0+/g, '0');

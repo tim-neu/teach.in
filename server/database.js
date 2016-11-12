@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 // const dotenv = require('dotenv').load();
 
-//const sequelize = new Sequelize(process.env.DB_URL);
-const sequelize = new Sequelize('postgres://hmfhocyp:fD7IzCJTB-7g5AMH6e0FKWzXqBmMmnVL@elmer.db.elephantsql.com:5432/hmfhocyp');
-//const sequelize = new Sequelize('postgres://nhhfsvxl:PmfmyAew57jYcGCbVPbLg2A2n13rEyXD@elmer.db.elephantsql.com:5432/nhhfsvxl');
+//const sequelize = new Sequelize('postgres://hneyzgav:R_xlKaR5gCI_H7xZrP3Frq7iYttXuFfp@elmer.db.elephantsql.com:5432/hneyzgav');
+// const sequelize = new Sequelize('postgres://hmfhocyp:fD7IzCJTB-7g5AMH6e0FKWzXqBmMmnVL@elmer.db.elephantsql.com:5432/hmfhocyp');
+// const sequelize = new Sequelize('postgres://nhhfsvxl:PmfmyAew57jYcGCbVPbLg2A2n13rEyXD@elmer.db.elephantsql.com:5432/nhhfsvxl');
 
 module.exports = {
   sequelize: sequelize,
@@ -45,14 +45,14 @@ Event.belongsTo(Class);
 //Class.hasOne(resource);
 
 sequelize.sync({ force: true }).then(function () {
-	// var teacher1 = Teacher.build({
-	// 	name: 'teacher1',
-	// 	email: 'teacher1@gmail.com',
-	// 	password: 'teacher1pw',
-	// });
-	// var class1 = Class.build({
-	// 	name: ''Mr. Neumann'',
-	// });
+	var teacher1 = Teacher.build({
+		name: 'teacher1',
+		email: 'teacher1@gmail.com',
+		password: 'teacher1pw',
+	});
+	var class1 = Class.build({
+		name: 'Math',
+	});
 
 	// var student1 = Student.build({
 	// 	name: 'student1',

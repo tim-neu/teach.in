@@ -7,11 +7,12 @@ import {Link} from 'react-router';
     
     this.state = {};
   };
+
   render () {
     return (
       <nav className="navbar navbar-default">
         <div className="row">
-          <Link to="/"><span>Teach.in</span></Link>
+          <Link to="/home" id="nav-logo">Teach.in</Link>
           <Link to="/dashboard" className="btn btn-default navbar-btn">DASHBOARD</Link>
           <Link to="#" className="btn btn-default navbar-btn">CLASSES</Link>
         </div>
