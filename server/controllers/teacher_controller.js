@@ -218,20 +218,6 @@ teacherController.GETCLASSES = function(req,res) {
 	.catch(function(err){
 		console.log(err);
 	})
-teacherController.getAllEvents = (req, res) => {
-	Event.findAll({})
-	.then(function(events){
-		console.log('here are the events ----------------> ', events);
-		var mappedDataValues = events.map(function(event){
-			return event.dataValues;
-		});
-		mappedDataValues.forEach(function(object,index,collection){
-			object = _.pick(object,['title','startTime','endTime'])
-			collection[index] = object;
-		});
-		console.log('mapped data values should contain objects taht have only name,start and end time', mappedDataValues);
-		res.send(mappedDataValues);
-	});
 };
 
 module.exports = teacherController;

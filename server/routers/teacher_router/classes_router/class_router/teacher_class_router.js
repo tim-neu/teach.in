@@ -52,8 +52,8 @@ teacherClassRouter.route('/classGPA')
 // 	res.send(' i should be quertying the data base for events for that class');
 // });
 
-teacherClassRouter.route('/event')
-.get(authMiddleware.checkSignIn, getAllEvents);
+// teacherClassRouter.route('/event')
+// .get(authMiddleware.checkSignIn, getAllEvents);
 
 teacherClassRouter.route('/event')
 .post(authMiddleware.checkSignIn, function (req, res) {
