@@ -20,7 +20,7 @@ const TeacherDashboard = function(){
   			</div>
   			<div className="row">
   				<div className="col-lg-4">
-  					FPO
+  					
   				</div>
   				<div className="col-lg-8">
   					<Graph />
