@@ -5,6 +5,8 @@ const Student = require('../models/student_model');
 const Assignment = require('../models/assignment_model');
 const assignmentStudents = require('../models/assignmentStudents_model');
 const ClassStudents = require('../models/classStudents_model');
+const Event = require('../models/event_model');
+const _ = require('lodash');
 teacherController.SIGNUP = (req, res) => {
 
 	//seeding two classes automatically for this teacher
