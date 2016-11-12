@@ -17,7 +17,6 @@ import Class from './components/teacher_classes/Class';
 
 // Routes
 const routes = (
-  <Router history={browserHistory}>
 	<Route path="/" component={App}>
 	  	<IndexRedirect to="/home" />
 	  	<Route path="home" component={Home} />
@@ -30,7 +29,6 @@ const routes = (
 	    <Route path='/classes' component={Classes} />
 	    <Route name='/class' path='/:className' component={Class} />
 	</Route>
-  </Router>
 );
 
 // const routes = (
