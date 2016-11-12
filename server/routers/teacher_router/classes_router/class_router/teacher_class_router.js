@@ -1,6 +1,7 @@
 const teacherClassRouter = require('express').Router();
 const authMiddleware = require('../../../../middlewares/auth.js');
 const getClassGpa = require('../../../../controllers/teacher_controller').getClassGpa;
+const getAllEvents = require('../../../../controllers/teacher_controller').getAllEvents;
 const Event = require('../../../../models/event_model.js');
 const Class = require('../../../../models/class_model.js');
 teacherClassRouter.route('/')
@@ -16,15 +17,13 @@ teacherClassRouter.route('/resources')
 teacherClassRouter.route('/classGPA')
 .get(authMiddleware.checkSignIn, getClassGpa);
 
-teacherClassRouter.route('/event')
-.get(authMiddleware.checkSignIn, function (req, res) {
-	res.send(' i should be quertying the data base for events for that class');
-});
+// teacherClassRouter.route('/event')
+// .get(authMiddleware.checkSignIn, function (req, res) {
+// 	res.send(' i should be quertying the data base for events for that class');
+// });
 
 teacherClassRouter.route('/event')
-.get(authMiddleware.checkSignIn, function (req, res) {
-	res.send(' i should be quertying the data base for events for that class');
-});
+.get(authMiddleware.checkSignIn, getAllEvents);
 
 teacherClassRouter.route('/event')
 .post(authMiddleware.checkSignIn, function (req, res) {
@@ -53,7 +52,7 @@ teacherClassRouter.route('/event')
 		    return string;
 		  }
 		});
-    console.log('mapped is: ', mapped);
+    	console.log('mapped is: ', mapped);
  		var dateStartObj = new Date(Number(mapped[0]), Number(mapped[1]) -1, Number(mapped[2]), Number(mapped[3]), Number(mapped[4]));
  		startTime = dateStartObj;
  		console.log('dateStartObj:', dateStartObj)
@@ -76,7 +75,7 @@ teacherClassRouter.route('/event')
 		    return string;
 		  }
 		});
-    console.log('mapped is: ', mapped);
+    	console.log('mapped is: ', mapped);
  		var dateEndObj = new Date(Number(mapped[0]), Number(mapped[1]) -1, Number(mapped[2]), Number(mapped[3]), Number(mapped[4]));
  		endTime = dateEndObj;
  		console.log('dateEndObj:', dateEndObj)
