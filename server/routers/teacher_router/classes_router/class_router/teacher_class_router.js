@@ -127,6 +127,11 @@ teacherClassRouter.route('/assignments')
 	res.send(' i should be querying the data base for assignments for that class');
 });
 
+teacherClassRouter.route('/assignments')
+.post(authMiddleware.checkSignIn, function (req, res) {
+	res.send(' i should be querying the data base for assignments for that class');
+});
+
 teacherClassRouter.route('/students/student/gpa')
 .get(authMiddleware.checkSignIn, function (req, res) {
 	res.send('i should be querying the data for students in this class using the join table');
