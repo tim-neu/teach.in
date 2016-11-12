@@ -4,6 +4,7 @@ const Class = require('../models/class_model');
 const Student = require('../models/student_model');
 const Assignment = require('../models/assignment_model');
 const assignmentStudents = require('../models/assignmentStudents_model');
+const ClassStudents = require('../models/classStudents_model');
 teacherController.SIGNUP = (req, res) => {
 
 	//seeding two classes automatically for this teacher
@@ -57,7 +58,6 @@ teacherController.SIGNUP = (req, res) => {
 		email: req.body.email,
 		password: req.body.password,
 	}).then((teacher) => {
-		console.log(teacher,"teacher")
 		//console.log(teacher,"teacher")
 
 		//Code below seeds two classes to the teacher;
@@ -67,11 +67,16 @@ teacherController.SIGNUP = (req, res) => {
 				if (i === 0) {
 					Promise.all(student1Assignment1)
 						.then(function (results) {
-							console.log('the results should be a list of students and the length should be 14', results, results.length);
+							//console.log('the results should be a list of students and the length should be 14', results, results.length);
 
 							for (let j = 0; j < 10; j++) {
 								var studentJ = results[j];
-								savedClass.addStudent(studentJ);
+								var grades = ['A','B','C','D'];
+								var index = Math.floor(Math.random()*3);
+								var randomGrade = grades[index];
+								savedClass.addStudent(studentJ, {
+									grade: randomGrade
+								});
 							}
 
 							for (let k = 10; k < results.length; k++) {
@@ -96,9 +101,12 @@ teacherController.SIGNUP = (req, res) => {
 
 							for (let j = 0; j < 10; j++) {
 								var studentJ = results[j];
-								savedClass.addStudent(studentJ).then(function(){
-									console.log("this is a promise")
-								})
+								var grades = ['A','B','C','D'];
+								var index = Math.floor(Math.random()*3);
+								var randomGrade = grades[index];
+								savedClass.addStudent(studentJ, {
+									grade: randomGrade
+								});
 							}
 							for (let k = 10; k < results.length; k++) {
 								var assignmentK = results[k];
@@ -182,6 +190,32 @@ teacherController.getClassGpa = (req, res) => {
 		res.send(studentsGPA.toFixed(2).toString());
 	});
 
+};
+
+
+teacherController.getStudentGpa = (req, res) => {
+	// Class.findAll().then(function(foundClasses){
+	// 	foundClasses.forEach(function(Class){
+	// 		Class.getStudents().then(function(foundAssociatedStudents){
+	// 			foundAssociatedStudents.forEach(function(associatedStudent){
+	// 				associatedStudent.update({
+
+	// 				})
+	// 			})
+	// 		})
+	// 	})
+	// })
+
+
+};
+teacherController.GETCLASSES = function(req,res) {
+	Class.findAll()
+	.then(function(bothClasses){
+		res.send(bothClasses);
+	})
+	.catch(function(err){
+		console.log(err);
+	})
 };
 
 module.exports = teacherController;
