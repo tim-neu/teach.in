@@ -1,8 +1,6 @@
 const teacherClassRouter = require('express').Router();
 const authMiddleware = require('../../../../middlewares/auth.js');
-const getClassGpa = require('../../../../controllers/teacher_controller').getClassGpa;
-const getAllEvents = require('../../../../controllers/teacher_controller').getAllEvents;
-const addAssignment = require('../../../../controllers/teacher_controller').addAssignment;
+const teacherController = require('../../../../controllers/teacher_controller');
 const Event = require('../../../../models/event_model.js');
 const Class = require('../../../../models/class_model.js');
 const ClassStudents = require('../../../../models/classStudents_model.js');
@@ -46,7 +44,7 @@ teacherClassRouter.route('/resources')
 });
 
 teacherClassRouter.route('/classGPA')
-.get(authMiddleware.checkSignIn, getClassGpa);
+.get(authMiddleware.checkSignIn, teacherController.getClassGpa);
 
 // teacherClassRouter.route('/event')
 // .get(authMiddleware.checkSignIn, function (req, res) {
@@ -57,10 +55,11 @@ teacherClassRouter.route('/classGPA')
 // .get(authMiddleware.checkSignIn, getAllEvents);
 
 teacherClassRouter.route('/assignment')
-.post(addAssignment);
+.post(teacherController.addAssignment);
 
-teacherClassRouter.route('/assignment')
-.post(addAssignment);
+teacherClassRouter.route('/grade')
+.post(teacherController.addGrade);
+
 
 teacherClassRouter.route('/event')
 .post(authMiddleware.checkSignIn, function (req, res) {
