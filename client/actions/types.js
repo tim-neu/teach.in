@@ -1,0 +1,1 @@
+export const ALL_STUDENTS = 'all_students';

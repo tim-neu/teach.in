@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {getStudents} from '../../actions/students_actions';
+
 class Class extends Component {
 	constructor(props) {
 		super(props);
@@ -10,21 +13,13 @@ class Class extends Component {
 		console.log('i got the right name!', this.state.className);
 		var self = this;
 		var className = this.state.className;
-		axios({
-			method: 'GET',
-			url: '/api/teacher/classes/class',
-			params: {
-				className: className
-			}
-		})
-		.then(function(resp){
-			console.log('the resp is:', resp);
-			self.setState({ students: resp.data });
-		});
 	}
-
+	componentWillMount () {
+		console.log('this.state.classname is:', this.state.className);
+		this.props.getStudents(this.state.className);
+	}
 	render() {
-		const studentList = this.state.students.map(function(student,i) {
+		const studentList = this.props.students.map(function(student,i) {
 			return <li key={i}>{student.name}</li>
 		})
 		return (
@@ -37,4 +32,13 @@ class Class extends Component {
 	}
 }
 
-export default Class;
+function mapStateToProps(state) {
+	return {
+		students: state.students.students
+	}
+}
+
+export default connect(mapStateToProps, {getStudents: getStudents})(Class); 
+
+
+
