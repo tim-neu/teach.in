@@ -14,29 +14,34 @@ teacherClassRouter.route('/')
 		},
 	})
 	.then(function(foundClass){
-		foundClass.getStudents().then(function(foundStudents){
-			var dataObjects = foundStudents.map(function(student){
-				return student.dataValues;
-			});
-			var PromiseArr = [];
-			for (let i = 0; i < dataObjects.length; i++) {
-				PromiseArr.push(ClassStudents.findOne({
-					where: {
-						classId: foundClass.id,
-						studentId: dataObjects[i].id,
-					},
-				}))
-			}
-			Promise.all(PromiseArr)
-			.then(function(foundPairs){
-				for (let i = 0; i < foundPairs.length; i++) {
-					var foundPair = foundPairs[i];
-					var dataObject = dataObjects[i];
-					dataObject.classGrade = foundPair.grade;
+		if(foundClass){
+			foundClass.getStudents().then(function(foundStudents){
+				var dataObjects = foundStudents.map(function(student){
+					return student.dataValues;
+				});
+				var PromiseArr = [];
+				for (let i = 0; i < dataObjects.length; i++) {
+					PromiseArr.push(ClassStudents.findOne({
+						where: {
+							classId: foundClass.id,
+							studentId: dataObjects[i].id,
+						},
+					}))
 				}
-				res.send(dataObjects);
-			})
-		});
+				Promise.all(PromiseArr)
+				.then(function(foundPairs){
+					for (let i = 0; i < foundPairs.length; i++) {
+						var foundPair = foundPairs[i];
+						var dataObject = dataObjects[i];
+						dataObject.classGrade = foundPair.grade;
+					}
+					res.send(dataObjects);
+				})
+			});
+		}
+		else {
+			res.send('cant found class');
+		}
 	})
 });
 
@@ -138,6 +143,18 @@ teacherClassRouter.route('/assignments')
 
 teacherClassRouter.route('/assignments')
 .post(authMiddleware.checkSignIn, function (req, res) {
+	console.log('req.body for /assignments: ------------>',req.body);
+
+	Event.create({
+ 		name: req.body.assignment,
+		classId: req.body.classId,
+		type: req.body.type,
+		dueDate: req.body.date,
+		grade: req.body.grade
+ 	}).then(function() {
+ 		console.log('Saved assignment to db!')
+ 	})
+
 	res.send(' i should be querying the data base for assignments for that class');
 });
 
