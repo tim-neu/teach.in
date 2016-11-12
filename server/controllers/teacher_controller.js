@@ -4,10 +4,7 @@ const Class = require('../models/class_model');
 const Student = require('../models/student_model');
 const Assignment = require('../models/assignment_model');
 const assignmentStudents = require('../models/assignmentStudents_model');
-<<<<<<< HEAD
-=======
 const ClassStudents = require('../models/classStudents_model');
->>>>>>> Roster
 teacherController.SIGNUP = (req, res) => {
 
 	//seeding two classes automatically for this teacher
@@ -61,11 +58,6 @@ teacherController.SIGNUP = (req, res) => {
 		email: req.body.email,
 		password: req.body.password,
 	}).then((teacher) => {
-<<<<<<< HEAD
-		console.log(teacher,"teacher")
-=======
-		//console.log(teacher,"teacher")
->>>>>>> Roster
 		//console.log(teacher,"teacher")
 
 		//Code below seeds two classes to the teacher;

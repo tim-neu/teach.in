@@ -1,13 +1,8 @@
 const Sequelize = require('sequelize');
 const dotenv = require('dotenv').load();
 
-<<<<<<< HEAD
-//const sequelize = new Sequelize('postgres://hneyzgav:R_xlKaR5gCI_H7xZrP3Frq7iYttXuFfp@elmer.db.elephantsql.com:5432/hneyzgav');
-// const sequelize = new Sequelize('postgres://hmfhocyp:fD7IzCJTB-7g5AMH6e0FKWzXqBmMmnVL@elmer.db.elephantsql.com:5432/hmfhocyp');
-=======
-const sequelize = new Sequelize(process.env.DB_URL);
+//const sequelize = new Sequelize(process.env.DB_URL);
 //const sequelize = new Sequelize('postgres://hmfhocyp:fD7IzCJTB-7g5AMH6e0FKWzXqBmMmnVL@elmer.db.elephantsql.com:5432/hmfhocyp');
->>>>>>> Roster
 //const sequelize = new Sequelize('postgres://nhhfsvxl:PmfmyAew57jYcGCbVPbLg2A2n13rEyXD@elmer.db.elephantsql.com:5432/nhhfsvxl');
 
 module.exports = {
@@ -26,7 +21,6 @@ const GroupMessages = require('./models/groupMessages_model');
 const Event = require('./models/event_model');
 const AssignmentStudents = require('./models/assignmentStudents_model.js');
 const ClassStudents = require('./models/classStudents_model.js');
-const Event = require('./models/event_model.js');
 // Teacher.hasOne(Class);
 Class.belongsTo(Teacher);
 Resource.belongsTo(Class);
