@@ -11,4 +11,9 @@ teacherDashboardRouter.route('/calendar/events')
 	res.send('i should be creating events in my database from chart.js');
 });
 
+teacherDashboardRouter.route('/profile')
+.post(authMiddleware.checkSignIn, function (req, res) {
+	res.send('i should be creating events in my database from chart.js');
+});
+
 module.exports = teacherDashboardRouter;

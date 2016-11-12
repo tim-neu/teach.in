@@ -184,4 +184,26 @@ teacherController.getClassGpa = (req, res) => {
 
 };
 
+teacherController.getProfileInformation = (req, res) => {
+
+};
+
+teacherController.addAssignment = (req, res) => {
+	var className = req.body.class
+	Class.findOne({where: {name: "Math"}})
+	.then(function(course){
+		var classId = course.id
+		var newAssignment = Assignment.build({
+			name: req.body.className,
+			classId: classId,
+			type: req.body.type,
+			dueDate: req.body.date,
+			grade: req.body.grade
+		});
+		newAssignment.save();
+	});
+};
+
+
+
 module.exports = teacherController;
