@@ -224,18 +224,48 @@ teacherController.getProfileInformation = (req, res) => {
 
 teacherController.addAssignment = (req, res) => {
 	var className = req.body.class
-	Class.findOne({where: {name: "Math"}})
+	console.log(req.body.className, "-------- this is req.body.className")
+	Class.findOne({where: {name: req.body.className}})
 	.then(function(course){
+		console.log(course, "--------- this is course")
 		var classId = course.id
 		var newAssignment = Assignment.build({
-			name: req.body.className,
+			name: req.body.assignment,
 			classId: classId,
 			type: req.body.type,
-			dueDate: req.body.date,
-			grade: req.body.grade
+			dueDate: req.body.date
 		});
 		newAssignment.save();
-	});
+	}).catch(function(error){
+		console.log(error, "this is the error");
+	})
+};
+
+teacherController.addGrade = (req, res) => {
+	var studentId;
+	var assignmentId;
+	Student.findOne({where: {name: req.body.student}})
+	.then(function(student){
+		studentId = student.id
+	})
+	.then(function(){
+	Assignment.findOne({where: {name: req.body.assignment}})
+	.then(function(assignment){
+		assignmentId = assignment.id
+		var newGrade = assignmentStudents.build({
+			assignmentId: assignmentId,
+			studentId: studentId,
+			grade: req.body.grade
+		});
+		newGrade.save()
+		})
+		.then(function(success){
+			console.log(success);
+		})
+		.catch(function(error){
+			console.log(error)
+		});
+	})
 };
 
 
