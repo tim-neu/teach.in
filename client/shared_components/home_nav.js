@@ -13,8 +13,10 @@ import {Link} from 'react-router';
         <div className="row">
           <Link to="/home" id="nav-logo">Teach.in</Link>
           <section id="nav-links">
-          <Link to="/signin" className="btn btn-default navbar-btn">LOGIN</Link>
-          <Link to="/signup" className="btn btn-default navbar-btn">SIGN UP</Link>
+          <Link to="/teacherSignIn" className="btn btn-default navbar-btn">TEACHER LOGIN</Link>
+          <Link to="/studentSignIn" className="btn btn-default navbar-btn">STUDENT LOGIN</Link>
+          <Link to="/teacherSignUp" className="btn btn-default navbar-btn">TEACHER SIGN UP</Link>
+          <Link to="/studentSignUp" className="btn btn-default navbar-btn">STUDENT SIGN UP</Link>
           </section>
         </div>
       </nav>

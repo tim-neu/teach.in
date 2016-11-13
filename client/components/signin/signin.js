@@ -6,12 +6,16 @@ import HomeNav from '../../shared_components/home_nav.js';
   class Signin extends React.Component {
   constructor (props) {
     super(props)
-    
     this.state = {email:'', password:''};
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
+
+  componentWillMount() {
+    console.log('the current url is:', window.location.href);
+  }
+  
   handleEmailChange(event) {
     this.setState({email: event.target.value});
   }

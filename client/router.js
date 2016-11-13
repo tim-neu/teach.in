@@ -20,8 +20,10 @@ const routes = (
 	<Route path="/" component={App}>
 	  	<IndexRedirect to="/home" />
 	  	<Route path="home" component={Home} />
-	  	<Route path="signin" component={Signin} />
-	  	<Route path="signup" component={Signup} />
+	  	<Route path="teacherSignIn" component={Signin} />
+	  	<Route path="studentSignIn" component={Signin} />
+	  	<Route path="teacherSignUp" component={Signup} />
+	  	<Route path="studentSignUp" component={Signup} />
 		<Route path="dashboard" component={TeacherDashboard} />
 		<Route path="graph" component={Graph} />
 		<Route path="calendar" component={Calendar} />
