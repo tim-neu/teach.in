@@ -1,34 +1,26 @@
 //Libs
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
+import { connect } from 'react-redux';
 import axios from 'axios';
+import { getClasses } from '../../actions/classes_actions';
+
 class Classes extends Component {
 	constructor (props) {
 		super(props);
-
-		this.state = { classes: [] };
-		var self = this;
-		axios({
-			method: 'GET',
-			url: '/api/teacher/classes'
-		})
-		.then(function(resp){
-			console.log('the resp is:', resp);
-			self.setState({ classes: resp.data });
-		});
 	}
 
 	componentWillMount() {
+		this.props.getClasses();
 	}
- 
+
 	render () {
-		console.log('this is state classes', this.state.classes);
 		// const classList = this.state.classes.map((Class,i) => {
-		// 	return <Link to={`/class/:${Class.name}`} key={i}><li> {Class.name} </li> </Link> 
+		// return <Link to={`/class/:${Class.name}`} key={i}><li> {Class.name} </li> </Link> 
 		// });
 
-		const classList = this.state.classes.map((Class,i) => {
-			return <Link to={{ pathname: '/class', query:{className: Class.name} }} key={i}><li> {Class.name} </li> </Link> 
+		const classList = this.props.classes.map((Class, i) => {
+			return <Link to={{ pathname: '/class', query: { className: Class.name }}} key={i}><li> {Class.name} </li> </Link> 
 		});
 
 		return (
@@ -37,6 +29,14 @@ class Classes extends Component {
 			</div>
 		);
 	}
-}
+};
 
-export default Classes;
+function mapStateToProps(state, action) {
+	return {
+		classes: state.classes.classes,
+	};
+};
+
+const ClassesContainer = connect(mapStateToProps, { getClasses: getClasses })(Classes);
+
+export default ClassesContainer;
