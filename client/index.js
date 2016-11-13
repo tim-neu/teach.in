@@ -1,7 +1,7 @@
 import { render } from 'react-dom';
 //Libs
 import React from 'react';
-import {applyMiddleware, createStore} from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
@@ -21,7 +21,7 @@ import Class from './components/teacher_classes/Class';
 import routes from './router';
 import reducers from './reducers';
 
-const createStoreWithMiddleware=applyMiddleware(reduxThunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
 // Render

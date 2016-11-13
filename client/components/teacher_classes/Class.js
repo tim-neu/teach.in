@@ -1,32 +1,35 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {connect} from 'react-redux';
-import {getStudents} from '../../actions/students_actions';
+import { connect } from 'react-redux';
+import { getStudents } from '../../actions/students_actions';
 
 class Class extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { 
+		this.state = {
 			className: this.props.location.query.className,
-			students: [], 
+			students: [],
 		};
 		console.log('i got the right name!', this.state.className);
 		var self = this;
 		var className = this.state.className;
 	}
+
 	componentWillMount () {
 		console.log('this.state.classname is:', this.state.className);
 		this.props.getStudents(this.state.className);
 	}
+
 	render() {
-		const studentList = this.props.students.map(function(student,i) {
+		const studentList = this.props.students.map(function (student, i) {
 			return <li key={i}>{student.name}</li>
-		})
+		});
+
 		return (
 			<div>I'm at classes!
 				<h1>{this.state.className}</h1>
 				<ul> {studentList} </ul>
-			</div> 
+			</div>
 			);
 
 	}
@@ -34,11 +37,8 @@ class Class extends Component {
 
 function mapStateToProps(state) {
 	return {
-		students: state.students.students
-	}
+		students: state.students.students,
+	};
 }
 
-export default connect(mapStateToProps, {getStudents: getStudents})(Class); 
-
-
-
+export default connect(mapStateToProps, { getStudents: getStudents })(Class);
