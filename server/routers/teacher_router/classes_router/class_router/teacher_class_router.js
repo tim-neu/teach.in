@@ -57,6 +57,9 @@ teacherClassRouter.route('/classGPA')
 teacherClassRouter.route('/assignment')
 .post(teacherController.addAssignment);
 
+teacherClassRouter.route('/assignment')
+.get(teacherController.getAssignments);
+
 teacherClassRouter.route('/grade')
 .post(teacherController.addGrade);
 
@@ -72,8 +75,9 @@ teacherClassRouter.route('/event')
  	//  date: '2016-11-11' 
   // }
 
-	
+	console.log(req.body,  " this is req. body ----------------------------------->")
   
+
 
     var startTime = req.body.startTime;
  		var data = req.body.date.replace(/-0/g, ', ').replace(/-/g, ', ') + ', '+ req.body.startTime.replace(/:/gi, ', ').replace(/\b0+/g, '0');
@@ -127,7 +131,20 @@ teacherClassRouter.route('/event')
  		}).then(function(savedEvent) {
  			console.log('SAVED TO DB!')
  		})
-	res.send(' i should be quertying the data base for events for that class');
+
+ 		Class.create({
+ 			name: req.body.name,
+ 			startTime: req.body.startTime,
+ 			endTime: req.body.endTime,
+ 			enrolledNumber: 0,
+ 			teacherId: 1,
+ 			date: req.body.date
+ 		}).then(function(savedEvent) {
+ 			console.log('savedClass')
+ 		})
+ 		.catch(function(error){
+ 			console.log(error,"error saving class")
+ 		});
 });
 
 teacherClassRouter.route('/assignments')
