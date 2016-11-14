@@ -57,6 +57,9 @@ teacherClassRouter.route('/classGPA')
 teacherClassRouter.route('/assignment')
 .post(teacherController.addAssignment);
 
+teacherClassRouter.route('/assignment')
+.get(teacherController.getAssignments);
+
 teacherClassRouter.route('/grade')
 .post(teacherController.addGrade);
 
