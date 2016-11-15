@@ -8,20 +8,22 @@ class AssignmentList extends Component {
 		super(props)
 
 		this.state = {
-			assignments: []
+			assignments: [],
+			classId: this.props.classId
 		}
+		// this.props.assignments(this.props.classId);
 	}
 
 	componentWillMount () {
-		console.log('inside')
+		this.props.getAssignments(this.state.classId);
 	}
 
 	render () {
-		const testAssignments = ['Chapter 1 HW', 'Chapter 2 HW', 'Chapter 3 HW', 'Quiz 1', 'Chapter 4 HW', 'Test 1'];
-		const list = testAssignments.map(function(assignment, i){
-			return <li key={i}>{assignment}</li>
+		console.log(this.props.assignments)
+		const list = this.props.assignments.map(function(assignment, i){
+			return <li key={i}>{assignment.name}</li>
 		})
-
+		console.log("assignment props", this.props.classId)
 		return (
 			<div>
 				<div>

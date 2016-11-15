@@ -16,7 +16,7 @@ class Class extends Component {
 			students: [],
 			classId: this.props.location.query.classId
 		};
-		console.log('i got the right name!', this.state.className);
+		console.log('i got the right name!', this.state.classId);
 		var self = this;
 		var className = this.state.className;
 	}
@@ -51,7 +51,7 @@ class Class extends Component {
   				<div className="row">
   				  <div className="col-lg-4">
 							<AssignmentForm classTitle={this.state.className}/>
-							<AssignmentList />
+							<AssignmentList classId={this.state.classId}/>
   				  </div>
   				  <div className="col-lg-8">
   				  	<h4>Click to edit form goes here</h4>
