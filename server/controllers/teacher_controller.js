@@ -275,14 +275,16 @@ teacherController.addGrade = (req, res) => {
 };
 
 teacherController.getAssignments = (req,res) => {
-	Class.findOne({where: {name: req.query.className, teacherId: req.query.teacherId}})
-	.then(function(foundClass){
-		classId = foundClass.id
-		Assignment.findAll({where: {classId: classId}})
+	// Class.findOne({where: {name: req.query.classId}})
+	// .then(function(foundClass){
+	// 	classId = foundClass.id
+		console.log(req.query.classId, "req.query")
+		Assignment.findAll({where: {classId: req.query.classId}})
 		.then(function(response){
+			console.log("Assignments here!" ,response)
 			res.send(response)
 		});
-	});
+	// });
 }
 
 

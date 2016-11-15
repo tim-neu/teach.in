@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import {ALL_TEACHER_ASSIGNMENTS} from './types';
 
-export function getStudents (className) {
+export function getAssignments (classId) {
 	return function(dispatch) {
 		axios({
 			method: 'GET',
