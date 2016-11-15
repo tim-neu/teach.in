@@ -1,6 +1,5 @@
 //Libs
 import React, { Component } from 'react';
-import {Link, browserHistory} from 'react-router';
 import axios from 'axios';
 
 class CreateClass extends Component {
