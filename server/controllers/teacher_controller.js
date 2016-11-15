@@ -236,7 +236,7 @@ teacherController.addAssignment = (req, res) => {
 		console.log(course, "--------- this is course")
 		var classId = course.id
 		var newAssignment = Assignment.build({
-			name: req.body.assignment,
+			name: req.body.name,
 			classId: classId,
 			type: req.body.type,
 			dueDate: req.body.date

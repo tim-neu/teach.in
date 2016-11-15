@@ -14,6 +14,7 @@ import Calendar from './shared_components/Calendar.js';
 import Home from './components/home/home.js';
 import Classes from './components/teacher_classes/Classes';
 import Class from './components/teacher_classes/Class';
+import ClassGradeDash from './components/teacher_class/ClassGradeDash';
 
 // Routes
 const routes = (
@@ -27,6 +28,7 @@ const routes = (
 		<Route path="dashboard"component={TeacherDashboard} />
 		<Route path="graph" component={Graph} />
 		<Route path="calendar" component={Calendar} />
+	  <Route path="grades" component={ClassGradeDash} />
 		<Route path="create_class" component={CreateClass} />
 	    <Route path='/classes' component={Classes} />
 	    <Route name='/class' path='/:className' component={Class} />
