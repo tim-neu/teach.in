@@ -243,9 +243,9 @@ teacherController.addAssignment = (req, res) => {
 			type: req.body.type,
 			dueDate: req.body.date
 		});
-		newAssignment.save()
-	}).then(function(response){
-		res.send("assignment saved")
+		newAssignment.save().then(function(response){
+		res.send(response)
+	})
 	}).catch(function(error){
 		res.send(error)
 	})
