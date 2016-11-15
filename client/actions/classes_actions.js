@@ -5,7 +5,7 @@ export function getClasses() {
 	return function (dispatch) {
 	axios({
 			method: 'GET',
-			url: '/api/teacher/classes',
+			url: `/api/teacher/classes?teacherEmail=${localStorage.getItem("email")}`,
 		})
 		.then(function (resp) {
 			console.log('the resp is:', resp);

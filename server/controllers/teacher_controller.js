@@ -210,13 +210,19 @@ teacherController.getStudentGpa = (req, res) => {
 
 };
 teacherController.GETCLASSES = function(req,res) {
-	Class.findAll()
-	.then(function(bothClasses){
-		res.send(bothClasses);
+	console.log(req.query.teacherEmail, "<----------------- teacher EMAIL")
+	Teacher.findOne({where: {email: req.query.teacherEmail}})
+	.then(function(teacher){
+		var teacherID = teacher.id;
+		Class.findAll({where: {teacherId: teacherID}})
+		.then(function(allClasses){
+			console.log(allClasses)
+			res.send(allClasses);
+		})
+		.catch(function(err){
+			console.log(err);
 	})
-	.catch(function(err){
-		console.log(err);
-	})
+	});
 };
 teacherController.getProfileInformation = (req, res) => {
 

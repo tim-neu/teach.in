@@ -9,6 +9,7 @@ class Class extends Component {
 		this.state = {
 			className: this.props.location.query.className,
 			students: [],
+			classId: this.props.location.query.classId
 		};
 		console.log('i got the right name!', this.state.className);
 		var self = this;
