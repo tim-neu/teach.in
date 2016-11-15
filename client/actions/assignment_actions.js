@@ -28,8 +28,8 @@ export function handleSubmitAssignment (name, classTitle, type, date) {
 					dueDate: date,
 				})
 			  .then(function (response) {
-					console.log('assignments:', assignments.data);
-					dispatch({type: HANDLE_SUBMIT_ASSIGNMENTS})
+					console.log('assignments:', response.data);
+					dispatch({type: HANDLE_SUBMIT_ASSIGNMENTS, payload: response.data})
   			})
   	  	.catch(function (error) {
   	  		console.log("error with the assignment post");
