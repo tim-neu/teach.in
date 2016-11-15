@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {getAssignments} from '../../actions/assignment_actions';
+import {getAssignments, selectAssignment} from '../../actions/assignment_actions';
 
 class AssignmentList extends Component {
 	constructor(props) {
@@ -12,6 +12,7 @@ class AssignmentList extends Component {
 			classId: this.props.classId
 		}
 		// this.props.assignments(this.props.classId);
+		this.selectAssignment = this.props.selectAssignment.bind(this)
 	}
 
 	componentWillMount () {
@@ -19,9 +20,11 @@ class AssignmentList extends Component {
 	}
 
 	render () {
-		console.log(this.props.assignments)
+		self = this;
+		console.log(this.props,"currentAssignment")
 		const list = this.props.assignments.map(function(assignment, i){
-			return <li key={i}>{assignment.name}</li>
+			return <li onClick={() => self.selectAssignment(assignment)}
+						key={i}>{assignment.name}</li>
 		})
 		console.log("assignment props", this.props.classId)
 		return (
@@ -37,8 +40,9 @@ class AssignmentList extends Component {
 
 function mapStateToProps(state) {
 	return {
-		assignments: state.assignments.assignments
+		assignments: state.assignments.assignments,
+		currentAssignment: state.currentAssignment.currentAssignment
 	}
 }
 
-export default connect(mapStateToProps, {getAssignments: getAssignments})(AssignmentList); 
+export default connect(mapStateToProps, {getAssignments: getAssignments, selectAssignment: selectAssignment})(AssignmentList); 
