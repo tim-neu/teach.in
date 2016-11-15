@@ -1,32 +1,24 @@
-//Libs
 import React, { Component } from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {handleSubmitAssignment} from '../../actions/assignment_actions';
 
 class AssignmentForm extends Component {
 	constructor (props) {
 		super(props);
-
 		this.state = {name: '', classId: '', type: '', dueDate: '', grade: '0'};
+		this.handleSubmitAssignment = this.handleSubmitAssignment.bind(this);
 	}
 
-	handleSubmitAssignment = (e) => {
-		e.preventDefault();
-		console.log(this.props.classTitle,"class title")
-		axios.post('/api/teacher/classes/class/assignment', {
-					name: this.state.name,
-					className: this.props.classTitle,
-					type: this.state.type,
-					dueDate: this.state.date,
-				})
-			  .then(function (response) {
-					console.log('this is the handleSubmitAssignment response:',response);
-  			})
-  	  	.catch(function (error) {
-  	  		console.log(error);
-  	  	})
+	handleSubmitAssignment(event){
+		self = this;
+		console.log(self.props, "self.props")
+		event.preventDefault();
+		self.props.handleSubmitAssignment(self.state.name, self.props.classTitle, self.state.type, self.state.date);
 	}
 
 	render () {
+		console.log(this.props, "I FUCKED A HORSE")
 		return (
 			<div className='assignmentForm'>
 				<h4>Create Assignment</h4>
@@ -68,4 +60,10 @@ class AssignmentForm extends Component {
 	}
 };
 
-export default AssignmentForm;
+function mapStateToProps(state) {
+	return {
+		assignments: state.assignments.assignments
+	}
+}
+
+export default connect(mapStateToProps, {handleSubmitAssignment: handleSubmitAssignment})(AssignmentForm); 

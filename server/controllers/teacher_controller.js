@@ -229,7 +229,7 @@ teacherController.getProfileInformation = (req, res) => {
 };
 
 teacherController.addAssignment = (req, res) => {
-	var className = req.body.class
+	var className = req.body.className;
 	console.log(req.body.className, "-------- this is req.body.className")
 	Class.findOne({where: {name: req.body.className}})
 	.then(function(course){
@@ -241,9 +241,11 @@ teacherController.addAssignment = (req, res) => {
 			type: req.body.type,
 			dueDate: req.body.date
 		});
-		newAssignment.save();
+		newAssignment.save()
+	}).then(function(response){
+		res.send("assignment saved")
 	}).catch(function(error){
-		console.log(error, "this is the error");
+		res.send(error)
 	})
 };
 
