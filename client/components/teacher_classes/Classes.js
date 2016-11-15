@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { getStudents } from '../../actions/students_actions';
 import { getClasses } from '../../actions/classes_actions';
 
 class Classes extends Component {
@@ -18,9 +19,9 @@ class Classes extends Component {
 		// const classList = this.state.classes.map((Class,i) => {
 		// return <Link to={`/class/:${Class.name}`} key={i}><li> {Class.name} </li> </Link> 
 		// });
-
+		console.log(this.props)
 		const classList = this.props.classes.map((Class, i) => {
-			return <Link to={{ pathname: '/class', query: { className: Class.name }}} key={i}><li> {Class.name} </li> </Link> 
+			return <Link to={{ pathname: '/class', query: { className: Class.name, classId: Class.id }}}><li key={i}> {Class.name} </li> </Link> 
 		});
 
 		return (
@@ -37,6 +38,6 @@ function mapStateToProps(state, action) {
 	};
 };
 
-const ClassesContainer = connect(mapStateToProps, { getClasses: getClasses })(Classes);
+const ClassesContainer = connect(mapStateToProps, { getClasses: getClasses, getStudents: getStudents})(Classes);
 
 export default ClassesContainer;

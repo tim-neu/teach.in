@@ -14,7 +14,7 @@ import {Link} from 'react-router';
         <div className="row">
           <Link to="/home" id="nav-logo">Teach.in</Link>
           <Link to="/dashboard" className="btn btn-default navbar-btn">DASHBOARD</Link>
-          <Link to="#" className="btn btn-default navbar-btn">CLASSES</Link>
+          <Link to="/classes" className="btn btn-default navbar-btn">CLASSES</Link>
         </div>
       </nav>
     );
