@@ -16,7 +16,7 @@ const Assignment = sequelize.define('assignments', {
   },
 
   dueDate: {
-    type: Sequelize.STRING,
+    type: Sequelize.DATE,
   },
 
 });

@@ -60,3 +60,9 @@ Assignment Form Styling
 	width: 100%;
 }
 
+.assignmentForm form {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+

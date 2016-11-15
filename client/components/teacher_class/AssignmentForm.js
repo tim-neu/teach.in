@@ -10,12 +10,13 @@ class AssignmentForm extends Component {
 	}
 
 	handleSubmitAssignment = (e) => {
-		axios.post('/api/assignments', {
-					name: this.state.assignment,
-					classId: this.state.classId,
+		e.preventDefault();
+		console.log(this.props.classTitle,"class title")
+		axios.post('/api/teacher/classes/class/assignment', {
+					name: this.state.name,
+					className: this.props.classTitle,
 					type: this.state.type,
 					dueDate: this.state.date,
-					grade: this.state.grade
 				})
 			  .then(function (response) {
 					console.log('this is the handleSubmitAssignment response:',response);
@@ -28,24 +29,15 @@ class AssignmentForm extends Component {
 	render () {
 		return (
 			<div className='assignmentForm'>
+				<h4>Create Assignment</h4>
 				<form>
-					<h4>Create Assignment Form</h4>
 					<div>
 						<input
 							type='text'
 							name='assignment-name'
 							placeholder='Assignment Name' 
-							value={this.state.assignment} 
+							value={this.state.name} 
 							onChange={assignmentName => this.setState({ name: assignmentName.target.value })}
-						/>
-					</div>
-					<div>
-						<input
-							type='text'
-							name='classId'
-							placeholder='Class Id'
-							value={this.state.classId}
-							onChange={assignmentClassId => this.setState({ classId: assignmentClassId.target.value })}
 						/>
 					</div>
 					<div>
