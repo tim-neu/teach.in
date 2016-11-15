@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getStudents } from '../../actions/students_actions';
+import { getStudents, addStudent } from '../../actions/students_actions';
 import 'react-select/dist/react-select.css';
 import Select from 'react-select';
 import _ from 'lodash';
@@ -16,7 +16,6 @@ class Class extends Component {
 			searchStudentText: '',
 			students: [],
 		};
-		console.log('i got the right name!', this.state.className);
 		var self = this;
 		var className = this.state.className;
 		this.updateValue = this.updateValue.bind(this);
@@ -27,7 +26,6 @@ class Class extends Component {
 	}
 
 	componentWillMount () {
-		console.log('this.state.classname is:', this.state.className);
 		this.props.getStudents(this.state.className);
 	}
 
@@ -43,7 +41,6 @@ class Class extends Component {
 		this.setState({
 			isLoading: true,
 		});
-		console.log('i should be giving a list of dropdown foundStudents');
 		axios({
 			method: 'GET',
 			url: '/api/student',
@@ -53,7 +50,6 @@ class Class extends Component {
 			},
 		})
 		.then(function (resp) {
-			console.log('the response is :', resp);
 			self.setState({
 				foundStudents: resp.data,
 			});
@@ -72,26 +68,27 @@ class Class extends Component {
 	}
 
 	addStudent(student) {
-		console.log('i should be adding student on click and onChange and the student is:', student);
 		var self = this;
-		axios({
-			method: 'POST',
-			url: '/api/teacher/classes/class/student',
-			data: {
-				student: student,
-				email: student.value,
-				className: self.state.className,
-			},
-		}).then(function (result) {
-			console.log('the result is:', result.data);
-			self.setState((prevState, props) => {
-				var prevStudents = prevState.students;
-				return {
-					students: prevStudents.concat(result.data),
-				};
-			});
-			console.log('the state for students is:', self.state.students);
-		});
+		this.props.addStudent(student, self.state.className);
+		// var self = this;
+		// axios({
+		// 	method: 'POST',
+		// 	url: '/api/teacher/classes/class/student',
+		// 	data: {
+		// 		student: student,
+		// 		email: student.value,
+		// 		className: self.state.className,
+		// 	},
+		// }).then(function (result) {
+		// 	console.log('the result is:', result.data);
+		// 	self.setState((prevState, props) => {
+		// 		var prevStudents = prevState.students;
+		// 		return {
+		// 			students: prevStudents.concat(result.data),
+		// 		};
+		// 	});
+		// 	console.log('the state for students is:', self.state.students);
+		// });
 	}
 
 	render() {
@@ -115,4 +112,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { getStudents: getStudents })(Class);
+export default connect(mapStateToProps, { getStudents: getStudents, addStudent: addStudent })(Class);

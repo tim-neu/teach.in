@@ -17,7 +17,7 @@ teacherClassRouter.route('/')
 			var dataObjects = foundStudents.map(function (student) {
 				return student.dataValues;
 			});
-
+			
 			var PromiseArr = [];
 			for (let i = 0; i < dataObjects.length; i++) {
 				PromiseArr.push(ClassStudents.findOne({
@@ -44,8 +44,6 @@ teacherClassRouter.route('/')
 
 teacherClassRouter.route('/student')
 .post(authMiddleware.checkSignIn, function (req, res) {
-	console.log(' i got the student search!!', req.body.email);
-	console.log(' i got the classname!', req.body.className);
 	var studentSearch = req.body.email;
 	Students.findOne({
 		where: {
@@ -53,20 +51,28 @@ teacherClassRouter.route('/student')
 		},
 	})
 	.then(function (foundStudent) {
-		console.log('i found the students!', foundStudent);
 		Class.findOne({
 			where: {
 				name: req.body.className,
 			},
 		})
 		.then(function (foundClass) {
-			foundClass.addStudent(foundStudent).then(function (instance) {
-				res.send(foundStudent.dataValues);
+			foundStudent.addClass(foundClass).then(function (instance) {
+				foundClass.getStudents().then(function (foundStudents) {
+					var data = foundStudents.map(function(student){
+						return student.dataValues;
+					});
+
+					for (var i = 0; i < data.length; i++) {
+						var studnt = data[i];
+						if (studnt.email === foundStudent.email) {
+							res.send(studnt);
+						}
+					}
+				});
 			});
 		});
 	});
-
-	// res.send(' i errred in posting a student to a class');
 });
 
 teacherClassRouter.route('/resources')

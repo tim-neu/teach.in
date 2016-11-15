@@ -1,10 +1,12 @@
-import { render } from 'react-dom';
+
 //Libs
 import React from 'react';
+import { render } from 'react-dom';
 import { applyMiddleware, createStore } from 'redux';
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+
 // Components
 import App from './app.js';
 import HomeNav from './shared_components/home_nav.js';
@@ -17,7 +19,6 @@ import Calendar from './shared_components/Calendar.js';
 import Home from './components/home/home.js';
 import Classes from './components/teacher_classes/Classes';
 import Class from './components/teacher_classes/Class';
-
 import routes from './router';
 import reducers from './reducers';
 
@@ -30,8 +31,6 @@ render(
 		<Router history={browserHistory}>
   			{routes}
   		</Router>
-  </Provider>
-
-  , document.getElementById('app')
+  </Provider>, document.getElementById('app')
 
 );
