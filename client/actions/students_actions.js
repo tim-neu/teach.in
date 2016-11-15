@@ -11,7 +11,6 @@ export function getStudents(className) {
 				className: className,
 			},
 		}).then(function (students) {
-			console.log('the students are:', students.data);
 			dispatch({ type: ALL_STUDENTS, payload: students.data });
 		});
 	};

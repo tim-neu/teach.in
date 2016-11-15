@@ -4,6 +4,7 @@ const teacherController = require('../../../../controllers/teacher_controller');
 const Event = require('../../../../models/event_model.js');
 const Class = require('../../../../models/class_model.js');
 const ClassStudents = require('../../../../models/classStudents_model.js');
+const Students = require('../../../../models/student_model.js');
 teacherClassRouter.route('/')
 .get(authMiddleware.checkSignIn, function (req, res) {
 	Class.findOne({
@@ -11,11 +12,12 @@ teacherClassRouter.route('/')
 			name: req.query.className,
 		},
 	})
-	.then(function(foundClass){
-		foundClass.getStudents().then(function(foundStudents){
-			var dataObjects = foundStudents.map(function(student){
+	.then(function (foundClass) {
+		foundClass.getStudents().then(function (foundStudents) {
+			var dataObjects = foundStudents.map(function (student) {
 				return student.dataValues;
 			});
+
 			var PromiseArr = [];
 			for (let i = 0; i < dataObjects.length; i++) {
 				PromiseArr.push(ClassStudents.findOne({
@@ -23,23 +25,53 @@ teacherClassRouter.route('/')
 						classId: foundClass.id,
 						studentId: dataObjects[i].id,
 					},
-				}))
+				}));
 			}
+
 			Promise.all(PromiseArr)
-			.then(function(foundPairs){
+			.then(function (foundPairs) {
 				for (let i = 0; i < foundPairs.length; i++) {
 					var foundPair = foundPairs[i];
 					var dataObject = dataObjects[i];
 					dataObject.classGrade = foundPair.grade;
 				}
+
 				res.send(dataObjects);
-			})
+			});
 		});
+	});
+});
+
+teacherClassRouter.route('/student')
+.post(authMiddleware.checkSignIn, function (req, res) {
+	console.log(' i got the student search!!', req.body.email);
+	console.log(' i got the classname!', req.body.className);
+	var studentSearch = req.body.email;
+	Students.findOne({
+		where: {
+			email: req.body.email,
+		},
 	})
+	.then(function (foundStudent) {
+		console.log('i found the students!', foundStudent);
+		Class.findOne({
+			where: {
+				name: req.body.className,
+			},
+		})
+		.then(function (foundClass) {
+			foundClass.addStudent(foundStudent).then(function (instance) {
+				res.send(foundStudent.dataValues);
+			});
+		});
+	});
+
+	// res.send(' i errred in posting a student to a class');
 });
 
 teacherClassRouter.route('/resources')
 .get(authMiddleware.checkSignIn, function (req, res) {
+	console.log(' i got the query!', req.query);
 	res.send('i should be querying the database for the resources for this class');
 });
 

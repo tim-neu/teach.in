@@ -21,7 +21,7 @@ authMiddleware.isValidEmail = function (req, res, next) {
 authMiddleware.hashPassword = function (req, res, next) {
 	bcrypt.hash(req.body.password, 10, (err, hash) => {
 		if (err) {
-			res.err(err);
+			res.send(err);
 		} else {
 			req.body.password = hash;
 			next();
