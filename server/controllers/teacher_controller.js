@@ -22,7 +22,8 @@ teacherController.SIGNUP = (req, res) => {
 	for (let i = 0; i < 10; i++) {
 		let studentI = Student.build({
 			name: 'student' + i,
-			gpa: 4 - (Math.random()*3).toFixed(2)
+			gpa: 4 - (Math.random() * 3).toFixed(2),
+			email: 'email' + i,
 		});
 		studentArr1.push(studentI.save());
 	}
@@ -31,6 +32,7 @@ teacherController.SIGNUP = (req, res) => {
 	for (let i = 10; i < 20; i++) {
 		let studentI = Student.build({
 			name: 'student' + i,
+			email: 'email' + i,
 			gpa: 4 - (Math.random()*3).toFixed(2)
 		});
 		studentArr2.push(studentI.save());
