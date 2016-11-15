@@ -4,6 +4,7 @@ const teacherController = require('../../../../controllers/teacher_controller');
 const Event = require('../../../../models/event_model.js');
 const Class = require('../../../../models/class_model.js');
 const ClassStudents = require('../../../../models/classStudents_model.js');
+const Students = require('../../../../models/student_model.js');
 teacherClassRouter.route('/')
 .get(authMiddleware.checkSignIn, function (req, res) {
 	Class.findOne({
@@ -40,11 +41,45 @@ teacherClassRouter.route('/')
 		else {
 			res.send('cant found class');
 		}
+	});
+});
+
+teacherClassRouter.route('/student')
+.post(authMiddleware.checkSignIn, function (req, res) {
+	var studentSearch = req.body.email;
+	Students.findOne({
+		where: {
+			email: req.body.email,
+		},
 	})
+	.then(function (foundStudent) {
+		Class.findOne({
+			where: {
+				name: req.body.className,
+			},
+		})
+		.then(function (foundClass) {
+			foundStudent.addClass(foundClass).then(function (instance) {
+				foundClass.getStudents().then(function (foundStudents) {
+					var data = foundStudents.map(function(student){
+						return student.dataValues;
+					});
+
+					for (var i = 0; i < data.length; i++) {
+						var studnt = data[i];
+						if (studnt.email === foundStudent.email) {
+							res.send(studnt);
+						}
+					}
+				});
+			});
+		});
+	});
 });
 
 teacherClassRouter.route('/resources')
 .get(authMiddleware.checkSignIn, function (req, res) {
+	console.log(' i got the query!', req.query);
 	res.send('i should be querying the database for the resources for this class');
 });
 
