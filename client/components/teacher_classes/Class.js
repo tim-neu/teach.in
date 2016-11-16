@@ -6,6 +6,7 @@ import { getStudents } from '../../actions/students_actions';
 import DashboardNav from '../../shared_components/dashboard_nav.js';
 import AssignmentForm from '../teacher_class/AssignmentForm';
 import AssignmentList from '../teacher_class/AssignmentList';
+import FieldArraysForm from '../teacher_class/AssignmentGrades';
 import Calendar from '../../shared_components/Calendar.js';
 
 class Class extends Component {
@@ -54,7 +55,7 @@ class Class extends Component {
 							<AssignmentList />
   				  </div>
   				  <div className="col-lg-8">
-  				  	<h4>Click to edit form goes here</h4>
+  				  	<FieldArraysForm />
   				  </div>
     	  	</div>
     	  </div>
