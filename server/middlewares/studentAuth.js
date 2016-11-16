@@ -1,13 +1,13 @@
 var authMiddleware = {};
-const Teacher = require('../models/teacher_model');
+const Student = require('../models/student_model');
 const bcrypt = require('bcryptjs');
 
 authMiddleware.isValidEmail = function (req, res, next) {
-	Teacher.findOne({
+	Student.findOne({
 		where: { email: req.body.email, },
 	})
-	.then((teacher) => {
-		if (teacher !== null) {
+	.then((student) => {
+		if (student !== null) {
 			res.status(400).send('That email is already regisstered');
 		} else {
 			next();
@@ -43,13 +43,13 @@ authMiddleware.verifyPassword = function (req, res, next) {
 	if (!req.body.email || !req.body.password) {
 		res.send('please enter email and password');
 	} else {
-		Teacher.findOne({
+		Student.findOne({
 			where: { email: req.body.email },
 		})
-		.then((teacher) => {
+		.then((student) => {
 			console.log('req.body.password should be:', req.body.password);
-			console.log('teacher password is:', teacher.password);
-			bcrypt.compare(req.body.password, teacher.password, (err, response) => {
+			console.log('student password is:', student.password);
+			bcrypt.compare(req.body.password, student.password, (err, response) => {
 				var isCorrectPassword = response;
 				if (err) {
 					res.status(500).send(err);

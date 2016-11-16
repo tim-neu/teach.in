@@ -8,8 +8,11 @@ import axios from 'axios';
     this.state = {path: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Einstein-formal_portrait-35.jpg/220px-Einstein-formal_portrait-35.jpg"}
   };
 
-  getUserInformation(){
-    axios.get()
+  getProfileData(){
+    axios.get('/api/teacher/classes/class/student')
+    .then(function(response){
+      console.log(response)
+    });
   }
 
   render () {

@@ -12,20 +12,41 @@ import Signin from './components/signin/signin.js';
 import TeacherDashboard from './components/teacher_dashboard/teacher_dashboard.js';
 import Calendar from './shared_components/Calendar.js';
 import Home from './components/home/home.js';
+import Classes from './components/teacher_classes/Classes';
+import Class from './components/teacher_classes/Class';
+import ClassGradeDash from './components/teacher_class/ClassGradeDash';
 
 // Routes
 const routes = (
-  <Router history={browserHistory}>
 	<Route path="/" component={App}>
 	  	<IndexRedirect to="/home" />
 	  	<Route path="home" component={Home} />
-	  	<Route path="signin" component={Signin} />
-	  	<Route path="signup" component={Signup} />
-		<Route path="dashboard" component={TeacherDashboard} />
+	  	<Route path="teacherSignIn" component={Signin} />
+	  	<Route path="studentSignIn" component={Signin} />
+	  	<Route path="teacherSignUp" component={Signup} />
+	  	<Route path="studentSignUp" component={Signup} />
+		<Route path="dashboard"component={TeacherDashboard} />
 		<Route path="graph" component={Graph} />
 		<Route path="calendar" component={Calendar} />
+	  <Route path="grades" component={ClassGradeDash} />
 		<Route path="create_class" component={CreateClass} />
+	    <Route path='/classes' component={Classes} />
+	    <Route name='/class' path='/:className' component={Class} />
 	</Route>
-  </Router>
 );
+
+// const routes = (
+//   <Router history={browserHistory}>
+//     <Route component={App} >
+//     	<Route path="/" component = {Classes} />
+//     </Route>
+//     <Route path="/graph" component={Graph} />
+//     <Route path="/signup" component={Signup} />
+//     <Route path="/signin" component={Signin} />
+//     <Route path='/create_class' component={CreateClass} />
+//     <Route path='/calendar' component={Calendar} />
+//     <Route path = '/classes' component = {Classes} />
+//   </Router>
+// );
+
 export default routes;

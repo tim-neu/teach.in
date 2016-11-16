@@ -1,29 +1,108 @@
 const teacherClassRouter = require('express').Router();
 const authMiddleware = require('../../../../middlewares/auth.js');
-const getClassGpa = require('../../../../controllers/teacher_controller').getClassGpa;
-const getAllEvents = require('../../../../controllers/teacher_controller').getAllEvents;
+const teacherController = require('../../../../controllers/teacher_controller');
 const Event = require('../../../../models/event_model.js');
 const Class = require('../../../../models/class_model.js');
+const ClassStudents = require('../../../../models/classStudents_model.js');
+const Students = require('../../../../models/student_model.js');
 teacherClassRouter.route('/')
 .get(authMiddleware.checkSignIn, function (req, res) {
-	res.send('i should be querying the databse for this class');
+	Class.findOne({
+		where: {
+			name: req.query.className,
+		},
+	})
+	.then(function(foundClass){
+		if(foundClass){
+			foundClass.getStudents().then(function(foundStudents){
+				var dataObjects = foundStudents.map(function(student){
+					return student.dataValues;
+				});
+				var PromiseArr = [];
+				for (let i = 0; i < dataObjects.length; i++) {
+					PromiseArr.push(ClassStudents.findOne({
+						where: {
+							classId: foundClass.id,
+							studentId: dataObjects[i].id,
+						},
+					}))
+				}
+				Promise.all(PromiseArr)
+				.then(function(foundPairs){
+					for (let i = 0; i < foundPairs.length; i++) {
+						var foundPair = foundPairs[i];
+						var dataObject = dataObjects[i];
+						dataObject.classGrade = foundPair.grade;
+					}
+					res.send(dataObjects);
+				})
+			});
+		}
+		else {
+			res.send('cant found class');
+		}
+	});
+});
+
+teacherClassRouter.route('/student')
+.post(authMiddleware.checkSignIn, function (req, res) {
+	var studentSearch = req.body.email;
+	Students.findOne({
+		where: {
+			email: req.body.email,
+		},
+	})
+	.then(function (foundStudent) {
+		Class.findOne({
+			where: {
+				name: req.body.className,
+			},
+		})
+		.then(function (foundClass) {
+			foundStudent.addClass(foundClass).then(function (instance) {
+				foundClass.getStudents().then(function (foundStudents) {
+					var data = foundStudents.map(function(student){
+						return student.dataValues;
+					});
+
+					for (var i = 0; i < data.length; i++) {
+						var studnt = data[i];
+						if (studnt.email === foundStudent.email) {
+							res.send(studnt);
+						}
+					}
+				});
+			});
+		});
+	});
 });
 
 teacherClassRouter.route('/resources')
 .get(authMiddleware.checkSignIn, function (req, res) {
+	console.log(' i got the query!', req.query);
 	res.send('i should be querying the database for the resources for this class');
 });
 
 teacherClassRouter.route('/classGPA')
-.get(authMiddleware.checkSignIn, getClassGpa);
+.get(authMiddleware.checkSignIn, teacherController.getClassGpa);
 
 // teacherClassRouter.route('/event')
 // .get(authMiddleware.checkSignIn, function (req, res) {
 // 	res.send(' i should be quertying the data base for events for that class');
 // });
 
-teacherClassRouter.route('/event')
-.get(authMiddleware.checkSignIn, getAllEvents);
+// teacherClassRouter.route('/event')
+// .get(authMiddleware.checkSignIn, getAllEvents);
+
+teacherClassRouter.route('/assignment')
+.post(teacherController.addAssignment);
+
+teacherClassRouter.route('/assignment')
+.get(teacherController.getAssignments);
+
+teacherClassRouter.route('/grade')
+.post(teacherController.addGrade);
+
 
 teacherClassRouter.route('/event')
 .post(authMiddleware.checkSignIn, function (req, res) {
@@ -35,6 +114,10 @@ teacherClassRouter.route('/event')
  	//  endTime: '01:00',
  	//  date: '2016-11-11' 
   // }
+
+	console.log(req.body,  " this is req. body ----------------------------------->")
+  
+
 
     var startTime = req.body.startTime;
  		var data = req.body.date.replace(/-0/g, ', ').replace(/-/g, ', ') + ', '+ req.body.startTime.replace(/:/gi, ', ').replace(/\b0+/g, '0');
@@ -88,11 +171,41 @@ teacherClassRouter.route('/event')
  		}).then(function(savedEvent) {
  			console.log('SAVED TO DB!')
  		})
-	res.send(' i should be quertying the data base for events for that class');
+
+ 		Class.create({
+ 			name: req.body.name,
+ 			startTime: req.body.startTime,
+ 			endTime: req.body.endTime,
+ 			enrolledNumber: 0,
+ 			teacherId: 1,
+ 			date: req.body.date
+ 		}).then(function(savedEvent) {
+ 			console.log('savedClass')
+ 		})
+ 		.catch(function(error){
+ 			console.log(error,"error saving class")
+ 		});
 });
 
 teacherClassRouter.route('/assignments')
 .get(authMiddleware.checkSignIn, function (req, res) {
+	res.send(' i should be querying the data base for assignments for that class');
+});
+
+teacherClassRouter.route('/assignments')
+.post(authMiddleware.checkSignIn, function (req, res) {
+	console.log('req.body for /assignments: ------------>',req.body);
+
+	Event.create({
+ 		name: req.body.assignment,
+		classId: req.body.classId,
+		type: req.body.type,
+		dueDate: req.body.date,
+		grade: req.body.grade
+ 	}).then(function() {
+ 		console.log('Saved assignment to db!')
+ 	})
+
 	res.send(' i should be querying the data base for assignments for that class');
 });
 

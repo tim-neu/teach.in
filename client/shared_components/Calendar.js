@@ -108,7 +108,7 @@ export default class Calendar extends Component {
           events={this.state.events}
           timeslots={4}
           step={15}
-          style={{height: "450px"}}
+          style={{height: "400px"}}
           startAccessor={this.state.events.length > 0 ? new Date(this.state.events.startTime): ''}
           endAccessor={this.state.events.length > 0 ? new Date(this.state.events.endTime): ''}
           scrollToTime={new Date(1970, 1, 1, 7)}

@@ -48,3 +48,21 @@ a.rbc-show-more {
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 	padding: 10px;
 }
+
+
+/*
+
+Assignment Form Styling
+
+*/
+
+.assignmentForm input {
+	width: 100%;
+}
+
+.assignmentForm form {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+

@@ -6,12 +6,16 @@ import HomeNav from '../../shared_components/home_nav.js';
   class Signin extends React.Component {
   constructor (props) {
     super(props)
-    
     this.state = {email:'', password:''};
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
+
+  componentWillMount() {
+    console.log('the current url is:', window.location.href);
+  }
+  
   handleEmailChange(event) {
     this.setState({email: event.target.value});
   }
@@ -19,14 +23,15 @@ import HomeNav from '../../shared_components/home_nav.js';
     this.setState({password: event.target.value});
   }
   handleSubmit(event) {
+    self = this
     event.preventDefault();
     axios.post('/api/teacher/signin',{
       email: this.state.email,
       password: this.state.password
 
     }).then(function(response){
-      console.log('the signin response is:', response);
-      browserHistory.push("dashboard")
+      localStorage.setItem("email", self.state.email);
+      browserHistory.push('/dashboard');
     }).catch(function(error){
       console.log('error with sign in')
     })

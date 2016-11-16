@@ -4,6 +4,7 @@ const Class = require('../models/class_model');
 const Student = require('../models/student_model');
 const Assignment = require('../models/assignment_model');
 const assignmentStudents = require('../models/assignmentStudents_model');
+const ClassStudents = require('../models/classStudents_model');
 const Event = require('../models/event_model');
 const _ = require('lodash');
 teacherController.SIGNUP = (req, res) => {
@@ -21,7 +22,8 @@ teacherController.SIGNUP = (req, res) => {
 	for (let i = 0; i < 10; i++) {
 		let studentI = Student.build({
 			name: 'student' + i,
-			gpa: 4 - (Math.random()*3).toFixed(2)
+			gpa: 4 - (Math.random() * 3).toFixed(2),
+			email: 'email' + i,
 		});
 		studentArr1.push(studentI.save());
 	}
@@ -30,6 +32,7 @@ teacherController.SIGNUP = (req, res) => {
 	for (let i = 10; i < 20; i++) {
 		let studentI = Student.build({
 			name: 'student' + i,
+			email: 'email' + i,
 			gpa: 4 - (Math.random()*3).toFixed(2)
 		});
 		studentArr2.push(studentI.save());
@@ -59,7 +62,6 @@ teacherController.SIGNUP = (req, res) => {
 		email: req.body.email,
 		password: req.body.password,
 	}).then((teacher) => {
-		console.log(teacher,"teacher")
 		//console.log(teacher,"teacher")
 
 		//Code below seeds two classes to the teacher;
@@ -69,11 +71,16 @@ teacherController.SIGNUP = (req, res) => {
 				if (i === 0) {
 					Promise.all(student1Assignment1)
 						.then(function (results) {
-							console.log('the results should be a list of students and the length should be 14', results, results.length);
+							//console.log('the results should be a list of students and the length should be 14', results, results.length);
 
 							for (let j = 0; j < 10; j++) {
 								var studentJ = results[j];
-								savedClass.addStudent(studentJ);
+								var grades = ['A','B','C','D'];
+								var index = Math.floor(Math.random()*3);
+								var randomGrade = grades[index];
+								savedClass.addStudent(studentJ, {
+									grade: randomGrade
+								});
 							}
 
 							for (let k = 10; k < results.length; k++) {
@@ -98,9 +105,12 @@ teacherController.SIGNUP = (req, res) => {
 
 							for (let j = 0; j < 10; j++) {
 								var studentJ = results[j];
-								savedClass.addStudent(studentJ).then(function(){
-									console.log("this is a promise")
-								})
+								var grades = ['A','B','C','D'];
+								var index = Math.floor(Math.random()*3);
+								var randomGrade = grades[index];
+								savedClass.addStudent(studentJ, {
+									grade: randomGrade
+								});
 							}
 							for (let k = 10; k < results.length; k++) {
 								var assignmentK = results[k];
@@ -186,20 +196,101 @@ teacherController.getClassGpa = (req, res) => {
 
 };
 
-teacherController.getAllEvents = (req, res) => {
-	Event.findAll({})
-	.then(function(events){
-		console.log('here are the events ----------------> ', events);
-		var mappedDataValues = events.map(function(event){
-			return event.dataValues;
-		});
-		mappedDataValues.forEach(function(object,index,collection){
-			object = _.pick(object,['title','startTime','endTime'])
-			collection[index] = object;
-		});
-		console.log('mapped data values should contain objects taht have only name,start and end time', mappedDataValues);
-		res.send(mappedDataValues);
+teacherController.getStudentGpa = (req, res) => {
+	// Class.findAll().then(function(foundClasses){
+	// 	foundClasses.forEach(function(Class){
+	// 		Class.getStudents().then(function(foundAssociatedStudents){
+	// 			foundAssociatedStudents.forEach(function(associatedStudent){
+	// 				associatedStudent.update({
+
+	// 				})
+	// 			})
+	// 		})
+	// 	})
+	// })
+
+
+};
+teacherController.GETCLASSES = function(req,res) {
+	console.log(req.query.teacherEmail, "<----------------- teacher EMAIL")
+	Teacher.findOne({where: {email: req.query.teacherEmail}})
+	.then(function(teacher){
+		var teacherID = teacher.id;
+		Class.findAll({where: {teacherId: teacherID}})
+		.then(function(allClasses){
+			console.log(allClasses)
+			res.send(allClasses);
+		})
+		.catch(function(err){
+			console.log(err);
+	})
 	});
 };
+teacherController.getProfileInformation = (req, res) => {
+
+};
+
+teacherController.addAssignment = (req, res) => {
+	var className = req.body.className;
+	console.log(req.body.className, "-------- this is req.body.className")
+	Class.findOne({where: {name: req.body.className}})
+	.then(function(course){
+		console.log(course, "--------- this is course")
+		var classId = course.id
+		var newAssignment = Assignment.build({
+			name: req.body.name,
+			classId: classId,
+			type: req.body.type,
+			dueDate: req.body.date
+		});
+		newAssignment.save().then(function(response){
+		res.send(response)
+	})
+	}).catch(function(error){
+		res.send(error)
+	})
+};
+
+teacherController.addGrade = (req, res) => {
+	var studentId;
+	var assignmentId;
+	Student.findOne({where: {name: req.body.student}})
+	.then(function(student){
+		studentId = student.id
+	})
+	.then(function(){
+	Assignment.findOne({where: {name: req.body.assignment}})
+	.then(function(assignment){
+		assignmentId = assignment.id
+		var newGrade = assignmentStudents.build({
+			assignmentId: assignmentId,
+			studentId: studentId,
+			grade: req.body.grade
+		});
+		newGrade.save()
+		})
+		.then(function(success){
+			res.send(success);
+		})
+		.catch(function(error){
+			res.send(error)
+		});
+	})
+};
+
+teacherController.getAssignments = (req,res) => {
+	// Class.findOne({where: {name: req.query.classId}})
+	// .then(function(foundClass){
+	// 	classId = foundClass.id
+		console.log(req.query.classId, "req.query")
+		Assignment.findAll({where: {classId: req.query.classId}})
+		.then(function(response){
+			console.log("Assignments here!" ,response)
+			res.send(response)
+		});
+	// });
+}
+
+
 
 module.exports = teacherController;
