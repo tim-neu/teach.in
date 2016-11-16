@@ -10,6 +10,7 @@ import DashboardNav from '../../shared_components/dashboard_nav.js';
 import AssignmentForm from '../teacher_class/AssignmentForm';
 import AssignmentList from '../teacher_class/AssignmentList';
 import Calendar from '../../shared_components/Calendar.js';
+import AssignmentGradesForm from '../teacher_class/AssignmentGradesForm';
 
 class Class extends Component {
 	constructor(props) {
@@ -76,25 +77,6 @@ class Class extends Component {
 	addStudent(student) {
 		var self = this;
 		this.props.addStudent(student, self.state.className);
-		// var self = this;
-		// axios({
-		// 	method: 'POST',
-		// 	url: '/api/teacher/classes/class/student',
-		// 	data: {
-		// 		student: student,
-		// 		email: student.value,
-		// 		className: self.state.className,
-		// 	},
-		// }).then(function (result) {
-		// 	console.log('the result is:', result.data);
-		// 	self.setState((prevState, props) => {
-		// 		var prevStudents = prevState.students;
-		// 		return {
-		// 			students: prevStudents.concat(result.data),
-		// 		};
-		// 	});
-		// 	console.log('the state for students is:', self.state.students);
-		// });
 	}
 
 	render() {
@@ -127,6 +109,7 @@ class Class extends Component {
   				  </div>
   				  <div className="col-lg-8">
   				  	<h4>Click to edit form goes here</h4>
+  				  	<AssignmentGradesForm students={this.props.students} classTitle={this.state.className} onSubmit={function (values) {console.log('i was submited and teh values are:', values)}}/>
   				  </div>
     	  	</div>
     	  </div>
