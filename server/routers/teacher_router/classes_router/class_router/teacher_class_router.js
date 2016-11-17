@@ -63,6 +63,22 @@ teacherClassRouter.route('/student')
 		})
 		.then(function (foundClass) {
 			foundStudent.addClass(foundClass).then(function (instance) {
+
+				//add the student to assignments table
+				Assignment.findAll({
+					where: {
+						classId: foundClass.id,
+					},
+				})
+				.then(function (foundAssignments) {
+					for (let i = 0; i < foundAssignments.length; i++) {
+						let foundAssignment = foundAssignments[i];
+						foundAssignment.addStudent(foundStudent, {
+							grade: 0,
+						});
+					}
+				});
+
 				foundClass.getStudents().then(function (foundStudents) {
 					var data = foundStudents.map(function(student){
 						return student.dataValues;
