@@ -230,6 +230,21 @@ teacherController.getProfileInformation = (req, res) => {
 
 };
 
+teacherController.UPDATEASSIGNMENTGRADE = (req, res) => {
+	console.log('------------------------------', req.body);
+	assignmentStudents.findOne({
+		where: {
+			studentId: req.body.studentId,
+			assignmentId: req.body.assignmentId,
+		}
+	}).then(function(foundInstance){
+		foundInstance.update({
+			grade: req.body.grade,
+		})
+	});
+	res.send('i made it to class/assignment/student');
+};
+
 teacherController.addAssignment = (req, res) => {
 	var className = req.body.className;
 	console.log(req.body.className, "-------- this is req.body.className")
@@ -244,7 +259,16 @@ teacherController.addAssignment = (req, res) => {
 			dueDate: req.body.date
 		});
 		newAssignment.save().then(function(response){
-		res.send(response)
+			course.getStudents().then(function(foundPairs){
+				//console.log('i found the students in this class in addassignment', foundPairs);
+				for (let i = 0; i < foundPairs.length; i++) {
+					let foundStudent = foundPairs[i];
+					response.addStudent(foundStudent, {
+						grade: 0
+					});
+				}
+				res.send(response)
+			});
 	})
 	}).catch(function(error){
 		res.send(error)

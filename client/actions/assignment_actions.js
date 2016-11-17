@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {HANDLE_SUBMIT_ASSIGNMENTS} from './types';
-import {ALL_TEACHER_ASSIGNMENTS} from './types';
-import {SELECT_ASSIGNMENTS} from './types';
-
+import { HANDLE_SUBMIT_ASSIGNMENTS } from './types';
+import { ALL_TEACHER_ASSIGNMENTS } from './types';
+import { SELECT_ASSIGNMENTS } from './types';
+import { GET_ASSIGNMENTS_STUDENTS } from './types'
 export function getAssignments (classId) {
 	return function(dispatch) {
 		axios({
@@ -38,9 +38,28 @@ export function handleSubmitAssignment (name, classTitle, type, date) {
 
 }
 
-export function selectAssignment (assignment) {
+export function selectAssignment(assignment) {
 	return function(dispatch) {
-		dispatch({type: SELECT_ASSIGNMENTS, payload: assignment})
-	}
-
+		dispatch({ type: SELECT_ASSIGNMENTS, payload: assignment });
+	};
 }
+
+export function getAssignmentsStudents(classTitle, assignmentName,classId) {
+	return function (dispatch) {
+		axios({
+			method: 'GET',
+			url: '/api/teacher/classes/class/assignment/students',
+			params: {
+				classTitle: classTitle,
+				assignmentName: assignmentName,
+				classId: classId,
+			}
+		})
+		.then(function(response){
+			console.log('the assignment students are:', response.data);
+			dispatch({type: GET_ASSIGNMENTS_STUDENTS, payload: response.data})
+		});
+	};
+};
+
+

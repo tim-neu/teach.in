@@ -91,3 +91,11 @@ input:-webkit-autofill {
 textarea:focus, input:focus{
     outline: none;
 }
+
+.student-id-input {
+    display: none;
+};
+
+.assignment-id-input {
+    display: none;
+};

@@ -5,6 +5,8 @@ const Event = require('../../../../models/event_model.js');
 const Class = require('../../../../models/class_model.js');
 const ClassStudents = require('../../../../models/classStudents_model.js');
 const Students = require('../../../../models/student_model.js');
+const AssignmentStudents = require('../../../../models/assignmentStudents_model.js');
+const Assignment = require('../../../../models/assignment_model.js');
 teacherClassRouter.route('/')
 .get(authMiddleware.checkSignIn, function (req, res) {
 	Class.findOne({
@@ -12,8 +14,8 @@ teacherClassRouter.route('/')
 			name: req.query.className,
 		},
 	})
-	.then(function(foundClass){
-		if(foundClass){
+	.then(function (foundClass) {
+		if (foundClass) {
 			foundClass.getStudents().then(function(foundStudents){
 				var dataObjects = foundStudents.map(function(student){
 					return student.dataValues;
@@ -99,6 +101,57 @@ teacherClassRouter.route('/assignment')
 
 teacherClassRouter.route('/assignment')
 .get(teacherController.getAssignments);
+
+teacherClassRouter.route('/assignment/student')
+.post(function(req,res){
+	res.send('the post is /api/teacher/classes/class/assignment/student');
+});
+
+teacherClassRouter.route('/assignment/student')
+.put(teacherController.UPDATEASSIGNMENTGRADE);
+
+teacherClassRouter.route('/assignment/students')
+.get(function(req,res){
+	console.log('req.query is:', req.query);
+	Assignment.findOne({
+		where: {
+			name: req.query.assignmentName
+		}
+	})
+	.then(function(assignment){
+		var assignmentID = assignment.dataValues.id;
+		return AssignmentStudents.findAll({
+			where: {
+				assignmentId: assignmentID
+			}
+		})
+	})
+	.then(function(assignmentStudentPairs){
+		// console.log('the pairs have only the ids?',assignmentStudentPairs);
+		var dataObjects = assignmentStudentPairs.map(function(pair){
+			return pair.dataValues;
+		});
+		var PromiseArr = [];
+		for (let i = 0; i < dataObjects.length; i++) {
+			PromiseArr.push(Students.findOne({
+				where: {
+					id: dataObjects[i].studentId,
+				}
+			}));
+		}
+		Promise.all(PromiseArr)
+		.then(function(foundStudents){
+			for (let i = 0; i < foundStudents.length; i++) {
+				var foundStudent = foundStudents[i];
+				var dataObject = dataObjects[i];
+				dataObject.name = foundStudent.name;
+			}
+			res.send(dataObjects);
+		})
+
+	})
+	//res.send('i made it to assignment/students');
+});
 
 teacherClassRouter.route('/grade')
 .post(teacherController.addGrade);

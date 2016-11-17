@@ -30,6 +30,7 @@ class Class extends Component {
 		this.findStudents = this.findStudents.bind(this);
 		this.debouncedFind = _.debounce(this.findStudents, 750);
 		this.onChange = this.onChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 	componentWillMount () {
@@ -79,6 +80,21 @@ class Class extends Component {
 		this.props.addStudent(student, self.state.className);
 	}
 
+	onSubmit(values) {
+		axios({
+			method: 'PUT',
+			url: '/api/teacher/classes/class/assignment/student',
+			data: {
+				studentId: values.studentId,
+				assignmentId: values.assignmentId,
+				grade: values.grade,
+			}
+		})
+		.then(function(resp){
+			console.log('the respon from put assignment grade is', resp)
+		})
+	}
+
 	render() {
 		const studentList = this.props.students.map(function (student, i) {
 			return <li key={i}>{student.name}</li>;
@@ -105,11 +121,11 @@ class Class extends Component {
   				<div className="row">
   				  <div className="col-lg-4">
 							<AssignmentForm classTitle={this.state.className}/>
-							<AssignmentList classId={this.state.classId}/>
+							<AssignmentList classId={this.state.classId} classTitle={this.state.className}/>
   				  </div>
   				  <div className="col-lg-8">
   				  	<h4>Click to edit form goes here</h4>
-  				  	<AssignmentGradesForm students={this.props.students} classTitle={this.state.className} onSubmit={function (values) {console.log('i was submited and teh values are:', values)}}/>
+				  	<AssignmentGradesForm currentAssignment={this.props.currentAssignment} associated={this.props.currentAssociatedStudents} students={this.props.currentAssociatedStudents} classTitle={this.state.className} onSubmit={this.onSubmit}/>
   				  </div>
     	  	</div>
     	  </div>
@@ -119,8 +135,12 @@ class Class extends Component {
 }
 
 function mapStateToProps(state) {
+	console.log('state in class.js is:', state);
 	return {
 		students: state.students.students,
+		currentAssignment: state.currentAssignment.currentAssignment,
+		currentAssociatedStudents: state.currentAssignment.assignmentStudents,
+		form: state.form,
 	};
 }
 
