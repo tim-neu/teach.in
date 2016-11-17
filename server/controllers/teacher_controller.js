@@ -6,6 +6,7 @@ const Assignment = require('../models/assignment_model');
 const assignmentStudents = require('../models/assignmentStudents_model');
 const ClassStudents = require('../models/classStudents_model');
 const Event = require('../models/event_model');
+const Resource = require('../models/resource_model');
 const _ = require('lodash');
 teacherController.SIGNUP = (req, res) => {
 
@@ -329,6 +330,16 @@ teacherController.getAllEvents = (req, res) => {
 		console.log('mapped data values should contain objects taht have only name,start and end time', mappedDataValues);
 		res.send(mappedDataValues);
 	});
+};
+
+teacherController.getClassResources = (req, res) => {
+	Resource.findAll({where: {classId: req.query.classId}})
+	.then(function(resources){
+		console.log('here are the class dataValues ----------------> ');
+		res.send(resources);
+	}).catch(function(err){
+		console.log(err)
+	})
 };
 
 

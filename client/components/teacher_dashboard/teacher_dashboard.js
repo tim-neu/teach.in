@@ -3,6 +3,7 @@ import Graph from '../../shared_components/graph.js';
 import Calendar from '../../shared_components/Calendar.js';
 import DashboardNav from '../../shared_components/dashboard_nav.js';
 import UserInformation from '../../shared_components/User_information.js';
+import handleMediaSubmit from '../../actions/resource_actions.js'
 
 class TeacherDashboard extends Component {
 	constructor(props) {
@@ -19,16 +20,16 @@ class TeacherDashboard extends Component {
 		var fileName = document.getElementById('input').val;
 		var form = new FormData();
 		form.append("file", selectedFile);
-		form.append("name", "name");
+		form.append("teacherEmail", localStorage.getItem("email"));
 
 		var settings = {
 		  "async": true,
 		  "crossDomain": true,
 		  "url": "http://localhost:8000/api/upload/s3",
 		  "method": "POST",
+		  "name": "name",
 		  "headers": {
 		    "cache-control": "no-cache",
-		    "postman-token": "7a00bd2b-8cce-5d41-ab1e-fbf0d23ef3a1"
 		  },
 		  "processData": false,
 		  "contentType": false,
@@ -39,7 +40,7 @@ class TeacherDashboard extends Component {
 		$.ajax(settings).done(function (response) {
 		  console.log(response);
 		});
-		}
+	}
 
 	render(){
 		console.log(this.state, "state");

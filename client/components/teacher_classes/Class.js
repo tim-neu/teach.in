@@ -31,6 +31,7 @@ class Class extends Component {
 		this.debouncedFind = _.debounce(this.findStudents, 750);
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.handleMediaSubmit = this.handleMediaSubmit.bind(this);
 	}
 
 	componentWillMount () {
@@ -68,6 +69,7 @@ class Class extends Component {
 	}
 
 	onChange(val) {
+		console.log(this.state.className)
 		this.setState({
 			searchStudentText: val,
 		});
@@ -94,6 +96,33 @@ class Class extends Component {
 			console.log('the respon from put assignment grade is', resp)
 		})
 	}
+	handleMediaSubmit(event){
+		event.preventDefault();
+		var selectedFile = document.getElementById('input').files[0];
+		var fileName = document.getElementById('input').val;
+		var form = new FormData();
+		form.append("file", selectedFile);
+		form.append("classId", this.state.classId);
+
+		var settings = {
+		  "async": true,
+		  "crossDomain": true,
+		  "url": "http://localhost:8000/api/upload/s3",
+		  "method": "POST",
+		  "name": "name",
+		  "headers": {
+		    "cache-control": "no-cache",
+		  },
+		  "processData": false,
+		  "contentType": false,
+		  "mimeType": "multipart/form-data",
+		  "data": form
+		}
+
+		$.ajax(settings).done(function (response) {
+		  console.log(response);
+		});
+	}
 
 	render() {
 		const studentList = this.props.students.map(function (student, i) {
@@ -116,6 +145,12 @@ class Class extends Component {
 							<ul> {studentList} </ul>
   				  </div>
   				  <div className="col-lg-8">
+  				  		<form onSubmit={this.handleMediaSubmit}>
+						  <a href="https://s3.amazonaws.com/teach.in123454321/Screen+Shot+2016-10-05+at+8.00.50+AM.png">hey</a>
+						  <input id="nameValue" type="text" />
+						  <input id="input" type="file" name="pic" accept="image/*" />
+						  <input type="submit" />
+						</form>
   				  </div>
     	  	</div>
 		
