@@ -83,6 +83,16 @@ label {
 	margin-top: 200px;
 }
 
+.Auth-header {
+    text-align: center;
+    position: relative;
+    top: 130px;
+}
+
+.Select.Select--single.is-searchable {
+    margin: 25px 0;
+}
+
 /* Change the white to any color ;) */
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;

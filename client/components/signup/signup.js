@@ -58,6 +58,7 @@ import HomeNav from '../../shared_components/home_nav.js';
     return (
         <div>
         <HomeNav />
+        <h1 className="Auth-header">Sign up</h1>
           <form onSubmit={this.handleSubmit}>
             <input id="signin-input" placeholder="name" value = {this.state.name} type="text" onChange={this.handleNameChange}></input>
             <input id="signin-input" placeholder="email" value = {this.state.email} type="email" onChange={this.handleEmailChange}></input>
