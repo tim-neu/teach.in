@@ -2,6 +2,7 @@ const teacherClassRouter = require('express').Router();
 const authMiddleware = require('../../../../middlewares/auth.js');
 const teacherController = require('../../../../controllers/teacher_controller');
 const Event = require('../../../../models/event_model.js');
+const getAllEvents = require('../../../../controllers/teacher_controller').getAllEvents;
 const Class = require('../../../../models/class_model.js');
 const ClassStudents = require('../../../../models/classStudents_model.js');
 const Students = require('../../../../models/student_model.js');
@@ -86,13 +87,6 @@ teacherClassRouter.route('/resources')
 teacherClassRouter.route('/classGPA')
 .get(authMiddleware.checkSignIn, teacherController.getClassGpa);
 
-// teacherClassRouter.route('/event')
-// .get(authMiddleware.checkSignIn, function (req, res) {
-// 	res.send(' i should be quertying the data base for events for that class');
-// });
-
-// teacherClassRouter.route('/event')
-// .get(authMiddleware.checkSignIn, getAllEvents);
 
 teacherClassRouter.route('/assignment')
 .post(teacherController.addAssignment);
@@ -103,15 +97,22 @@ teacherClassRouter.route('/assignment')
 teacherClassRouter.route('/grade')
 .post(teacherController.addGrade);
 
+// teacherClassRouter.route('/event')
+// .get(authMiddleware.checkSignIn, function (req, res) {
+// 	res.send(' i should be quertying the data base for events for that class');
+// });
+
+teacherClassRouter.route('/event')
+.get(authMiddleware.checkSignIn, getAllEvents);
 
 teacherClassRouter.route('/event')
 .post(authMiddleware.checkSignIn, function (req, res) {
 	console.log('i made it to /api/teacher/classes/class/event');
-	console.log('req.body is: ', 'req.body');
+	console.log('req.body is: ---------------> ', 'req.body');
 	// req.body is:  { 
 	//  name: 'History',
- 	//  startTime: '01:00',
- 	//  endTime: '01:00',
+ 	//  start: '01:00',
+ 	//  end: '01:00',
  	//  date: '2016-11-11' 
   // }
 
@@ -119,8 +120,8 @@ teacherClassRouter.route('/event')
   
 
 
-    var startTime = req.body.startTime;
- 		var data = req.body.date.replace(/-0/g, ', ').replace(/-/g, ', ') + ', '+ req.body.startTime.replace(/:/gi, ', ').replace(/\b0+/g, '0');
+    var start = req.body.start;
+ 		var data = req.body.date.replace(/-0/g, ', ').replace(/-/g, ', ') + ', '+ req.body.start.replace(/:/gi, ', ').replace(/\b0+/g, '0');
  		var arrStart = data.split(',');
  		console.log('array is ------------>', arrStart);
 		var mapped = arrStart.map(function(string){
@@ -137,13 +138,13 @@ teacherClassRouter.route('/event')
 		});
     	console.log('mapped is: ', mapped);
  		var dateStartObj = new Date(Number(mapped[0]), Number(mapped[1]) -1, Number(mapped[2]), Number(mapped[3]), Number(mapped[4]));
- 		startTime = dateStartObj;
+ 		start = dateStartObj;
  		console.log('dateStartObj:', dateStartObj)
- 		console.log('This is the converted Date object for startTime: ----------->', dateStartObj);
+ 		console.log('This is the converted Date object for start: ----------->', dateStartObj);
 
 
- 		var endTime = req.body.endTime;
- 		var data = req.body.date.replace(/-0/g, ', ').replace(/-/g, ', ') + ', '+ req.body.endTime.replace(/:/gi, ', ').replace(/\b0+/g, '0');
+ 		var end = req.body.end;
+ 		var data = req.body.date.replace(/-0/g, ', ').replace(/-/g, ', ') + ', '+ req.body.end.replace(/:/gi, ', ').replace(/\b0+/g, '0');
  		var arr = data.split(',');
  		console.log('array is ------------>', arr);
 		var mapped = arr.map(function(string){
@@ -160,22 +161,23 @@ teacherClassRouter.route('/event')
 		});
     	console.log('mapped is: ', mapped);
  		var dateEndObj = new Date(Number(mapped[0]), Number(mapped[1]) -1, Number(mapped[2]), Number(mapped[3]), Number(mapped[4]));
- 		endTime = dateEndObj;
- 		console.log('dateEndObj:', dateEndObj)
- 		console.log('This is the converted Date object for endTime: ----------->', dateEndObj);
+ 		end = dateEndObj;
+ 		console.log('This is the converted Date object for end: ----------->', dateEndObj);
 
  		Event.create({
  			title: req.body.name,
- 			startTime: dateStartObj,
- 			endTime: dateEndObj
+ 			start: dateStartObj,
+ 			end: end
  		}).then(function(savedEvent) {
  			console.log('SAVED TO DB!')
- 		})
+ 		}).catch(function(error){
+ 			console.log('ERROR:', error)
+ 		});
 
  		Class.create({
  			name: req.body.name,
- 			startTime: req.body.startTime,
- 			endTime: req.body.endTime,
+ 			start: req.body.start,
+ 			end: req.body.end,
  			enrolledNumber: 0,
  			teacherId: 1,
  			date: req.body.date
@@ -186,6 +188,8 @@ teacherClassRouter.route('/event')
  			console.log(error,"error saving class")
  		});
 });
+
+
 
 teacherClassRouter.route('/assignments')
 .get(authMiddleware.checkSignIn, function (req, res) {

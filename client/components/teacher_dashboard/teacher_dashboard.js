@@ -59,7 +59,6 @@ class TeacherDashboard extends Component {
 			  </div>
 			  <Calendar />
 		  </div>
-
 			)
 		}
 	}
