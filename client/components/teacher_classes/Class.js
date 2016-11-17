@@ -10,6 +10,7 @@ import DashboardNav from '../../shared_components/dashboard_nav.js';
 import AssignmentForm from '../teacher_class/AssignmentForm';
 import AssignmentList from '../teacher_class/AssignmentList';
 import Calendar from '../../shared_components/Calendar.js';
+import AssignmentGradesForm from '../teacher_class/AssignmentGradesForm';
 
 class Class extends Component {
 	constructor(props) {
@@ -29,6 +30,7 @@ class Class extends Component {
 		this.findStudents = this.findStudents.bind(this);
 		this.debouncedFind = _.debounce(this.findStudents, 750);
 		this.onChange = this.onChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 	componentWillMount () {
@@ -76,25 +78,21 @@ class Class extends Component {
 	addStudent(student) {
 		var self = this;
 		this.props.addStudent(student, self.state.className);
-		// var self = this;
-		// axios({
-		// 	method: 'POST',
-		// 	url: '/api/teacher/classes/class/student',
-		// 	data: {
-		// 		student: student,
-		// 		email: student.value,
-		// 		className: self.state.className,
-		// 	},
-		// }).then(function (result) {
-		// 	console.log('the result is:', result.data);
-		// 	self.setState((prevState, props) => {
-		// 		var prevStudents = prevState.students;
-		// 		return {
-		// 			students: prevStudents.concat(result.data),
-		// 		};
-		// 	});
-		// 	console.log('the state for students is:', self.state.students);
-		// });
+	}
+
+	onSubmit(values) {
+		axios({
+			method: 'PUT',
+			url: '/api/teacher/classes/class/assignment/student',
+			data: {
+				studentId: values.studentId,
+				assignmentId: values.assignmentId,
+				grade: values.grade,
+			}
+		})
+		.then(function(resp){
+			console.log('the respon from put assignment grade is', resp)
+		})
 	}
 
 	render() {
@@ -124,10 +122,11 @@ class Class extends Component {
   				<div className="row">
   				  <div className="col-lg-4">
 							<AssignmentForm classTitle={this.state.className}/>
-							<AssignmentList classId={this.state.classId}/>
+							<AssignmentList classId={this.state.classId} classTitle={this.state.className}/>
   				  </div>
   				  <div className="col-lg-8">
-  				  	<h4>Grading coming soon... :( </h4>
+  				  	<h4>Click to edit form goes here</h4>
+				  	<AssignmentGradesForm currentAssignment={this.props.currentAssignment} associated={this.props.currentAssociatedStudents} students={this.props.currentAssociatedStudents} classTitle={this.state.className} onSubmit={this.onSubmit}/>
   				  </div>
     	  	</div>
     	  </div>
@@ -137,8 +136,12 @@ class Class extends Component {
 }
 
 function mapStateToProps(state) {
+	console.log('state in class.js is:', state);
 	return {
 		students: state.students.students,
+		currentAssignment: state.currentAssignment.currentAssignment,
+		currentAssociatedStudents: state.currentAssignment.assignmentStudents,
+		form: state.form,
 	};
 }
 
