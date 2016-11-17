@@ -39,9 +39,10 @@ import HomeNav from '../../shared_components/home_nav.js';
 
   render () {
     return (
-        <div>
+        <div className="row">
           <HomeNav />
           <div id="form-container">
+          <h1 className="Auth-header">Sign in</h1>
           <form onSubmit={this.handleSubmit}>
             <input placeholder="email" value = {this.state.email} type="email" onChange={this.handleEmailChange}></input>
             <input placeholder="password" value = {this.state.password} type="password" onChange={this.handlePasswordChange}></input>

@@ -11,6 +11,7 @@ import Signup from './components/signup/signup.js';
 import Signin from './components/signin/signin.js';
 import TeacherDashboard from './components/teacher_dashboard/teacher_dashboard.js';
 import Calendar from './shared_components/Calendar.js';
+import Upload from './shared_components/Upload-Component.js';
 import Home from './components/home/home.js';
 import Classes from './components/teacher_classes/Classes';
 import Class from './components/teacher_classes/Class';
@@ -27,6 +28,7 @@ const routes = (
 	  	<Route path="studentSignUp" component={Signup} />
 		<Route path="dashboard"component={TeacherDashboard} />
 		<Route path="graph" component={Graph} />
+		<Route path="upload" component={Upload} />
 		<Route path="calendar" component={Calendar} />
 	  <Route path="grades" component={ClassGradeDash} />
 		<Route path="create_class" component={CreateClass} />

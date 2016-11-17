@@ -10,6 +10,7 @@ const rootRouter = require('./routers/root_router');
 const seed = require('./seed');
 const PORT = 8000;
 const app = express();
+var AWS = require('aws-sdk');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

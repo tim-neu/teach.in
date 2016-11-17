@@ -109,10 +109,11 @@ class Class extends Component {
     	  </div>
 
     	  <div className="container">
-			<Select isLoading={this.state.isLoading} name= "form-field-name" value="one" onValueClick={this.addStudent} options={this.state.foundStudents} onInputChange={this.onChange} onChange={this.addStudent} />
 
     	  	<div className="row">
   				  <div className="col-lg-4">
+  				  			<Select isLoading={this.state.isLoading} name= "form-field-name" value="one" onValueClick={this.addStudent} options={this.state.foundStudents} onInputChange={this.onChange} onChange={this.addStudent} />
+
 							<h4>{this.state.className} Roster</h4>
 							<ul> {studentList} </ul>
   				  </div>
@@ -126,7 +127,7 @@ class Class extends Component {
 							<AssignmentList classId={this.state.classId}/>
   				  </div>
   				  <div className="col-lg-8">
-  				  	<h4>Click to edit form goes here</h4>
+  				  	<h4>Grading coming soon... :( </h4>
   				  </div>
     	  	</div>
     	  </div>

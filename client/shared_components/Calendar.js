@@ -100,7 +100,7 @@ export default class Calendar extends Component {
       }
     ];
     return (
-      <div onClick={() => console.log(this.state)}>
+      <div className="col-lg-6" onClick={() => console.log(this.state)}>
         <BigCalendar
           {...this.props}
           selectable

@@ -49,6 +49,13 @@ a.rbc-show-more {
 	padding: 10px;
 }
 
+ul {
+	padding-left: 0px;
+}
+
+li {
+	list-style: none;
+}
 
 /*
 
