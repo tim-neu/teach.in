@@ -6,14 +6,14 @@ class CreateClass extends Component {
 	constructor (props) {
 		super(props);
 
-		this.state = {name: '', startTime: '', endTime: '', date: ''};
+		this.state = {name: '', start: '', end: '', date: ''};
 	}
 
 	handleSubmit = (e) => {
 		axios.post('/api/teacher/classes/class/event', {
 					name: this.state.name,
-					startTime: this.state.startTime,
-					endTime: this.state.endTime,
+					start: this.state.start,
+					end: this.state.end,
 					date: this.state.date
 				})
 			  .then(function (response) {
@@ -27,7 +27,7 @@ class CreateClass extends Component {
 	render () {
 		return (
 			<div>
-				<form>
+				<form className='eventForm'>
 					<input 	
 						type='text'
 						name='class-name'
@@ -39,15 +39,15 @@ class CreateClass extends Component {
 						type='time'
 						name='start-time'
 						placeholder='Start Time'
-						value={this.state.startTime} 
-						onChange={startTimeEvent => this.setState({ startTime: startTimeEvent.target.value })}
+						value={this.state.start} 
+						onChange={startEvent => this.setState({ start: startEvent.target.value })}
 					/>
 					<input
 						type='time'
 						name='end-time'
 						placeholder='End Time'
-						value={this.state.endTime} 
-						onChange={endTimeEvent => this.setState({ endTime: endTimeEvent.target.value })} 
+						value={this.state.end} 
+						onChange={endEvent => this.setState({ end: endEvent.target.value })} 
 					/>
 					<input
 						type='date'
@@ -55,13 +55,10 @@ class CreateClass extends Component {
 						value={this.state.date} 
 						onChange={date => this.setState({ date: date.target.value })}
 					/>
-					<input type='checkbox' name='Monday' value='true' /> Mon 
-					<input type='checkbox' name='Tuesday' value='true' /> Tue 
-					<input type='checkbox' name='Wednesday' value='true' /> Wed 
-					<input type='checkbox' name='Thursday' value='true' /> Thu 
-					<input type='checkbox' name='Friday' value='true' /> Fri 
+					<div>
 					<button onClick={this.handleSubmit}>Submit</button>
 					<button>Cancel</button>
+					</div>
 				</form>
 			</div>
 		);

@@ -16,16 +16,35 @@ class TeacherDashboard extends Component {
 	render(){
 		console.log(this.state, "state");
 		return (
-		  <div className="row">
-			  <DashboardNav />
-			  <UserInformation />
-			  <Graph />
-			  <Calendar />
-		  </div>
+			<div>
+				<div className="row">
+  			  		<DashboardNav />
+    	  		</div>
+
+    	  		<div className="container">
+    	  			<div className="row">
+  						<div className="col-lg-4">
+				  			<UserInformation />
+  						</div>
+  						<div className="col-lg-8">
+  							<Calendar />
+  						</div>
+    	  			</div>
+			
+  					<div className="row">
+  					  <div className="col-lg-4">
+
+  					  </div>
+  					  <div className="col-lg-8">
+  					  	<Graph />
+  					  </div>
+    	  			</div>
+    	  		</div>
+    	  	</div>
 
 			)
 		}
-	n}
+	}
   
 
 export default TeacherDashboard

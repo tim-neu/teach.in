@@ -4,6 +4,8 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar';
 import axios from 'axios';
 
+import CreateClass from '../components/create_class/CreateClass.js';
+
 BigCalendar.momentLocalizer(moment);
 
 export default class Calendar extends Component {
@@ -14,24 +16,29 @@ export default class Calendar extends Component {
     this.getAllEvents();
   }
 
+  componentWillMount() {
+  }
 
   getAllEvents() {
     var self = this;
-    axios.get(`/api/teacher/classes/class/event`)
+    axios.get('/api/teacher/classes/class/event')
     .then (function (response) {
       console.log('this is the response in getAllEvents:', response);
       self.setState({events: response.data})
-      console.log(self.state)
+      console.log('self.state.events ------------------>', self.state.events);
     })
     .catch(function (error) {
 
-      console.log(error, 'shit went left with the get events');
+      console.log('hey, sooooo...shit went left when i tried to get events:', error);
     });
+    console.log('component will mount this:', this.state.events);
   }
 
   render(){
-  console.log('Testing new Date object in Calendar.js:', new Date(2016, 3, 11, 10, 30, 0, 0));
-  const poop =
+  // console.log('Testing new Date object in Calendar.js:', new Date(2016, 3, 11, 10, 30, 0, 0));
+  console.log('this.state.events',this.state.events)
+
+  const list =
     [
       {
         'title': 'All Day Event',
@@ -100,7 +107,7 @@ export default class Calendar extends Component {
       }
     ];
     return (
-      <div onClick={() => console.log(this.state)}>
+      <div>
         <BigCalendar
           {...this.props}
           selectable
@@ -109,11 +116,13 @@ export default class Calendar extends Component {
           timeslots={4}
           step={15}
           style={{height: "400px"}}
-          startAccessor={this.state.events.length > 0 ? new Date(this.state.events.startTime): ''}
-          endAccessor={this.state.events.length > 0 ? new Date(this.state.events.endTime): ''}
+          startAccessor={this.state.events.start}
+          endAccessor={this.state.events.end}
           scrollToTime={new Date(1970, 1, 1, 7)}
           defaultDate={new Date(2016, 10, 11)}
         />
+
+        <CreateClass />
       </div>
     )
   }
