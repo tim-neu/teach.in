@@ -79,10 +79,7 @@ teacherClassRouter.route('/student')
 });
 
 teacherClassRouter.route('/resources')
-.get(authMiddleware.checkSignIn, function (req, res) {
-	console.log(' i got the query!', req.query);
-	res.send('i should be querying the database for the resources for this class');
-});
+.get(teacherController.getClassResources);
 
 teacherClassRouter.route('/classGPA')
 .get(authMiddleware.checkSignIn, teacherController.getClassGpa);

@@ -2,6 +2,7 @@ var express = require('express');
 var awsRouter = express.Router();
 var dotEnv = require('dotenv').load();
 var Resource = require('./models/resource_model');
+var Teacher = require('./models/teacher_model');
 
 var fs = require('fs'),
     S3FS = require('s3fs'),
@@ -24,20 +25,27 @@ s3fsImpl.create();
       var stream = fs.createReadStream(file.path);
       return s3fsImpl.writeFile(file.originalFilename, stream).then(function (response) {
           var replaced =  "https://s3.amazonaws.com/teach.in123454321/" + file.originalFilename.replace(/\s/g, '+');
-          var newResource = Resource.build({
-            name: file.originalFilename,
-            url: replaced
-          });
-          newResource.save().then(function(){
-            res.send("saved to db");
-          });
-          })
           fs.unlink(file.path, function (err) {
               if (err) {
                   console.error(err);
                   res.send(err);
               }
+              else {
+                console.log('inside else')
+
+                 var newResource = Resource.build({
+                  name: file.originalFilename,
+                  url: replaced,
+                  classId: req.body.classId
+                });
+                newResource.save().then(function(){
+                  res.send("saved to db");
+                });
+
+              }
           });
+        })
+          
       });
 
   module.exports = awsRouter;
