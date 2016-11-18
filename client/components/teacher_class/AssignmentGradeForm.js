@@ -11,24 +11,15 @@ class AssignmentGradeForm extends Component {
 			resetForm,
 			submitting,
 		} = this.props;
-		return (<form onSubmit={handleSubmit}>
-			<div>
+		return (<form onSubmit={handleSubmit} className="assignment-grade-form">
 				<input type='text' placeholder='student' {...name} />
-			</div>
-			<div>
+
 				<input type='text' placeholder='Assignment grade' value='0' {...grade} />
-			</div>
-			<div>
+
 				<input type='text' placeholder='studentId' {...studentId} className='student-id-input'/>
-			</div>
-			<div>
 				<input type='text' placeholder='assignmentId' {...assignmentId} className='student-id-input'/>
-			</div>
 			<button type='submit'>
 			Submit
-			</button>
-			<button type='button'onClick={resetForm}>
-			Cancel
 			</button>
 		</form>
 		);
