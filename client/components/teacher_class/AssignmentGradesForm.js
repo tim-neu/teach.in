@@ -52,11 +52,8 @@ class AssignmentGradesForm extends Component {
     }
 
     return (<div>
-        <div>
+        <div className="assignment-name">
           {assignmentName}
-          <input type="text" onChange={this.handleChange} placeholder='click to get nextstate'/>
-          <div>Student Name</div>
-          <div>Grade </div>
         </div>
         {studentsMap}
       </div>

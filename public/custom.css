@@ -104,8 +104,21 @@ textarea:focus, input:focus{
 
 .student-id-input {
     display: none;
-};
+}
 
 .assignment-id-input {
     display: none;
-};
+}
+
+.assignment-grade-form {
+    margin: 0px;
+    text-align: left;
+}
+
+.assignment-grade-form input {
+    margin: 0px 0px 20px 0px;
+}
+
+.assignment-name {
+    font-size: 18px;
+}
