@@ -46,7 +46,9 @@ class TeacherDashboard extends Component {
 		return (
 		  <div className="row">
 			  <DashboardNav />
+			  <div className="container">
 			  <div className="row">
+			  	<div className="col-lg-4">
 					<UserInformation />
 						<form onSubmit={this.handleMediaSubmit}>
 						  <a href="https://s3.amazonaws.com/teach.in123454321/Screen+Shot+2016-10-05+at+8.00.50+AM.png">hey</a>
@@ -55,9 +57,13 @@ class TeacherDashboard extends Component {
 						  <input type="submit" />
 						</form>
 		              <div>Try dropping some files here, or click to select files to upload.</div>
-				  <Graph />
+				</div>
+				<div className="col-lg-8">
+					<Calendar />
+					<Graph />
+				</div>
 			  </div>
-			  <Calendar />
+			  </div>
 		  </div>
 			)
 		}

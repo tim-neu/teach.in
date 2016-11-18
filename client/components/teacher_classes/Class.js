@@ -116,6 +116,7 @@ class Class extends Component {
 							<ul> {studentList} </ul>
   				  </div>
   				  <div className="col-lg-8">
+  				  	<Calendar />
   				  </div>
     	  	</div>
 		
@@ -125,7 +126,7 @@ class Class extends Component {
 							<AssignmentList classId={this.state.classId} classTitle={this.state.className}/>
   				  </div>
   				  <div className="col-lg-8">
-  				  	<h4>Click to edit form goes here</h4>
+  				  	<h4>Grades</h4>
 				  	<AssignmentGradesForm currentAssignment={this.props.currentAssignment} associated={this.props.currentAssociatedStudents} students={this.props.currentAssociatedStudents} classTitle={this.state.className} onSubmit={this.onSubmit}/>
   				  </div>
     	  	</div>
