@@ -13,6 +13,15 @@ studentController.SIGNUP = (req, res) => {
 	});
 };
 
+studentController.SIGNIN = (req, res) => {
+	//res.send('i should be redirecting to teacher/dashboard');
+	//2 ways: redirect directly to public folder, or pretend its like
+	// a get request to the /api/teachers/dashboard endpoint and give the 
+	// data to the client to render
+	// res.redirect('/home');
+	res.send('i shoudl be redirecting to studentDashboard');
+};
+
 studentController.GETSTUDENTS = (req, res) => {
 	console.log('i got the students query:', req.query.student);
 	var query = req.query.student + '%';

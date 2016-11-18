@@ -27,6 +27,7 @@ const routes = (
 	  	<Route path="teacherSignUp" component={Signup} />
 	  	<Route path="studentSignUp" component={Signup} />
 		<Route path="dashboard"component={TeacherDashboard} />
+		<Route path="studentDashboard" component={TeacherDashboard} />
 		<Route path="graph" component={Graph} />
 		<Route path="upload" component={Upload} />
 		<Route path="calendar" component={Calendar} />

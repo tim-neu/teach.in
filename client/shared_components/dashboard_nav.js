@@ -4,8 +4,13 @@ import {Link} from 'react-router';
   class DashboardNav extends React.Component {
   constructor (props) {
     super(props)
-    
-    this.state = {};
+    if (_.includes(window.location.href, 'studentDashboard')) {
+      this.state = {userType: 'student' };
+      console.log('i set the state to student for navBar', this.state.userType);
+    } else {
+      this.state = { userType: 'teacher' };
+      console.log('i set the state to teacher for navBar', this.state.userType);
+    };
   };
 
   render () {

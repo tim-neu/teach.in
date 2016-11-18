@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import HomeNav from '../../shared_components/home_nav.js';
+import _ from 'lodash';
 
   class Signup extends React.Component {
   constructor (props) {
     super(props);
-    if (window.location.href === 'http://localhost:8000/studentSignUp') {
+
+    if (_.includes(window.location.href, 'studentSignUp')) {
       this.state = { name: '', email: '', password: '', userType: 'student' };
     } else {
       this.state = { name: '', email: '', password: '', userType: 'teacher' };
