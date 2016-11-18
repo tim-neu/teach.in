@@ -15,6 +15,9 @@ Calendar Styling
 	border-color: #610a7e !important;
 }
 
+.rbc-current-time-indicator {
+	z-index: 900px;
+}
 .rbc-event-content {
 	font-size: 10px;
 }

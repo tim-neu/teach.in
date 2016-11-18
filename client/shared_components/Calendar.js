@@ -3,6 +3,7 @@ import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar';
 import axios from 'axios';
+import _ from 'lodash';
 
 import CreateClass from '../components/create_class/CreateClass.js';
 
@@ -16,98 +17,43 @@ export default class Calendar extends Component {
     this.getAllEvents();
   }
 
-  componentWillMount() {
-  }
-
   getAllEvents() {
     var self = this;
     axios.get('/api/teacher/classes/class/event')
     .then (function (response) {
-      console.log('this is the response in getAllEvents:', response);
+      console.log('This is the response in getAllEvents:', response);
+      // console.log('self.state.events ------------------>', self.state.events);
+
+      // resolves all start and event times back into date object
+      function map(arr){
+        for(var i = 0; i < arr.length; i++){
+          var obj = arr[i];
+          _.update(obj, 'start', function(s){
+            return new Date(s);
+          });
+
+          _.update(obj, 'end', function(s){
+            return new Date(s);
+          });
+        }
+      }
+
+      map(response.data);
+      // console.log('-----------',response.data);
+
+      // response.data[0].start = new Date(response.data[0].start);
+      // response.data[0].end = new Date(response.data[0].end);
       self.setState({events: response.data})
-      console.log('self.state.events ------------------>', self.state.events);
     })
     .catch(function (error) {
-
-      console.log('hey, sooooo...shit went left when i tried to get events:', error);
+      console.log('Hey, sooooo...shit went left when I tried to get events:', error);
     });
-    console.log('component will mount this:', this.state.events);
   }
 
   render(){
   // console.log('Testing new Date object in Calendar.js:', new Date(2016, 3, 11, 10, 30, 0, 0));
-  console.log('this.state.events',this.state.events)
-
-  const list =
-    [
-      {
-        'title': 'All Day Event',
-        'allDay': true,
-        'start': new Date(2016, 10, 0),
-        'end': new Date(2016, 10, 0)
-      },
-      {
-        'title': 'Long Event',
-        'start': new Date(2016, 10, 7),
-        'end': new Date(2016, 10, 10)
-      },
-      {
-        'title': 'DTS STARTS',
-        'start': new Date(2016, 10, 13, 0, 0, 0),
-        'end': new Date(2016, 10, 20, 0, 0, 0)
-      },
-      {
-        'title': 'DTS ENDS',
-        'start': new Date(2016, 10, 6, 0, 0, 0),
-        'end': new Date(2016, 10, 13, 0, 0, 0)
-      },
-      {
-        'title': 'Some Event',
-        'start': new Date(2016, 10, 9, 0, 0, 0),
-        'end': new Date(2016, 10, 9, 0, 0, 0)
-      },
-      {
-        'title': 'Conference',
-        'start': new Date(2016, 10, 11),
-        'end': new Date(2016, 10, 13),
-        'desc': 'Big conference for important people'
-      },
-      {
-        'title': 'Meeting',
-        'start': new Date(2016, 10, 11, 10, 30, 0),
-        'end': new Date(2016, 10, 11, 11, 55, 0),
-        'desc': 'Pre-meeting meeting, to prepare for the meeting'
-      },
-      {
-        'title': 'Lunch',
-        'start':new Date(2016, 10, 11, 12, 0),
-        'end': new Date(2016, 10, 11, 13, 0),
-        'desc': 'Power lunch'
-      },
-      {
-        'title': 'Meeting',
-        'start':new Date(2016, 10, 11,14, 0, 0, 0),
-        'end': new Date(2016, 10, 11,15, 0, 0, 0)
-      },
-      {
-        'title': 'Happy Hour',
-        'start':new Date(2016, 10, 11, 17, 0, 0, 0),
-        'end': new Date(2016, 10, 11, 17, 30, 0, 0),
-        'desc': 'Most important meal of the day'
-      },
-      {
-        'title': 'Dinner',
-        'start':new Date(2016, 10, 11, 20, 0, 0, 0),
-        'end': new Date(2016, 10, 11, 21, 0, 0, 0)
-      },
-      {
-        'title': 'Birthday Party',
-        'start':new Date(2016, 10, 13, 7, 0, 0),
-        'end': new Date(2016, 10, 13, 10, 30, 0)
-      }
-    ];
+  // console.log('this.state.events',this.state.events)
     return (
-      
       <div>
         <BigCalendar
           {...this.props}
