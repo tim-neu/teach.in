@@ -151,6 +151,7 @@ class Class extends Component {
 						  <input id="input" type="file" name="pic" accept="image/*" />
 						  <input type="submit" />
 						</form>
+  				  	<Calendar />
   				  </div>
     	  	</div>
 		
@@ -160,7 +161,7 @@ class Class extends Component {
 							<AssignmentList classId={this.state.classId} classTitle={this.state.className}/>
   				  </div>
   				  <div className="col-lg-8">
-  				  	<h4>Click to edit form goes here</h4>
+  				  	<h4>Grades</h4>
 				  	<AssignmentGradesForm currentAssignment={this.props.currentAssignment} associated={this.props.currentAssociatedStudents} students={this.props.currentAssociatedStudents} classTitle={this.state.className} onSubmit={this.onSubmit}/>
   				  </div>
     	  	</div>
