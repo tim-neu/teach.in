@@ -35,7 +35,7 @@ class Classes extends Component {
 function mapStateToProps(state, action) {
 	console.log("state", state)
 	return {
-		classes: state.classes.classes,
+		classes: state.classes.classes
 	};
 };
 
