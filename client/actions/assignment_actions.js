@@ -2,7 +2,7 @@ import axios from 'axios';
 import { HANDLE_SUBMIT_ASSIGNMENTS } from './types';
 import { ALL_TEACHER_ASSIGNMENTS } from './types';
 import { SELECT_ASSIGNMENTS } from './types';
-import { GET_ASSIGNMENTS_STUDENTS } from './types'
+import { GET_ASSIGNMENTS_STUDENTS } from './types';
 export function getAssignments (classId) {
 	return function(dispatch) {
 		axios({

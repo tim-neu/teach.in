@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getStudents, addStudent } from '../../actions/students_actions';
+import { getResources } from '../../actions/resource_actions';
 import 'react-select/dist/react-select.css';
 import Select from 'react-select';
 import _ from 'lodash';
@@ -11,6 +12,8 @@ import AssignmentForm from '../teacher_class/AssignmentForm';
 import AssignmentList from '../teacher_class/AssignmentList';
 import Calendar from '../../shared_components/Calendar.js';
 import AssignmentGradesForm from '../teacher_class/AssignmentGradesForm';
+import ResourceList from '../teacher_class/ResourceList';
+
 
 class Class extends Component {
 	constructor(props) {
@@ -32,6 +35,7 @@ class Class extends Component {
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.handleMediaSubmit = this.handleMediaSubmit.bind(this);
+		this.getResources = this.props.getResources.bind(this);
 	}
 
 	componentWillMount () {
@@ -97,6 +101,7 @@ class Class extends Component {
 		})
 	}
 	handleMediaSubmit(event){
+		var self = this;
 		event.preventDefault();
 		var selectedFile = document.getElementById('input').files[0];
 		var fileName = document.getElementById('input').val;
@@ -121,6 +126,7 @@ class Class extends Component {
 
 		$.ajax(settings).done(function (response) {
 		  console.log(response);
+		  self.props.getResources(self.state.classId);
 		});
 	}
 
@@ -159,6 +165,7 @@ class Class extends Component {
   				  <div className="col-lg-4">
 							<AssignmentForm classTitle={this.state.className}/>
 							<AssignmentList classId={this.state.classId} classTitle={this.state.className}/>
+							<ResourceList classId={this.state.classId} classTitle={this.state.className}/>
   				  </div>
   				  <div className="col-lg-8">
   				  	<h4>Grades</h4>
@@ -178,7 +185,8 @@ function mapStateToProps(state) {
 		currentAssignment: state.currentAssignment.currentAssignment,
 		currentAssociatedStudents: state.currentAssignment.assignmentStudents,
 		form: state.form,
+		resources: state.resources.resources
 	};
 }
 
-export default connect(mapStateToProps, { getStudents: getStudents, addStudent: addStudent })(Class);
+export default connect(mapStateToProps, { getStudents: getStudents, addStudent: addStudent, getResources: getResources })(Class);

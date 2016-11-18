@@ -1,28 +1,15 @@
 import axios from 'axios';
+import { GET_RESOURCES } from './types';
 
-export const handleMediaSubmit = (event) => {
-	event.preventDefault();
-	var selectedFile = document.getElementById('input').files[0];
-	var form = new FormData();
-	form.append("file", selectedFile);
-	form.append("teacherEmail", localStorage.getItem("email"));
-
-	var settings = {
-	  "async": true,
-	  "crossDomain": true,
-	  "url": "http://localhost:8000/api/upload/s3",
-	  "method": "POST",
-	  "name": "name",
-	  "headers": {
-	    "cache-control": "no-cache",
-	  },
-	  "processData": false,
-	  "contentType": false,
-	  "mimeType": "multipart/form-data",
-	  "data": form
-	}
-
-	$.ajax(settings).done(function (response) {
-	  console.log(response);
-	});
-}
+export function getResources(classID) {
+	return function (dispatch) {
+	axios({
+			method: 'GET',
+			url: `/api/teacher/classes/class/resources?classId=${classID}`,
+		})
+		.then(function (resp) {
+			console.log('the resp resources:', resp);
+			dispatch({ type: GET_RESOURCES, payload: resp.data });
+		});
+	};
+};
