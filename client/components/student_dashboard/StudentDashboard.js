@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
-import Graph from '../../shared_components/graph.js';
 import Calendar from '../../shared_components/Calendar.js';
 import DashboardNav from '../../shared_components/dashboard_nav.js';
 import UserInformation from '../../shared_components/User_information.js';
-import handleMediaSubmit from '../../actions/resource_actions.js';
-import CreateClass from '../../components/create_class/CreateClass.js';
+import handleMediaSubmit from '../../actions/resource_actions.js'
 
-
-class TeacherDashboard extends Component {
+class StudentDashboard extends Component {
 	constructor(props) {
 	super(props);
 	this.state = {
@@ -56,14 +53,13 @@ class TeacherDashboard extends Component {
 				</div>
 				<div className="col-lg-8">
 					<Calendar />
-					<CreateClass />
 				</div>
 			  </div>
 			  </div>
 		  </div>
-			)
-		}
+		)
 	}
+}
   
 
-export default TeacherDashboard
+export default StudentDashboard

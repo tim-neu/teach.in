@@ -8,6 +8,7 @@ const ClassStudents = require('../../../../models/classStudents_model.js');
 const Students = require('../../../../models/student_model.js');
 const AssignmentStudents = require('../../../../models/assignmentStudents_model.js');
 const Assignment = require('../../../../models/assignment_model.js');
+
 teacherClassRouter.route('/')
 .get(authMiddleware.checkSignIn, function (req, res) {
 	Class.findOne({
@@ -42,7 +43,7 @@ teacherClassRouter.route('/')
 			});
 		}
 		else {
-			res.send('cant found class');
+			res.send('cant find class');
 		}
 	});
 });
@@ -174,18 +175,8 @@ teacherClassRouter.route('/event')
 teacherClassRouter.route('/event')
 .post(authMiddleware.checkSignIn, function (req, res) {
 	console.log('i made it to /api/teacher/classes/class/event');
-	console.log('req.body is: ---------------> ', 'req.body');
-	// req.body is:  { 
-	//  name: 'History',
- 	//  start: '01:00',
- 	//  end: '01:00',
- 	//  date: '2016-11-11' 
-  // }
-
-	console.log(req.body,  " this is req. body ----------------------------------->")
+	console.log(req.body,  " this is req. body --------->")
   
-
-
     var start = req.body.start;
  		var data = req.body.date.replace(/-0/g, ', ').replace(/-/g, ', ') + ', '+ req.body.start.replace(/:/gi, ', ').replace(/\b0+/g, '0');
  		var arrStart = data.split(',');

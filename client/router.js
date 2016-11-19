@@ -10,6 +10,7 @@ import CreateClass from './components/create_class/CreateClass.js';
 import Signup from './components/signup/signup.js';
 import Signin from './components/signin/signin.js';
 import TeacherDashboard from './components/teacher_dashboard/teacher_dashboard.js';
+import StudentDashboard from './components/student_dashboard/StudentDashboard.js';
 import Calendar from './shared_components/Calendar.js';
 import Upload from './shared_components/Upload-Component.js';
 import Home from './components/home/home.js';
@@ -27,7 +28,7 @@ const routes = (
 	  	<Route path="teacherSignUp" component={Signup} />
 	  	<Route path="studentSignUp" component={Signup} />
 		<Route path="dashboard"component={TeacherDashboard} />
-		<Route path="studentDashboard" component={TeacherDashboard} />
+		<Route path="studentDashboard" component={StudentDashboard} />
 		<Route path="graph" component={Graph} />
 		<Route path="upload" component={Upload} />
 		<Route path="calendar" component={Calendar} />
@@ -37,19 +38,5 @@ const routes = (
 	    <Route name='/class' path='/:className' component={Class} />
 	</Route>
 );
-
-// const routes = (
-//   <Router history={browserHistory}>
-//     <Route component={App} >
-//     	<Route path="/" component = {Classes} />
-//     </Route>
-//     <Route path="/graph" component={Graph} />
-//     <Route path="/signup" component={Signup} />
-//     <Route path="/signin" component={Signin} />
-//     <Route path='/create_class' component={CreateClass} />
-//     <Route path='/calendar' component={Calendar} />
-//     <Route path = '/classes' component = {Classes} />
-//   </Router>
-// );
 
 export default routes;
