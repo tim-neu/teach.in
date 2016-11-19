@@ -12,8 +12,14 @@ BigCalendar.momentLocalizer(moment);
 export default class Calendar extends Component {
   constructor(props){
     super(props);
+    if (_.includes(window.location.href, 'studentDashboard')) {
+      this.state = { events: [], userType: 'student' };
+      console.log('i set the state to student for calendar', this.state.userType);
+    } else {
+      this.state = { events: [], userType: 'teacher' };
+      console.log('i set the state to teacher for calendar', this.state.userType);
+    };
 
-    this.state = {events: []};
     this.getAllEvents();
   }
 
@@ -48,6 +54,31 @@ export default class Calendar extends Component {
     .catch(function (error) {
       console.log('Hey, sooooo...shit went left when I tried to get events:', error);
     });
+    // if (this.state.userType === 'teacher'){
+    //   axios.get('/api/teacher/classes/class/event')
+    //   .then (function (response) {
+    //     console.log('this is the response in getAllEvents:', response);
+    //     self.setState({events: response.data})
+    //     console.log('self.state.events ------------------>', self.state.events);
+    //   })
+    //   .catch(function (error) {
+
+    //     console.log('hey, sooooo...shit went left when i tried to get events:', error);
+    //   });
+    //   console.log('component will mount this:', this.state.events);
+    // } else {
+    //   axios.get('/api/student/classes/class/event')
+    //   .then(function (response) {
+    //     console.log('this is response for students in getAllevents:', response);
+    //     self.setState({ events: response.data });
+    //     console.log('se;f/state/events ------------------->', self.state.events);
+    //   })
+    //   .catch(function (error) {
+    //     console.log('hey, sooooo...shit went left when i tried to get events for students:', error);
+    //   });
+
+    //   console.log('component will mount this:', this.state.events);
+    // }
   }
 
   render(){

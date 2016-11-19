@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {browserHistory} from 'react-router';
 import HomeNav from '../../shared_components/home_nav.js';
+import { connect } from 'react-redux';
+import { setUserType } from '../../actions/sign_in_actions.js';
 
   class Signin extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {email:'', password:''};
+    if (_.includes(window.location.href, 'studentSignIn')) {
+      this.state = { email: '', password: '', userType: 'student' };
+    } else {
+      this.state = { email: '', password: '', userType: 'teacher' };
+      console.log('i set the state to teacher', this.state.userType);
+    };
+
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,18 +31,32 @@ import HomeNav from '../../shared_components/home_nav.js';
     this.setState({password: event.target.value});
   }
   handleSubmit(event) {
-    self = this
-    event.preventDefault();
-    axios.post('/api/teacher/signin',{
-      email: this.state.email,
-      password: this.state.password
+    self = this;
 
-    }).then(function(response){
-      localStorage.setItem("email", self.state.email);
-      browserHistory.push('/dashboard');
-    }).catch(function(error){
-      console.log('error with sign in')
-    })
+    event.preventDefault();
+    if (this.state.userType === 'teacher') {
+      axios.post('/api/teacher/signin',{
+        email: this.state.email,
+        password: this.state.password,
+      }).then(function (response) {
+        localStorage.setItem("email", self.state.email);
+        self.props.setUserType('teacher');
+        browserHistory.push('/dashboard');
+      }).catch(function (error) {
+        console.log('error with sign in')
+      });
+    } else {
+      axios.post('/api/student/signin',{
+        email: this.state.email,
+        password: this.state.password,
+      }).then(function (response) {
+        localStorage.setItem("email", self.state.email);
+        self.props.setUserType('student');
+        browserHistory.push('/studentDashboard');    
+      }).catch(function (error) {
+        console.log('error with sign in')
+      });
+    }
   }
 
   render () {
@@ -54,4 +76,13 @@ import HomeNav from '../../shared_components/home_nav.js';
   }
 }
 
-export default Signin
+function mapStateToProps(state) {
+  return {
+    userType: state.userType.userType,
+  };
+}
+
+const SignInContainer = connect(mapStateToProps, {
+  setUserType: setUserType,
+})(Signin);
+export default SignInContainer;
