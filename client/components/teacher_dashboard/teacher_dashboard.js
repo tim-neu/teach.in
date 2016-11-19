@@ -51,13 +51,6 @@ class TeacherDashboard extends Component {
 			  <div className="row">
 			  	<div className="col-lg-4">
 					<UserInformation />
-						<form onSubmit={this.handleMediaSubmit}>
-						  <a href="https://s3.amazonaws.com/teach.in123454321/Screen+Shot+2016-10-05+at+8.00.50+AM.png">hey</a>
-						  <input id="nameValue" type="text" />
-						  <input id="input" type="file" name="pic" accept="image/*" />
-						  <input type="submit" />
-						</form>
-		              <div>Try dropping some files here, or click to select files to upload.</div>
 				</div>
 				<div className="col-lg-8">
 					<Calendar />
