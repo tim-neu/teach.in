@@ -14,6 +14,9 @@ var Teacher = sequelize.define('teachers', {
   password: {
     type: Sequelize.STRING,
   },
+  picture: {
+    type: Sequelize.STRING,
+  }
 });
 
 module.exports = Teacher;

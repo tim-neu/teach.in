@@ -31,9 +31,24 @@ s3fsImpl.create();
                   res.send(err);
               }
               else {
-                console.log('inside else')
-
-                 var newResource = Resource.build({
+                if(req.body.type === "teacher"){
+                  Teacher.findOne({
+                    where: {
+                      email: req.body.email
+                    }
+                  })
+                  .then(function(foundInstance){
+                    foundInstance.update({
+                      picture: replaced
+                    })
+                  .then(function(teacherUpdate){
+                    console.log(teacherUpdate, "<-------- teacher update");
+                    res.send(teacherUpdate);
+                  });
+                  });
+                }
+                else {
+                  var newResource = Resource.build({
                   name: file.originalFilename,
                   url: replaced,
                   classId: req.body.classId
@@ -41,7 +56,7 @@ s3fsImpl.create();
                 newResource.save().then(function(){
                   res.send("saved to db");
                 });
-
+                }
               }
           });
         })

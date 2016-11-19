@@ -1,28 +1,43 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import { postTeacherPhoto, getTeacherPhoto } from '../actions/teacher_profile_actions'
 
   class UserInformation extends React.Component {
   constructor (props) {
     super(props)
     
-    this.state = {path: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Einstein-formal_portrait-35.jpg/220px-Einstein-formal_portrait-35.jpg"}
+    this.postTeacherPhoto = this.props.postTeacherPhoto.bind(this);
+    this.handlePostTeacherPhoto = this.handlePostTeacherPhoto.bind(this)
+    this.getTeacherPhoto = this.props.getTeacherPhoto.bind(this);
+    this.getTeacherPhoto();
   };
 
-  getProfileData(){
-    axios.get('/api/teacher/classes/class/student')
-    .then(function(response){
-      console.log(response)
-    });
+  handlePostTeacherPhoto(event){
+    var selectedFile = document.getElementById('input').files[0];
+    this.postTeacherPhoto(selectedFile);
   }
 
   render () {
     return (
       <div>
+        <img id="profile-photo" src={this.props.profilePicture} />
         <h4>Mr. Neumann</h4>
-        <img src={this.state.path} />
+        <form>
+          <input id="nameValue" type="text" />
+          <input id="input" type="file" name="pic" />
+        </form>
+        <button onClick={this.handlePostTeacherPhoto}> Submit </button>
+        
       </div>
     );
   }
 }
 
-export default UserInformation
+function mapStateToProps(state){
+  return {
+    profilePicture: state.profilePicture.profilePicture
+  };
+}
+
+export default connect(mapStateToProps, {postTeacherPhoto: postTeacherPhoto, getTeacherPhoto: getTeacherPhoto})(UserInformation)
