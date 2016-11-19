@@ -19,7 +19,7 @@ studentController.SIGNIN = (req, res) => {
 	// a get request to the /api/teachers/dashboard endpoint and give the 
 	// data to the client to render
 	// res.redirect('/home');
-	res.send('i shoudl be redirecting to studentDashboard');
+	res.send('Authenticated');
 };
 
 studentController.GETSTUDENTS = (req, res) => {

@@ -24,7 +24,8 @@ class Class extends Component {
 			isLoading: false,
 			searchStudentText: '',
 			students: [],
-			classId: this.props.location.query.classId
+			classId: this.props.location.query.classId,
+			submittingGrade: false,
 		};
 		var self = this;
 		var className = this.state.className;
@@ -46,7 +47,6 @@ class Class extends Component {
 		this.setState({
 			searchStudentText: val,
 		});
-		console.log('i changed the searchStudentText:', this.state.searchStudentText);
 	}
 
 	findStudents () {
@@ -73,11 +73,9 @@ class Class extends Component {
 	}
 
 	onChange(val) {
-		console.log(this.state.className)
 		this.setState({
 			searchStudentText: val,
 		});
-		console.log('i changed the searchStudentText:', this.state.searchStudentText);
 		this.debouncedFind(false);
 	}
 
@@ -87,6 +85,8 @@ class Class extends Component {
 	}
 
 	onSubmit(values) {
+		var self = this;
+		self.setState({ submittingGrade: true});
 		axios({
 			method: 'PUT',
 			url: '/api/teacher/classes/class/assignment/student',
@@ -97,6 +97,7 @@ class Class extends Component {
 			}
 		})
 		.then(function(resp){
+			self.setState({ submittingGrade: false });
 			console.log('the respon from put assignment grade is', resp)
 		})
 	}
@@ -125,7 +126,6 @@ class Class extends Component {
 		}
 
 		$.ajax(settings).done(function (response) {
-		  console.log(response);
 		  self.props.getResources(self.state.classId);
 		});
 	}
@@ -169,7 +169,7 @@ class Class extends Component {
   				  </div>
   				  <div className="col-lg-8">
   				  	<h4>Grades</h4>
-				  	<AssignmentGradesForm currentAssignment={this.props.currentAssignment} associated={this.props.currentAssociatedStudents} students={this.props.currentAssociatedStudents} classTitle={this.state.className} onSubmit={this.onSubmit}/>
+				  	<AssignmentGradesForm currentAssignment={this.props.currentAssignment} associated={this.props.currentAssociatedStudents} students={this.props.currentAssociatedStudents} submittingGrade={this.state.submittingGrade} classTitle={this.state.className} onSubmit={this.onSubmit}/>
   				  </div>
     	  	</div>
     	  </div>
@@ -179,7 +179,6 @@ class Class extends Component {
 }
 
 function mapStateToProps(state) {
-	console.log('state in class.js is:', state);
 	return {
 		students: state.students.students,
 		currentAssignment: state.currentAssignment.currentAssignment,
