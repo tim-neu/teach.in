@@ -122,3 +122,7 @@ textarea:focus, input:focus{
 .assignment-name {
     font-size: 18px;
 }
+
+#profile-photo {
+    width: 250px;
+}

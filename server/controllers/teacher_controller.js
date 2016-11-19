@@ -62,6 +62,7 @@ teacherController.SIGNUP = (req, res) => {
 		name: req.body.name,
 		email: req.body.email,
 		password: req.body.password,
+		picture: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png'
 	}).then((teacher) => {
 		//console.log(teacher,"teacher")
 
@@ -337,6 +338,15 @@ teacherController.getClassResources = (req, res) => {
 	.then(function(resources){
 		console.log('here are the class dataValues ----------------> ');
 		res.send(resources);
+	}).catch(function(err){
+		console.log(err)
+	})
+};
+
+teacherController.getTeacher = (req, res) => {
+	Teacher.findOne({where: {email: req.query.teacherEmail}})
+	.then(function(foundTeacher){
+		res.send(foundTeacher);
 	}).catch(function(err){
 		console.log(err)
 	})
