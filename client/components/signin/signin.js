@@ -3,7 +3,7 @@ import axios from 'axios';
 import {browserHistory} from 'react-router';
 import HomeNav from '../../shared_components/home_nav.js';
 import { connect } from 'react-redux';
-
+import { setUserType } from '../../actions/sign_in_actions.js';
 
   class Signin extends React.Component {
   constructor (props) {
@@ -40,6 +40,7 @@ import { connect } from 'react-redux';
         password: this.state.password,
       }).then(function (response) {
         localStorage.setItem("email", self.state.email);
+        self.props.setUserType('teacher');
         browserHistory.push('/dashboard');
       }).catch(function (error) {
         console.log('error with sign in')
@@ -50,6 +51,7 @@ import { connect } from 'react-redux';
         password: this.state.password,
       }).then(function (response) {
         localStorage.setItem("email", self.state.email);
+        self.props.setUserType('student');
         browserHistory.push('/studentDashboard');    
       }).catch(function (error) {
         console.log('error with sign in')
@@ -74,13 +76,13 @@ import { connect } from 'react-redux';
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     userType: state.userType.userType,
   };
 }
 
 const SignInContainer = connect(mapStateToProps, {
-  
+  setUserType: setUserType,
 })(Signin);
-export default Signin
+export default SignInContainer;
