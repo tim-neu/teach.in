@@ -7,8 +7,8 @@ var Teacher = require('./models/teacher_model');
 var fs = require('fs'),
     S3FS = require('s3fs'),
     s3fsImpl = new S3FS('teach.in123454321', {
-        accessKeyId: 'AKIAI6B7UWSXUXVGB4SQ',
-        secretAccessKey: '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'
+        accessKeyId: dotEnv.process.AWSAccessKeyId,
+        secretAccessKey: dotEnv.process.AWSSecretKey
     });
 var multiparty = require('connect-multiparty'),
     multipartyMiddleware = multiparty();
