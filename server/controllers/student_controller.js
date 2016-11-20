@@ -1,5 +1,6 @@
 var studentController = {};
 const Student = require('../models/student_model');
+const Event = require('../models/event_model');
 const _ = require('lodash');
 
 studentController.SIGNUP = (req, res) => {
@@ -19,7 +20,7 @@ studentController.SIGNIN = (req, res) => {
 	// a get request to the /api/teachers/dashboard endpoint and give the 
 	// data to the client to render
 	// res.redirect('/home');
-	res.send('i shoudl be redirecting to studentDashboard');
+	res.send('i should be redirecting to studentDashboard');
 };
 
 studentController.GETSTUDENTS = (req, res) => {
@@ -69,5 +70,22 @@ studentController.GETSTUDENTS = (req, res) => {
 		res.send(map);
 	});
 };
+
+studentController.getAllEvents = (req, res) => {
+	Event.findAll({})
+	.then(function(events){
+		console.log('studentController: here are the STUDENT event dataValues ----------------> ', events);
+		var mappedDataValues = events.map(function(event){
+			return event.dataValues;
+		});
+		mappedDataValues.forEach(function(object,index,collection){
+			object = _.pick(object,['title','start','end'])
+			collection[index] = object;
+		});
+		console.log('studentController: mapped data values should contain objects that have only name, start and end time', mappedDataValues);
+		res.send(mappedDataValues);
+	});
+};
+
 
 module.exports = studentController;
