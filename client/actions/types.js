@@ -9,4 +9,5 @@ export const GET_RESOURCES = 'get_resources';
 export const ADD_Teacher_PICTURE = 'add_teacher_picture';
 export const GET_TEACHER_PHOTO = 'get_teacher_photo';
 export const POST_ASSIGNMENT_GRADE_FOR_STUDENT = 'post_assignment_grade_for_student';
+export const GET_CLASS_POINTS = 'get_class_points';
 

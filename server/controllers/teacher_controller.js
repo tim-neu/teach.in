@@ -43,6 +43,7 @@ teacherController.SIGNUP = (req, res) => {
 	for (let i = 0; i < 4; i++) {
 		let assignmentI = Assignment.build({
 			name: 'Assignment' + i,
+			maxPoints: 100,
 		});
 		assignmentArr1.push(assignmentI.save());
 	}
@@ -52,6 +53,7 @@ teacherController.SIGNUP = (req, res) => {
 	for (let i = 4; i < 8; i++) {
 		let assignmentI = Assignment.build({
 			name: 'Assignment' + i,
+			maxPoints: 100,
 		});
 		assignmentArr2.push(assignmentI.save());
 	}
@@ -186,17 +188,31 @@ teacherController.SIGNIN = (req, res) => {
 	res.redirect('/api/teacher/dashboard');
 };
 
-teacherController.getClassGpa = (req, res) => {
-	Student.findAll({})
-	.then(function(students){
-		let studentsGPA = students.reduce(function(total, item){
-			return total + item.dataValues.gpa
-		}, 0) / 20;
-		console.log(studentsGPA)
-		res.send(studentsGPA.toFixed(2).toString());
-	});
+teacherController.getClassPoints = (req, res) => {
+	let totalGrades = [];
+	let assignmentCount = 0;
+	Assignment.findAll({
+		where: { classId: req.query.classId },
+		include: { model: Student },
+	})
+	.then(function (assignments) {
+		let classAverage = 0;
+		let maxPoints = 0;
+		let numAssignments = assignments.length;
+			assignments.forEach(function (assignment) {
+			  var assignmentTotal = 0;
+			  var count = 0;
+			  maxPoints += assignment.maxPoints; 
+			  assignment.students.forEach(function (student) {
+			    assignmentTotal += student.assignmentStudents.grade;
+			    count++;
+			 	} );
+			  classAverage += (assignmentTotal / count);
+			} );
+			res.send([classAverage.toString(), maxPoints.toString()]);
+		});
+	};
 
-};
 
 teacherController.getStudentGpa = (req, res) => {
 	// Class.findAll().then(function(foundClasses){
@@ -258,7 +274,8 @@ teacherController.addAssignment = (req, res) => {
 			name: req.body.name,
 			classId: classId,
 			type: req.body.type,
-			dueDate: req.body.date
+			dueDate: req.body.date,
+			maxPoints: req.body.maxPoints
 		});
 		newAssignment.save().then(function(response){
 			course.getStudents().then(function(foundPairs){

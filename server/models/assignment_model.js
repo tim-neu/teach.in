@@ -18,6 +18,9 @@ const Assignment = sequelize.define('assignments', {
   dueDate: {
     type: Sequelize.DATE,
   },
+  maxPoints: {
+    type: Sequelize.INTEGER
+  }
 
 });
 
