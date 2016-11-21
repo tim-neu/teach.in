@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
@@ -11,6 +12,7 @@ const seed = require('./seed');
 const PORT = 8000;
 const app = express();
 const AWS = require('aws-sdk');
+
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

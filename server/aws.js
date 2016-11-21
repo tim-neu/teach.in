@@ -1,14 +1,14 @@
 var express = require('express');
 var awsRouter = express.Router();
-var dotEnv = require('dotenv').config({silent: true})
+var dotEnv = require('dotenv').load();
 var Resource = require('./models/resource_model');
 var Teacher = require('./models/teacher_model');
 
 var fs = require('fs'),
     S3FS = require('s3fs'),
     s3fsImpl = new S3FS('teach.in123454321', {
-        accessKeyId: 'AKIAJVT35FSVEA555EYQ',
-        secretAccessKey: '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'
+        accessKeyId: process.env.AWSAccessKeyId,
+        secretAccessKey: process.env.AWSSecretKey
     });
 var multiparty = require('connect-multiparty'),
     multipartyMiddleware = multiparty();
