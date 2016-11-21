@@ -13,6 +13,8 @@ import AssignmentList from '../teacher_class/AssignmentList';
 import Calendar from '../../shared_components/Calendar.js';
 import AssignmentGradesForm from '../teacher_class/AssignmentGradesForm';
 import ResourceList from '../teacher_class/ResourceList';
+import PointsChart from './classPointsChart.js';
+
 
 
 class Class extends Component {
@@ -145,6 +147,7 @@ class Class extends Component {
 
     	  	<div className="row">
   				  <div className="col-lg-4">
+  				  			<PointsChart classId={this.state.classId}/>
   				  			<Select isLoading={this.state.isLoading} name= "form-field-name" value="one" onValueClick={this.addStudent} options={this.state.foundStudents} onInputChange={this.onChange} onChange={this.addStudent} />
 
 							<h4>{this.state.className} Roster</h4>

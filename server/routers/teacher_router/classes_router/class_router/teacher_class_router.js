@@ -101,7 +101,7 @@ teacherClassRouter.route('/resources')
 .get(teacherController.getClassResources);
 
 teacherClassRouter.route('/classGPA')
-.get(authMiddleware.checkSignIn, teacherController.getClassGpa);
+.get(teacherController.getClassPoints);
 
 
 teacherClassRouter.route('/assignment')

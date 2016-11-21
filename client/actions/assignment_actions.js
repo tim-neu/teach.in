@@ -19,13 +19,14 @@ export function getAssignments (classId) {
 
 }
 
-export function handleSubmitAssignment (name, classTitle, type, date) {
+export function handleSubmitAssignment (name, classTitle, type, date, maxPoints) {
 	return function(dispatch) {
 		axios.post('/api/teacher/classes/class/assignment', {
 					name: name,
 					className: classTitle,
 					type: type,
 					dueDate: date,
+					maxPoints: maxPoints
 				})
 			  .then(function (response) {
 					console.log('assignments:', response.data);
