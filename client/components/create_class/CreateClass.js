@@ -7,14 +7,18 @@ class CreateClass extends Component {
 		super(props);
 
 		this.state = {name: '', start: '', end: '', date: ''};
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleSubmit = (e) => {
+	handleSubmit (e) {
+		e.preventDefault();
+		console.log(this,"this this this")
 		axios.post('/api/teacher/classes/class/event', {
 					name: this.state.name,
 					start: this.state.start,
 					end: this.state.end,
-					date: this.state.date
+					date: this.state.date,
+					classId: this.props.classId
 				})
 			  .then(function (response) {
 					console.log(response);
