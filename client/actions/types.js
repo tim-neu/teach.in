@@ -11,3 +11,4 @@ export const GET_TEACHER_PHOTO = 'get_teacher_photo';
 export const POST_ASSIGNMENT_GRADE_FOR_STUDENT = 'post_assignment_grade_for_student';
 export const SET_USER_TYPE = 'set_user_type';
 export const CHECK_AUTHENTICATION = 'CHECK_AUTHENTICATION';
+export const SIGN_OUT_USER = 'sign_out_user';

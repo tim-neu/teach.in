@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 import HomeNav from '../../shared_components/home_nav.js';
 import { connect } from 'react-redux';
 import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.js';
@@ -11,7 +11,7 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
     if (_.includes(window.location.href, 'studentSignIn')) {
       this.state = { email: '', password: '', userType: 'student', submitted: false, };
     } else {
-      this.state = { email: '', password: '', userType: 'teacher', submitted: false, };
+      this.state = { email: '', password: '', userType: 'teacher', submitted: false, showInvalidEmail: false, };
       console.log('i set the state to teacher', this.state.userType);
     };
 
@@ -22,6 +22,7 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
 
   componentWillMount() {
     console.log('the current url is:', window.location.href);
+
   }
   handleEmailChange(event) {
     this.setState({email: event.target.value});
@@ -31,6 +32,9 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
   }
   handleSubmit(event) {
     self = this;
+    setTimeout(()=> {
+        self.setState({ showInvalidEmail: true });
+    }, 750);
     self.setState({ submitted: true });
     event.preventDefault();
     if (this.state.userType === 'teacher') {
@@ -71,7 +75,7 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
   }
 
   render () {
-    var invalidPassword = !this.props.isAuthenticated && this.state.submitted ? <div> Invalid Email and Password Combination </div> : null;
+    var invalidPassword = !this.props.isAuthenticated && this.state.submitted && this.state.showInvalidEmail ? <div> Invalid Email and Password Combination </div> : null;
     return (
         <div className="row">
           <HomeNav />

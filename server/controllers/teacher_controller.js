@@ -144,24 +144,58 @@ teacherController.SIGNUP = (req, res) => {
 
 teacherController.SIGNIN = (req, res) => {
 	console.log('im trying to redirect to dashboard');
-
-	//res.send('i should be redirecting to teacher/dashboard');
-	//2 ways: redirect directly to public folder, or pretend its like
-	// a get request to the /api/teachers/dashboard endpoint and give the 
-	// data to the client to render
 	res.send('Authenticated');
 };
 
-teacherController.getClassGpa = (req, res) => {
-	Student.findAll({})
-	.then(function(students){
-		let studentsGPA = students.reduce(function(total, item){
-			return total + item.dataValues.gpa
-		}, 0) / 20;
-		console.log(studentsGPA)
-		res.send(studentsGPA.toFixed(2).toString());
+teacherController.SIGNOUT = (req, res) => {
+	console.log(' i should be destroying req session');
+	req.session.destroy(function () {
+		res.send('i destroyed the user session');
 	});
+};
 
+teacherController.getClassGpa = (req, res) => {
+	// Student.findAll({})
+	// .then(function(students){
+	// 	let studentsGPA = students.reduce(function(total, item){
+	// 		return total + item.dataValues.gpa
+	// 	}, 0) / 20;
+	// 	console.log(studentsGPA)
+	// 	res.send(studentsGPA.toFixed(2).toString());
+	// });
+	var totalGrade = [];
+	var count = 0;
+	Assignment.findAll({
+		where: {
+			classId: req.query.classId
+		}
+	})
+	.then(function(foundClassAssignments){
+		var promiseArr = [];
+		for (let i = 0; i < foundClassAssignments.length; i++) {
+			let classAssignment = foundClassAssignments[i];
+			promiseArr.push(assignmentStudents.findAll({
+				where: {
+					assignmentId: classAssignment.id
+				},
+			}));
+		};
+		console.log('the promise arr is:', promiseArr);
+		Promise.all(promiseArr)
+		.then(function (foundAssignmentsPairArr) {
+			console.log('the arr should be :', foundAssignmentsPairArr);
+			for (let i = 0; i < foundAssignmentsPairArr.length; i++){
+				var foundAssignmentsPair = foundAssignmentsPairArr[i];
+				console.log('tbgasdfhjkgasdf-gf------------', foundAssignmentsPair);
+				for (let i = 0; i < foundAssignmentsPair.length; i++) {
+					totalGrade.push(foundAssignmentsPair[i].dataValues.grade);
+					count++;
+				}
+			}
+			console.log(totalGrade, count);
+			res.send('dasffda');
+		});
+	})
 };
 
 teacherController.getStudentGpa = (req, res) => {

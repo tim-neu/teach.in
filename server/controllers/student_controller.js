@@ -14,12 +14,14 @@ studentController.SIGNUP = (req, res) => {
 };
 
 studentController.SIGNIN = (req, res) => {
-	//res.send('i should be redirecting to teacher/dashboard');
-	//2 ways: redirect directly to public folder, or pretend its like
-	// a get request to the /api/teachers/dashboard endpoint and give the 
-	// data to the client to render
-	// res.redirect('/home');
 	res.send('Authenticated');
+};
+
+studentController.SIGNOUT = (req, res) => {
+	console.log(' i should be destroying req session');
+	req.session.destroy(function () {
+		res.send('i destroyed the user session');
+	});
 };
 
 studentController.GETSTUDENTS = (req, res) => {

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { getStudents, addStudent } from '../../actions/students_actions';
 import { getResources } from '../../actions/resource_actions';
+import { browserHistory } from 'react-router';
 import 'react-select/dist/react-select.css';
 import Select from 'react-select';
 import _ from 'lodash';
@@ -40,7 +41,10 @@ class Class extends Component {
 	}
 
 	componentWillMount () {
-		this.props.getStudents(this.state.className);
+	  this.props.getStudents(this.state.className);
+	  if (!this.props.isAuthenticated) {
+	    browserHistory.push('/home');
+	  }
 	}
 
 	updateValue (val) {
@@ -184,7 +188,8 @@ function mapStateToProps(state) {
 		currentAssignment: state.currentAssignment.currentAssignment,
 		currentAssociatedStudents: state.currentAssignment.assignmentStudents,
 		form: state.form,
-		resources: state.resources.resources
+		resources: state.resources.resources,
+		isAuthenticated: state.isAuthenticated.isAuthenticated,
 	};
 }
 

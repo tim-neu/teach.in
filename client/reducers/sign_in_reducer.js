@@ -1,5 +1,7 @@
-import SET_USER_TYPE from '../actions/types.js';
-import CHECK_AUTHENTICATION from '../actions/types';
+import { SET_USER_TYPE } from '../actions/types.js';
+import { CHECK_AUTHENTICATION } from '../actions/types';
+import { SIGN_OUT_USER } from '../actions/types';
+
 const initialState = { userType: '' };
 export default function(state = initialState, action) {
 	switch (action.type) {
@@ -8,6 +10,9 @@ export default function(state = initialState, action) {
 			return { ...state, userType: action.payload };
 		case CHECK_AUTHENTICATION:
 			console.log('i entered CHECK_AUTHENTICATION in sign in reducser and the action is:', action);
+			return { ...state, isAuthenticated: action.payload };
+		case SIGN_OUT_USER:
+			console.log('i entered set user type in sign in reducer and the action is:', action);
 			return { ...state, isAuthenticated: action.payload };
 		default:
 			return { ...state };
