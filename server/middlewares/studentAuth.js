@@ -8,7 +8,7 @@ authMiddleware.isValidEmail = function (req, res, next) {
 	})
 	.then((student) => {
 		if (student !== null) {
-			res.status(400).send('That email is already regisstered');
+			res.status(400).send('Invalid Password');
 		} else {
 			next();
 		}
