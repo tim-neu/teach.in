@@ -303,19 +303,94 @@ teacherController.getAssignments = (req,res) => {
 }
 
 teacherController.getAllEvents = (req, res) => {
-	Event.findAll({})
-	.then(function(events){
-		console.log('here are the event dataValues ----------------> ', events);
-		var mappedDataValues = events.map(function(event){
-			return event.dataValues;
+	Teacher.findOne({where: {email: req.query.email}})
+	.then(function(teacher){
+		console.log("teacher", teacher.id)
+		Class.findAll({where:{teacherId: teacher.id}})
+		.then(function(classes){
+		console.log("classes", classes)
+		let finalEvents = [];
+		if(classes){
+			classes.forEach(function(foundClass){
+				console.log("foundClass", foundClass);
+				finalEvents.push(Event.findAll({where: {classId: foundClass.id}}))
+			});
+			Promise.all(finalEvents).then(function(events){
+				let flatArray = _.flatten(events)
+				console.log('here are the event dataValues ----------------> ', events);
+				var mappedDataValues = flatArray.map(function(event){
+					return event.dataValues;
+				});
+				mappedDataValues.forEach(function(object,index,collection){
+					object = _.pick(object,['title','start','end'])
+					collection[index] = object;
+				});
+				console.log('mapped data values should contain objects taht have only name,start and end time', mappedDataValues);
+				res.send(mappedDataValues);
+			});
+		}
+		else {
+			res.send(finalEvents);
+		}
+	})
+	})
+};
+
+// teacherController.getAllEvents = (req, res) => {
+// 	Teacher.findOne({where: {email: req.query.email}})
+// 	.then(function(teacher){
+// 		console.log("teacher", teacher.id)
+// 		Class.findAll({where:{teacherId: teacher.id}})
+// 		.then(function(classes){
+// 		console.log("classes", classes)
+// 		let finalEvents = [];
+// 		if(classes){
+// 			classes.forEach(function(foundClass){
+// 				console.log("foundClass", foundClass);
+// 				finalEvents.push(Event.findAll({where: {classId: foundClass.id}}))
+// 			});
+// 			Promise.all(finalEvents).then(function(events){
+// 				let flatArray = _.flatten(events)
+// 				console.log('here are the event dataValues ----------------> ', events);
+// 				var mappedDataValues = flatArray.map(function(event){
+// 					return event.dataValues;
+// 				});
+// 				mappedDataValues.forEach(function(object,index,collection){
+// 					object = _.pick(object,['title','start','end'])
+// 					collection[index] = object;
+// 				});
+// 				console.log('mapped data values should contain objects taht have only name,start and end time', mappedDataValues);
+// 				res.send(mappedDataValues);
+// 			});
+// 		}
+// 		else {
+// 			res.send(finalEvents);
+// 		}
+// 	})
+// 	})
+// };
+
+teacherController.getClassEvents = (req, res) => {
+		Class.findOne({where:{id: req.query.classId}})
+		.then(function(classFound){
+			if(classFound){
+			Event.findAll({where: {classId: classFound.id}})
+			.then(function(eventsFound){
+				var mappedDataValues = eventsFound.map(function(event){
+					return event.dataValues;
+				});
+				mappedDataValues.forEach(function(object,index,collection){
+					object = _.pick(object,['title','start','end'])
+					collection[index] = object;
+				});
+				console.log('mapped data values should contain objects taht have only name,start and end time', mappedDataValues);
+				res.send(mappedDataValues);
 		});
-		mappedDataValues.forEach(function(object,index,collection){
-			object = _.pick(object,['title','start','end'])
-			collection[index] = object;
-		});
-		console.log('mapped data values should contain objects taht have only name,start and end time', mappedDataValues);
-		res.send(mappedDataValues);
-	});
+		}
+		else {
+			res.send([])
+		}
+	})
 };
 
 teacherController.getClassResources = (req, res) => {

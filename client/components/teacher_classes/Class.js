@@ -12,10 +12,11 @@ import DashboardNav from '../../shared_components/dashboard_nav.js';
 import AssignmentForm from '../teacher_class/AssignmentForm';
 import AssignmentList from '../teacher_class/AssignmentList';
 import Calendar from '../../shared_components/Calendar.js';
+import ClassCalendar from '../teacher_class/ClassCalendar.js';
 import AssignmentGradesForm from '../teacher_class/AssignmentGradesForm';
 import ResourceList from '../teacher_class/ResourceList';
 import PointsChart from './classPointsChart.js';
-
+import CreateClass from '../../components/create_class/CreateClass.js';
 
 
 class Class extends Component {
@@ -158,13 +159,14 @@ class Class extends Component {
 							<ul> {studentList} </ul>
   				  </div>
   				  <div className="col-lg-8">
+  				  	<ClassCalendar classId={this.props.location.query.classId}/>
+  				  	<CreateClass classId={this.state.classId}/>
   				  		<form onSubmit={this.handleMediaSubmit}>
 						  <a href="https://s3.amazonaws.com/teach.in123454321/Screen+Shot+2016-10-05+at+8.00.50+AM.png">hey</a>
 						  <input id="nameValue" type="text" />
 						  <input id="input" type="file" name="pic" accept="image/*" />
 						  <input type="submit" />
 						</form>
-  				  	<Calendar />
   				  </div>
     	  	</div>
 		

@@ -7,7 +7,7 @@ import _ from 'lodash';
 
 BigCalendar.momentLocalizer(moment);
 
-export default class Calendar extends Component {
+export default class ClassCalendar extends Component {
   constructor(props){
     super(props);
     if (_.includes(window.location.href, 'studentDashboard')) {
@@ -17,15 +17,18 @@ export default class Calendar extends Component {
       this.state = { events: [], userType: 'teacher' };
       console.log('i set the state to teacher for calendar', this.state.userType);
     };
-    this.getAllEvents();
   }
 
-  getAllEvents() {
+  componentDidMount() {
+    this.getClassEvents();
+  }
+
+  getClassEvents() {
     var self = this;
     if(this.state.userType === 'teacher'){
-      axios.get(`/api/teacher/classes/class/allEvents?email=${this.props.teacherEmail}`)
+      axios.get(`/api/teacher/classes/class/events?classId=${this.props.classId}`)
       .then (function (response) {
-        console.log('This is the response in getAllEvents:', response);
+        console.log('This is the response in getClassEvents:', response);
         // console.log('self.state.events ------------------>', self.state.events);
         // resolves all start and event times back into date object
         function map(arr){
@@ -50,7 +53,7 @@ export default class Calendar extends Component {
     } else {
       axios.get('/api/student/classes/class/event')
       .then (function (response) {
-        console.log('This is the response in getAllEvents for students:', response);
+        console.log('This is the response in getClassEvents for students:', response);
         // console.log('self.state.events ------------------>', self.state.events);
         // resolves all start and event times back into date object
         function map(arr){

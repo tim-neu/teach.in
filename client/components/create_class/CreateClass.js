@@ -1,27 +1,36 @@
 //Libs
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
+import { createClass } from '../../actions/create_class_action';
 
 class CreateClass extends Component {
 	constructor (props) {
 		super(props);
 
 		this.state = {name: '', start: '', end: '', date: ''};
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleSubmit = (e) => {
-		axios.post('/api/teacher/classes/class/event', {
-					name: this.state.name,
-					start: this.state.start,
-					end: this.state.end,
-					date: this.state.date
-				})
-			  .then(function (response) {
-					console.log(response);
-  	  	})
-  	  	.catch(function (error) {
-  	  		console.log(error);
-  	  	})
+	handleSubmit (e) {
+		console.log(this.props.classId, "this.classId")
+		e.preventDefault();
+		console.log(this,"this this this")
+		this.props.createClass(this.state.name,this.state.start,this.state.end,this.state.date,this.props.classId);
+
+		// axios.post('/api/teacher/classes/class/event', {
+		// 			name: this.state.name,
+		// 			start: this.state.start,
+		// 			end: this.state.end,
+		// 			date: this.state.date,
+		// 			classId: this.props.classId
+		// 		})
+		// 	  .then(function (response) {
+		// 			console.log(response);
+  // 	  	})
+  // 	  	.catch(function (error) {
+  // 	  		console.log(error);
+  // 	  	})
 	}
 
 	render () {
@@ -65,4 +74,11 @@ class CreateClass extends Component {
 	}
 };
 
-export default CreateClass;
+function mapStateToProps(state) {
+	return {
+		classes: state.classEvents.classEvents,
+	}
+}
+
+var CreateClassContainer = connect(mapStateToProps, { createClass: createClass })(CreateClass);
+export default CreateClassContainer;

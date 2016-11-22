@@ -169,8 +169,11 @@ teacherClassRouter.route('/grade')
 // 	res.send(' i should be quertying the data base for events for that class');
 // });
 
-teacherClassRouter.route('/event')
+teacherClassRouter.route('/allEvents')
 .get(authMiddleware.checkSignIn, getAllEvents);
+
+teacherClassRouter.route('/events')
+.get(authMiddleware.checkSignIn, teacherController.getClassEvents);
 
 teacherClassRouter.route('/event')
 .post(authMiddleware.checkSignIn, function (req, res) {
@@ -219,12 +222,15 @@ teacherClassRouter.route('/event')
     	console.log('mapped is: ', mapped);
  		var dateEndObj = new Date(Number(mapped[0]), Number(mapped[1]) -1, Number(mapped[2]), Number(mapped[3]), Number(mapped[4]));
  		end = dateEndObj;
- 		console.log('This is the converted Date object for end: ----------->', dateEndObj);
+
+ 		
+ 		console.log('****************************** This is the classId: ----------->', req.body.classId);
 
  		Event.create({
  			title: req.body.name,
  			start: dateStartObj,
- 			end: end
+ 			end: end,
+ 			classId: req.body.classId
  		}).then(function(savedEvent) {
  			console.log('SAVED TO DB!')
  		}).catch(function(error){
