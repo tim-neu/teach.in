@@ -17,7 +17,6 @@ export default class ClassCalendar extends Component {
       this.state = { events: [], userType: 'teacher' };
       console.log('i set the state to teacher for calendar', this.state.userType);
     };
-    
   }
 
   componentDidMount() {

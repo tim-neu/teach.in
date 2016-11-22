@@ -8,6 +8,7 @@ import photo_reducer from './photo_reducer';
 import signInReducer from './sign_in_reducer';
 import classPointsReducer from './class_points_reducer';
 import classEventsReducer from './class_events_reducer';
+import calendarReducer from './calendar_reducer';
 import { reducer as formReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
@@ -22,6 +23,8 @@ const rootReducer = combineReducers({
 	userType: signInReducer,
 	class_points: classPointsReducer,
 	classEvents: classEventsReducer
+	classEvents: classEventsReducer,
+	calendar: calendarReducer,
 });
 
 export default rootReducer;

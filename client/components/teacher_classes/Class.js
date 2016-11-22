@@ -160,7 +160,7 @@ class Class extends Component {
   				  </div>
   				  <div className="col-lg-8">
   				  	<ClassCalendar classId={this.props.location.query.classId}/>
-  				  	<CreateClass classId={this.props.location.query.classId}/>
+  				  	<CreateClass classId={this.state.classId}/>
   				  		<form onSubmit={this.handleMediaSubmit}>
 						  <a href="https://s3.amazonaws.com/teach.in123454321/Screen+Shot+2016-10-05+at+8.00.50+AM.png">hey</a>
 						  <input id="nameValue" type="text" />

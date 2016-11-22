@@ -230,7 +230,7 @@ teacherClassRouter.route('/event')
  			title: req.body.name,
  			start: dateStartObj,
  			end: end,
- 			classId: 1
+ 			classId: req.body.classId
  		}).then(function(savedEvent) {
  			console.log('SAVED TO DB!')
  		}).catch(function(error){
