@@ -8,7 +8,7 @@ export function getTeacherPhoto() {
 			url: `/api/teacher?teacherEmail=${localStorage.getItem("email")}`,
 		})
 		.then(function (resp) {
-			dispatch({ type: GET_TEACHER_PHOTO, payload: resp.data.picture });
+			dispatch({ type: GET_TEACHER_PHOTO, payload: resp.data });
 		});
 	};
 }
