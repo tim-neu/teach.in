@@ -10,6 +10,7 @@ import classPointsReducer from './class_points_reducer';
 import { reducer as formReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
+	isAuthenticated: signInReducer,
 	students: studentsReducer,
 	assignments: assignmentsReducer,
 	classes: classesReducer,

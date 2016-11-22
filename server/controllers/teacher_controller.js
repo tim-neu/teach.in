@@ -133,42 +133,8 @@ teacherController.SIGNUP = (req, res) => {
 							}
 						});
 				};
-				// //savedClass.setStudents(studentArr1);
-				// if (i === 0) {
-				// 	// for (let k = 0; k < assignmentArr1.length; k++) {
-				// 	// 	assignmentArr1[k].save().then(function (savedAssignment) {
-				// 	// 		savedAssignment.addStudent(savedStudent, {
-				// 	// 			grade: 100 - Math.floor((Math.random() * 30)),
-				// 	// 		});
-				// 	// 	});
-				// 	// }
-				// 	for (let j = 0; j < studentArr1.length; j++) {
-				// 			studentArr1[j].save().then(function (savedStudent) {
-				// 				classArr[i].addStudent(savedStudent);
-				// 				// for (let k = 0; k < assignmentArr1.length; k++) {
-				// 				// 	assignmentArr1[k].save().then(function (savedAssignment) {
-				// 				// 		savedAssignment.addStudent(savedStudent, {
-				// 				// 			grade: 100 - Math.floor((Math.random() * 30)),
-				// 				// 		});
-				// 				// 	});
-				// 				// }
-				// 		});
-				// 	}
-				// };
-
-				// if (i === 1) {
-				// 	for (let j = 0; j < studentArr2.length; j++) {
-				// 			studentArr2[j].save().then(function (savedStudent) {
-				// 				classArr[i].addStudent(savedStudent);
-				// 		});
-				// 	}
-				// }
 			});
 		};
-		// console.log("before for")
-		// for(var key in students2){
-		// 	cosole.log(key)
-		// }
         return teacher;
 	})
 	.catch((err) => {
@@ -180,12 +146,7 @@ teacherController.SIGNUP = (req, res) => {
 
 teacherController.SIGNIN = (req, res) => {
 	console.log('im trying to redirect to dashboard');
-
-	//res.send('i should be redirecting to teacher/dashboard');
-	//2 ways: redirect directly to public folder, or pretend its like
-	// a get request to the /api/teachers/dashboard endpoint and give the 
-	// data to the client to render
-	res.redirect('/api/teacher/dashboard');
+	res.send('Authenticated');
 };
 
 teacherController.getClassPoints = (req, res) => {
@@ -212,6 +173,13 @@ teacherController.getClassPoints = (req, res) => {
 			res.send([classAverage.toString(), maxPoints.toString()]);
 		});
 	};
+
+teacherController.SIGNOUT = (req, res) => {
+	console.log(' i should be destroying req session');
+	req.session.destroy(function () {
+		res.send('i destroyed the user session');
+	});
+};
 
 
 teacherController.getStudentGpa = (req, res) => {

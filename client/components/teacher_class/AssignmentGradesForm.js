@@ -18,7 +18,6 @@ class AssignmentGradesForm extends Component {
     if (nextProps.currentAssignment) {
       this.setState({ currentAssignment: nextProps.currentAssignment });
     }
-    console.log('next props with associated students is:', nextProps.associated);
   }
 
   handleChange(val) {
@@ -43,7 +42,7 @@ class AssignmentGradesForm extends Component {
     var studentsMap = null;
     if (gotStudents) {
       studentsMap = students.map((student, index) =>
-          <AssignmentGradeForm key={index} formKey={index.toString()} initialValues={student} onSubmit={this.onSubmit(index)} />
+          <AssignmentGradeForm key={index} formKey={index.toString()} initialValues={student} onSubmit={this.onSubmit(index)} submittingGrade={this.props.submittingGrade} />
         );
     };
     var assignmentName = '';

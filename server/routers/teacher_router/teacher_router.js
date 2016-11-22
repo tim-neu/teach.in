@@ -10,6 +10,9 @@ teacherRouter.route('/signup')
 teacherRouter.route('/signin')
 .post(authMiddleware.verifyPassword, teacherController.SIGNIN);
 
+teacherRouter.route('/signout')
+.get(teacherController.SIGNOUT);
+
 teacherRouter.route('/createClass')
 .post(authMiddleware.checkSignIn, function (req, res) {
 	res.send('create classes here');

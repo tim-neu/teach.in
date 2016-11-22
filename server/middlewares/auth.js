@@ -8,7 +8,7 @@ authMiddleware.isValidEmail = function (req, res, next) {
 	})
 	.then((teacher) => {
 		if (teacher !== null) {
-			res.status(400).send('That email is already regisstered');
+			res.status(400).send('That email is already registered');
 		} else {
 			next();
 		}
@@ -58,7 +58,7 @@ authMiddleware.verifyPassword = function (req, res, next) {
 					req.session.email = req.body.email;
 					next();
 				} else {
-					res.status(400).send('Invalid email or password');
+					res.send('Invalid email or password');
 				}
 			});
 		})

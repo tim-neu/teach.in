@@ -12,6 +12,9 @@ studentRouter.route('/signup')
 studentRouter.route('/signin')
 .post(authMiddleware.verifyPassword, studentController.SIGNIN);
 
+studentRouter.route('/signout')
+.get(studentController.SIGNOUT);
+
 studentRouter.route('/')
 .get(studentController.GETSTUDENTS);
 module.exports = studentRouter;

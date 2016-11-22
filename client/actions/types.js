@@ -12,3 +12,5 @@ export const POST_ASSIGNMENT_GRADE_FOR_STUDENT = 'post_assignment_grade_for_stud
 export const SET_USER_TYPE = 'set_user_type';
 export const GET_CLASS_POINTS = 'get_class_points';
 
+export const CHECK_AUTHENTICATION = 'CHECK_AUTHENTICATION';
+export const SIGN_OUT_USER = 'sign_out_user';

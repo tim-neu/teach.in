@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Graph from '../../shared_components/graph.js';
 import Calendar from '../../shared_components/Calendar.js';
 import DashboardNav from '../../shared_components/dashboard_nav.js';
@@ -6,6 +6,8 @@ import UserInformation from '../../shared_components/User_information.js';
 import handleMediaSubmit from '../../actions/resource_actions.js';
 import CreateClass from '../../components/create_class/CreateClass.js';
 
+import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
 
 class TeacherDashboard extends Component {
 	constructor(props) {
@@ -14,6 +16,12 @@ class TeacherDashboard extends Component {
 		email: localStorage.getItem("email")
 	};
 	this.handleMediaSubmit = this.handleMediaSubmit.bind(this);
+	}
+
+	componentWillMount() {
+	  if (!this.props.isAuthenticated) {
+	    browserHistory.push('/home');
+	  }
 	}
 
 	handleMediaSubmit(event){
@@ -66,4 +74,12 @@ class TeacherDashboard extends Component {
 	}
   
 
-export default TeacherDashboard
+function mapStateToProps(state){
+  return {
+    isAuthenticated: state.isAuthenticated.isAuthenticated,
+    userType: state.userType.userType,
+  };
+};
+
+var TeacherDashboardContainer = connect(mapStateToProps)(TeacherDashboard);
+export default TeacherDashboardContainer;
