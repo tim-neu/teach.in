@@ -34,7 +34,7 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
     self = this;
     setTimeout(()=> {
         self.setState({ showInvalidEmail: true });
-    }, 750);
+    }, 1250);
     self.setState({ submitted: true });
     event.preventDefault();
     if (this.state.userType === 'teacher') {
@@ -46,9 +46,11 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
         if (response.data === 'Authenticated'){
           localStorage.setItem("email", self.state.email);
           self.props.setUserType('teacher');
+          sessionStorage.setItem("isAuthenticated", true);
           self.props.checkAuthentication(true);
           browserHistory.push('/dashboard');
         } else {
+          sessionStorage.setItem("isAuthenticated", false);
           self.props.checkAuthentication(false);
         }
       }).catch(function (error) {
@@ -63,9 +65,11 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
         if (response.data === 'Authenticated') {
           localStorage.setItem("email", self.state.email);
           self.props.setUserType('student');
+          sessionStorage.setItem("isAuthenticated", true);
           self.props.checkAuthentication(true);
           browserHistory.push('/studentDashboard');   
         } else {
+          sessionStorage.setItem("isAuthenticated", false);
           self.props.checkAuthentication(false);
         }
       }).catch(function (error) {

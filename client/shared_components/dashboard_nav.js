@@ -19,6 +19,7 @@ import { browserHistory } from 'react-router';
 
   handleClick(){
     console.log('i was clicked');
+    sessionStorage.setItem('isAuthenticated', false);
     this.props.logOut(this.state.userType);
   }
 

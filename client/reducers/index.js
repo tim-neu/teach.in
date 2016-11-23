@@ -22,7 +22,6 @@ const rootReducer = combineReducers({
 	profilePicture: photo_reducer,
 	userType: signInReducer,
 	class_points: classPointsReducer,
-	classEvents: classEventsReducer
 	classEvents: classEventsReducer,
 	calendar: calendarReducer,
 });
