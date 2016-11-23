@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Calendar from '../../shared_components/Calendar.js';
 import DashboardNav from '../../shared_components/dashboard_nav.js';
-import UserInformation from '../../shared_components/User_information.js';
+import StudentInformation from './StudentInformation.js';
 import handleMediaSubmit from '../../actions/resource_actions.js'
 
 class StudentDashboard extends Component {
@@ -42,14 +42,13 @@ class StudentDashboard extends Component {
 	}
 
 	render(){
-		console.log(this.state, "state");
 		return (
 		  <div className="row">
 			  <DashboardNav />
 			  <div className="container">
 			  <div className="row">
 			  	<div className="col-lg-4">
-					<UserInformation />
+					<StudentInformation />
 				</div>
 				<div className="col-lg-8">
 					<Calendar />

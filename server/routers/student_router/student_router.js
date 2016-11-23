@@ -19,6 +19,10 @@ studentRouter.route('/')
 .get(studentController.GETSTUDENTS);
 module.exports = studentRouter;
 
+studentRouter.route('/init')
+.get(studentController.GETSTUDENT);
+module.exports = studentRouter;
+
 studentRouter.route('/event')
 .get(authMiddleware.checkSignIn, getAllEvents);
 

@@ -3,6 +3,7 @@ var awsRouter = express.Router();
 var dotEnv = require('dotenv').load();
 var Resource = require('./models/resource_model');
 var Teacher = require('./models/teacher_model');
+var Student = require('./models/student_model');
 
 var fs = require('fs'),
     S3FS = require('s3fs'),
@@ -44,6 +45,24 @@ s3fsImpl.create();
                   .then(function(teacherUpdate){
                     console.log(teacherUpdate, "<-------- teacher update");
                     res.send(teacherUpdate);
+                  });
+                  });
+                }
+                else if(req.body.type === "student"){
+                  console.log("inside student aws")
+                  console.log("email", req.body.email)
+                  Student.findOne({
+                    where: {
+                      email: req.body.email
+                    }
+                  })
+                  .then(function(foundInstance){
+                    foundInstance.update({
+                      picture_url: replaced
+                    })
+                  .then(function(studentUpdate){
+                    console.log(studentUpdate, "<-------- teacher update");
+                    res.send(studentUpdate);
                   });
                   });
                 }
