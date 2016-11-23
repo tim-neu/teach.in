@@ -16,7 +16,7 @@ import ClassCalendar from '../teacher_class/ClassCalendar.js';
 import AssignmentGradesForm from '../teacher_class/AssignmentGradesForm';
 import ResourceList from '../teacher_class/ResourceList';
 import PointsChart from './classPointsChart.js';
-import CreateClass from '../../components/create_class/CreateClass.js';
+import CreateClassEvent from '../../components/create_class_event/CreateClassEvent.js';
 
 
 class Class extends Component {
@@ -146,6 +146,8 @@ class Class extends Component {
 			return <li key={i}>{student.name}</li>;
 		});
 
+		console.log('this is peops', this.props)
+
 		return (
 			<div>
   		  <div className="row">
@@ -164,7 +166,7 @@ class Class extends Component {
   				  </div>
   				  <div className="col-lg-8">
   				  	<ClassCalendar classId={this.props.location.query.classId}/>
-  				  	<CreateClass classId={this.state.classId}/>
+  				  	<CreateClassEvent classId={this.props.location.query.classId}/>
   				  		<form onSubmit={this.handleMediaSubmit}>
 						  <a href="https://s3.amazonaws.com/teach.in123454321/Screen+Shot+2016-10-05+at+8.00.50+AM.png">hey</a>
 						  <input id="nameValue" type="text" />

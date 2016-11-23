@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import App from './app.js';
 import HomeNav from './shared_components/home_nav.js';
 import Graph from './shared_components/graph.js';
-import CreateClass from './components/create_class/CreateClass.js';
+import CreateClassEvent from './components/create_class_event/CreateClassEvent.js';
 import Signup from './components/signup/signup.js';
 import Signin from './components/signin/signin.js';
 import TeacherDashboard from './components/teacher_dashboard/teacher_dashboard.js';

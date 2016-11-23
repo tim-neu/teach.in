@@ -6,7 +6,7 @@ import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
 import App from './app.js';
 import HomeNav from './shared_components/home_nav.js';
 import Graph from './shared_components/graph.js';
-import CreateClass from './components/create_class/CreateClass.js';
+import CreateClassEvent from './components/create_class_event/CreateClassEvent.js';
 import Signup from './components/signup/signup.js';
 import Signin from './components/signin/signin.js';
 import TeacherDashboard from './components/teacher_dashboard/teacher_dashboard.js';
@@ -33,7 +33,7 @@ const routes = (
 		<Route path="upload" component={Upload} />
 		<Route path="calendar" component={Calendar} />
 	  <Route path="grades" component={ClassGradeDash} />
-		<Route path="create_class" component={CreateClass} />
+		<Route path="create_class_event" component={CreateClassEvent} />
 	    <Route path='/classes' component={Classes} />
 	    <Route name='/class' path='/:className' component={Class} />
 	</Route>

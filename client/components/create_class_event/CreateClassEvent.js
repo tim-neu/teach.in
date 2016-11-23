@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { createClass } from '../../actions/create_class_action';
+import { createClassEvent } from '../../actions/create_class_action';
 
-class CreateClass extends Component {
+class CreateClassEvent extends Component {
 	constructor (props) {
 		super(props);
 
@@ -13,34 +13,21 @@ class CreateClass extends Component {
 	}
 
 	handleSubmit (e) {
-		console.log(this.props.classId, "this.classId")
+		console.log(this.props.classId, "******** this.classId ********")
 		e.preventDefault();
-		console.log(this,"this this this")
-		this.props.createClass(this.state.name,this.state.start,this.state.end,this.state.date,this.props.classId);
-
-		// axios.post('/api/teacher/classes/class/event', {
-		// 			name: this.state.name,
-		// 			start: this.state.start,
-		// 			end: this.state.end,
-		// 			date: this.state.date,
-		// 			classId: this.props.classId
-		// 		})
-		// 	  .then(function (response) {
-		// 			console.log(response);
-  // 	  	})
-  // 	  	.catch(function (error) {
-  // 	  		console.log(error);
-  // 	  	})
+		// console.log(this,"this this this")
+		this.props.createClassEvent(this.state.name,this.state.start,this.state.end,this.state.date,this.props.classId);
 	}
 
 	render () {
+		console.log('this is props', this.props)
 		return (
 			<div>
 				<form className='eventForm'>
 					<input 	
 						type='text'
 						name='class-name'
-						placeholder='Class Name' 
+						placeholder='Title' 
 						value={this.state.name} 
 						onChange={nameEvent => this.setState({ name: nameEvent.target.value })}
 					/>
@@ -80,5 +67,5 @@ function mapStateToProps(state) {
 	}
 }
 
-var CreateClassContainer = connect(mapStateToProps, { createClass: createClass })(CreateClass);
+var CreateClassContainer = connect(mapStateToProps, { createClassEvent: createClassEvent })(CreateClassEvent);
 export default CreateClassContainer;
