@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 // export const fields = ['firstName', 'lastName', 'email', 'sex', 'favoriteColor', 'employed', 'notes', 'grade'];
 import AssignmentGradeForm from './AssignmentGradeForm';
+import _ from 'lodash'
 class AssignmentGradesForm extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +42,13 @@ class AssignmentGradesForm extends Component {
     let gotStudents = this.state.students.length !== 0;
     var studentsMap = null;
     if (gotStudents) {
-      studentsMap = students.map((student, index) =>
+      console.log('the students are:', this.state.students);
+      this.state.students.forEach(function(student){
+        if (student.grade === null) {
+          student.grade = 'Enter Grade';
+        }
+      });
+      studentsMap = this.state.students.map((student, index) =>
           <AssignmentGradeForm key={index} formKey={index.toString()} initialValues={student} onSubmit={this.onSubmit(index)} submittingGrade={this.props.submittingGrade} />
         );
     };

@@ -249,9 +249,7 @@ teacherController.addAssignment = (req, res) => {
 				//console.log('i found the students in this class in addassignment', foundPairs);
 				for (let i = 0; i < foundPairs.length; i++) {
 					let foundStudent = foundPairs[i];
-					response.addStudent(foundStudent, {
-						grade: 0
-					});
+					response.addStudent(foundStudent);
 				}
 				res.send(response)
 			});
