@@ -4,7 +4,8 @@ import Calendar from '../../shared_components/Calendar.js';
 import DashboardNav from '../../shared_components/dashboard_nav.js';
 import UserInformation from '../../shared_components/User_information.js';
 import handleMediaSubmit from '../../actions/resource_actions.js';
-import CreateClass from '../../components/create_class/CreateClass.js';
+import CreateClassEvent from '../../components/create_class_event/CreateClassEvent.js';
+import AddClass from '../../components/add_class/AddClass.js';
 
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
@@ -58,15 +59,15 @@ class TeacherDashboard extends Component {
 		  <div className="row">
 			  <DashboardNav />
 			  <div className="container">
-			  <div className="row">
-			  	<div className="col-lg-4">
-					<UserInformation />
-				</div>
-				<div className="col-lg-8">
-					<Calendar teacherEmail={this.state.email}/>
-					<CreateClass />
-				</div>
-			  </div>
+			  	<div className="row">
+			  		<div className="col-lg-4">
+						<UserInformation />
+						<AddClass />
+					</div>
+					<div className="col-lg-8">
+						<Calendar teacherEmail={this.state.email}/>
+					</div>
+			  	</div>
 			  </div>
 		  </div>
 			)

@@ -236,23 +236,24 @@ teacherClassRouter.route('/event')
  		}).catch(function(error){
  			console.log('ERROR:', error)
  		});
-
- 		Class.create({
- 			name: req.body.name,
- 			start: req.body.start,
- 			end: req.body.end,
- 			enrolledNumber: 0,
- 			teacherId: 1,
- 			date: req.body.date
- 		}).then(function(savedEvent) {
- 			console.log('savedClass')
- 		})
- 		.catch(function(error){
- 			console.log(error,"error saving class")
- 		});
 });
 
-
+teacherClassRouter.route('/addClass')
+.post(authMiddleware.checkSignIn, function(req, res) {
+	 Class.create({
+ 		name: req.body.name,
+ 		start: req.body.start,
+ 		end: req.body.end,
+ 		enrolledNumber: 0,
+ 		teacherId: 1,
+ 		date: req.body.date
+ 	}).then(function(savedEvent) {
+ 		console.log('savedClass')
+ 	})
+ 	.catch(function(error){
+ 		console.log(error,"error saving class")
+ 	});
+});
 
 teacherClassRouter.route('/assignments')
 .get(authMiddleware.checkSignIn, function (req, res) {
