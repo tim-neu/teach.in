@@ -13,12 +13,17 @@ import { postTeacherPhoto, getTeacherPhoto } from '../actions/teacher_profile_ac
     this.getTeacherPhoto();
   };
 
+  componentDidMount(){
+    this.getTeacherPhoto();
+  }
+
   handlePostTeacherPhoto(event){
     var selectedFile = document.getElementById('input').files[0];
     this.postTeacherPhoto(selectedFile);
   }
 
   render () {
+    console.log("inside user info")
     return (
       <div>
         <img id="profile-photo" src={this.props.profilePicture.picture} />

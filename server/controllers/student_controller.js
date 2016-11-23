@@ -8,6 +8,7 @@ studentController.SIGNUP = (req, res) => {
 		name: req.body.name,
 		email: req.body.email,
 		password: req.body.password,
+		picture_url: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png'
 	}).then(function (savedStudent) {
 		console.log('i saved the student!', savedStudent.dataValues);
 		res.send(savedStudent.dataValues);
@@ -87,6 +88,17 @@ studentController.getAllEvents = (req, res) => {
 		console.log('studentController: mapped data values should contain objects that have only name, start and end time', mappedDataValues);
 		res.send(mappedDataValues);
 	});
+};
+
+studentController.GETSTUDENT = (req, res) => {
+	console.log("inside get student student controller")
+	Student.findOne({where: {email: req.query.studentEmail}})
+	.then(function(foundStudent){
+		console.log(foundStudent, "foundstudent")
+		res.send(foundStudent);
+	}).catch(function(err){
+		console.log(err)
+	})
 };
 
 
