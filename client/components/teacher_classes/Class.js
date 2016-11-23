@@ -43,11 +43,15 @@ class Class extends Component {
 		this.getResources = this.props.getResources.bind(this);
 	}
 
-	componentWillMount () {
+	componentWillMount  () {
 	  this.props.getStudents(this.state.className);
-	  if (!this.props.isAuthenticated) {
+	  if (sessionStorage.getItem('isAuthenticated') === 'false' || !sessionStorage.getItem('isAuthenticated')) {
 	    browserHistory.push('/home');
 	  }
+	}
+
+	componentWillReceiveProps(nextProps) {
+		console.log('this is the receiving next props:', nextProps);
 	}
 
 	updateValue (val) {
@@ -188,6 +192,7 @@ class Class extends Component {
 }
 
 function mapStateToProps(state) {
+	console.log('state in class is:', state);
 	return {
 		students: state.students.students,
 		currentAssignment: state.currentAssignment.currentAssignment,

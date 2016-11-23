@@ -19,7 +19,7 @@ class TeacherDashboard extends Component {
 	}
 
 	componentWillMount() {
-	  if (!this.props.isAuthenticated) {
+	  if (sessionStorage.getItem('isAuthenticated') === 'false' || !sessionStorage.getItem('isAuthenticated')) {
 	    browserHistory.push('/home');
 	  }
 	}
@@ -75,6 +75,7 @@ class TeacherDashboard extends Component {
   
 
 function mapStateToProps(state){
+	console.log('state in teacher dashboard is:', state);
   return {
     isAuthenticated: state.isAuthenticated.isAuthenticated,
     userType: state.userType.userType,
