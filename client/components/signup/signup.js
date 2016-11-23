@@ -21,6 +21,7 @@ import _ from 'lodash';
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
+
   handleNameChange(event) {
     this.setState({ name: event.target.value });
   };
@@ -34,26 +35,35 @@ import _ from 'lodash';
   };
 
   handleSubmit(event) {
-    event.preventDefault();
-    if (this.state.userType === 'teacher') {
-      axios.post('/api/teacher/signup', {
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        userType: this.state.userType,
-      }).then(function (response) {
-        browserHistory.push('/teacherSignIn');
-      });
+    if (_.includes(window.location.href, 'studentSignUp')) {
+      console.log('i should be switching usertype to student');
+      this.setState({ userType: 'student' });
     } else {
-      axios.post('/api/student/signup', {
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        userType: this.state.userType,
-      }).then(function (response) {
-        browserHistory.push('/studentSignIn');
-      });
+      this.setState({ userType: 'teacher' });
     }
+    event.preventDefault();
+    var self = this;
+    _.delay(function () {
+      if (self.state.userType === 'teacher') {
+        axios.post('/api/teacher/signup', {
+          name: self.state.name,
+          email: self.state.email,
+          password: self.state.password,
+          userType: self.state.userType,
+        }).then(function (response) {
+          browserHistory.push('/teacherSignIn');
+        });
+      } else {
+        axios.post('/api/student/signup', {
+          name: self.state.name,
+          email: self.state.email,
+          password: self.state.password,
+          userType: self.state.userType,
+        }).then(function (response) {
+          browserHistory.push('/studentSignIn');
+        });
+      }
+    }, 500);
   }
 
   render () {
