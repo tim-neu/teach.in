@@ -217,7 +217,6 @@ teacherController.getProfileInformation = (req, res) => {
 };
 
 teacherController.UPDATEASSIGNMENTGRADE = (req, res) => {
-	console.log('------------------------------', req.body);
 	assignmentStudents.findOne({
 		where: {
 			studentId: req.body.studentId,
