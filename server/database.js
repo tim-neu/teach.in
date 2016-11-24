@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const dotenv = require('dotenv').load();
 // const sequelize = new Sequelize(process.env.DB_URL);
-const sequelize = new Sequelize('postgres://hmfhocyp:fD7IzCJTB-7g5AMH6e0FKWzXqBmMmnVL@elmer.db.elephantsql.com:5432/hmfhocyp');
+// const sequelize = new Sequelize('postgres://hmfhocyp:fD7IzCJTB-7g5AMH6e0FKWzXqBmMmnVL@elmer.db.elephantsql.com:5432/hmfhocyp');
 // const sequelize = new Sequelize('postgres://nhhfsvxl:PmfmyAew57jYcGCbVPbLg2A2n13rEyXD@elmer.db.elephantsql.com:5432/nhhfsvxl');
 
 
