@@ -94,3 +94,50 @@ Assignment Form Styling
     margin-right: 0px;
 }
 
+/*
+
+Upload Form Styling
+
+*/
+
+.uploadForm input {
+	width: 100%;
+	text-align: left;
+	padding: 0px;
+	margin: 0px;
+	border-radius: 4px;
+}
+
+#nameValue {
+	width: 100%;
+	text-align: left;
+	padding: 0px;
+	margin: 10px 0px;
+}
+
+.uploadForm form {
+    margin: 0px;
+}
+
+/*
+
+Add Class Form Styling
+
+*/
+
+.addClassForm form{
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+	width: 100%;
+}
+
+.addClassForm input{
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+
