@@ -22,8 +22,8 @@ class AddClass extends Component {
 		console.log('this is props', this.props)
 		return (
 			<div>
+				<p>Add a Class</p>
 				<form className='addClassForm'>
-					Class Name:
 					<input 	
 						type='text'
 						name='class-name'

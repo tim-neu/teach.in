@@ -60,7 +60,7 @@ class TeacherDashboard extends Component {
 			  <DashboardNav />
 			  <div className="container">
 			  	<div className="row">
-			  		<div className="col-lg-4">
+			  		<div className="col-lg-4 addClassForm">
 						<UserInformation />
 						<AddClass />
 					</div>
