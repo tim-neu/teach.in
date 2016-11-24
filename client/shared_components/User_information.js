@@ -25,9 +25,10 @@ import { postTeacherPhoto, getTeacherPhoto } from '../actions/teacher_profile_ac
   render () {
     console.log("inside user info")
     return (
-      <div>
+      <div className="uploadForm">
         <img id="profile-photo" src={this.props.profilePicture.picture} />
         <h4>{this.props.profilePicture.name}</h4>
+        <p>Upload Photo</p>
         <form>
           <input id="nameValue" type="text" />
           <input id="input" type="file" name="pic" />
