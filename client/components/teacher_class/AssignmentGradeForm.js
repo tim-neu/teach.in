@@ -32,7 +32,7 @@ class AssignmentGradeForm extends Component {
 		return (<form onSubmit={handleSubmit} className="assignment-grade-form">
 				<input type='text' placeholder='student' {...name} />
 
-				<input type='text' placeholder='Assignment grade' value='0' {...grade} />
+				<input type='text' placeholder='Grade' value='0' {...grade} />
 
 				<input type='text' placeholder='studentId' {...studentId} className='student-id-input'/>
 				<input type='text' placeholder='assignmentId' {...assignmentId} className='student-id-input'/>
