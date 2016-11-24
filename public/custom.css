@@ -79,7 +79,6 @@ label {
 }
 
 #home-text  {
-	text-align: center;
 	margin-top: 200px;
 }
 
@@ -125,4 +124,36 @@ textarea:focus, input:focus{
 
 #profile-photo {
     width: 250px;
+}
+
+div#home-hero {
+    background-color: #7625FB;
+    height: 100vh;
+}
+
+#home-headline {
+    font-size: 70px;
+    color: #fff;
+    text-align: right;
+}
+
+.home-buttons {
+    background-color: #fff;
+    color: #7625FB;
+    padding: 8px 20px;
+    border: 1px solid #fff;
+}
+
+.home-buttons:hover {
+    background-color:#7625FB;
+}
+
+#hero-sighnup {
+    font-size: 18px;
+    color: #fff;
+}
+
+.button-group {
+    border: 1px solid #fff;
+    border-radius: 5px;
 }

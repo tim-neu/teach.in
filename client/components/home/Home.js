@@ -2,19 +2,21 @@ import React from 'react';
 import HomeNav from '../../shared_components/home_nav.js';
 import { Link } from 'react-router';
 const Home = function(){
-  return <div className="row">
+  return <div className="row" id="home-hero">
 	  <HomeNav />
-	  <div className="jumbotron">
+	  <div>
 		  <div className="container">
-			  <div className="row text-center" id="home-text">
-			  <h1 className="text-center" id="home-headline">teach.in</h1>
-			  <p>teachers teach. we do the rest.</p>
+			  <div className="row" id="home-text">
+			  <div className="col-lg-6">
+			  	<h1 className="text-right" id="home-headline">Teachers<br /> Teach.<br /> We Do<br />The Rest.</h1>
 			  </div>
 			  <div>
-				<Link to="/teacherSignIn" className="btn btn-default navbar-btn">TEACHER LOGIN</Link>
-          		<Link to="/studentSignIn" className="btn btn-default navbar-btn">STUDENT LOGIN</Link>
-          		<Link to="/teacherSignUp" className="btn btn-default navbar-btn">TEACHER SIGN UP</Link>
-          		<Link to="/studentSignUp" className="btn btn-default navbar-btn">STUDENT SIGN UP</Link>
+			  	<h3 id="hero-sighnup">Sign Up:</h3>
+			  	<div className="btn-group">
+			  	<button className="home-buttons btn btn-primary">Teacher</button>
+			  	<button className="home-buttons btn btn-primary">Student</button>
+			  	</div>
+			  </div>
 			  </div>
 		  </div>
 	  </div>
