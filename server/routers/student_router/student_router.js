@@ -17,11 +17,14 @@ studentRouter.route('/signout')
 
 studentRouter.route('/')
 .get(studentController.GETSTUDENTS);
-module.exports = studentRouter;
+
 
 studentRouter.route('/init')
 .get(studentController.GETSTUDENT);
-module.exports = studentRouter;
+
+
+studentRouter.route('/resources')
+.get(studentController.studentResources);
 
 studentRouter.route('/event')
 .get(authMiddleware.checkSignIn, getAllEvents);

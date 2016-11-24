@@ -5,7 +5,7 @@ const Class = require('../models/class_model');
 const Assignment = require('../models/assignment_model');
 const AssignmentStudents = require('../models/assignmentStudents_model');
 const ClassStudents = require('../models/classStudents_model');
-
+const Resource = require('../models/resource_model');
 const _ = require('lodash');
 
 studentController.SIGNUP = (req, res) => {
@@ -114,6 +114,37 @@ studentController.GETCLASSGRADE = (req, res) => {
 	// should be querying all assignments with that class ID
 		//should be querying assignmetn students for all the
 		// assignment students pair with that assignment id and student ID;
+	}
+studentController.studentResources = (req, res) => {
+	let totalGrades = [];
+	let assignmentCount = 0;
+	console.log(req.query.studentEmail)
+	Student.findOne({
+		where: { email: req.query.studentEmail },
+	}).
+	then(function(student){
+		console.log(student, "student in then")
+		const studentId = student.id;
+		ClassStudents.findAll({
+			where: {studentId: studentId},
+		})
+		.then(function(classes){
+			let classPromiseArray = [];
+			classes.forEach(function(newClass){
+				classPromiseArray.push(Resource.findAll({
+					where: {classId: newClass.classId}
+				}));
+				classPromiseArray.push(Class.findAll({
+					where: {id: newClass.classId}
+				}));
+			});
+			Promise.all(classPromiseArray)
+			.then(function(resources){
+				res.send(resources);
+			});
+		});
+	});
 
-};
+	}
+
 module.exports = studentController;

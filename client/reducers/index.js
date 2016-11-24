@@ -10,6 +10,7 @@ import studentInformationReducer from './student_information_reducer';
 import classPointsReducer from './class_points_reducer';
 import classEventsReducer from './class_events_reducer';
 import calendarReducer from './calendar_reducer';
+import studentReducer from './student_resources_reducer';
 import { reducer as formReducer } from 'redux-form';
 
 
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
 	classEvents: classEventsReducer,
 	calendar: calendarReducer,
 	studentInformation: studentInformationReducer,
+	studentResources: studentReducer,
 });
 
 export default rootReducer;

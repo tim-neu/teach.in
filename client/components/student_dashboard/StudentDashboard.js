@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import Calendar from '../../shared_components/Calendar.js';
 import DashboardNav from '../../shared_components/dashboard_nav.js';
 import StudentInformation from './StudentInformation.js';
-import handleMediaSubmit from '../../actions/resource_actions.js'
+import handleMediaSubmit from '../../actions/resource_actions.js';
+import StudentResources from './StudentResources'
 
 class StudentDashboard extends Component {
 	constructor(props) {
@@ -48,8 +49,9 @@ class StudentDashboard extends Component {
 			  <div className="container">
 			  <div className="row">
 			  	<div className="col-lg-4">
-					<StudentInformation />
+					<StudentInformation studentEmail={this.state.email}/>
 				</div>
+				<StudentResources />
 				<div className="col-lg-8">
 					<Calendar />
 				</div>
