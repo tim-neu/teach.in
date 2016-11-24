@@ -15,6 +15,7 @@ export const SET_USER_TYPE = 'set_user_type';
 export const GET_CLASS_POINTS = 'get_class_points';
 export const GET_CLASS_EVENTS = 'get_class_events';
 export const CREATE_CLASS = 'create_class';
+export const GET_STUDENT_RESOURCES = 'get_student_resources';
 
 export const CHECK_AUTHENTICATION = 'CHECK_AUTHENTICATION';
 export const SIGN_OUT_USER = 'sign_out_user';
