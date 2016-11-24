@@ -3,11 +3,13 @@ const Teacher = require('../models/teacher_model');
 const Class = require('../models/class_model');
 const Student = require('../models/student_model');
 const Assignment = require('../models/assignment_model');
-const assignmentStudents = require('../models/assignmentStudents_model');
+const AssignmentStudents = require('../models/assignmentStudents_model');
 const ClassStudents = require('../models/classStudents_model');
 const Event = require('../models/event_model');
 const Resource = require('../models/resource_model');
 const _ = require('lodash');
+const mapPercentToGrade = require('../helpers/helpers').mapPercentToGrade;
+
 teacherController.SIGNUP = (req, res) => {
 
 	//seeding two classes automatically for this teacher
@@ -15,6 +17,7 @@ teacherController.SIGNUP = (req, res) => {
 	for (let i = 0; i < 2; i++) {
 		let classI = Class.build({
 			name: 'class ' + i,
+			totalPoints: 400,
 		});
 		classArr.push(classI);
 	};
@@ -76,28 +79,69 @@ teacherController.SIGNUP = (req, res) => {
 					Promise.all(student1Assignment1)
 						.then(function (results) {
 							//console.log('the results should be a list of students and the length should be 14', results, results.length);
-
-							for (let j = 0; j < 10; j++) {
-								var studentJ = results[j];
-								var grades = ['A','B','C','D'];
-								var index = Math.floor(Math.random()*3);
-								var randomGrade = grades[index];
-								savedClass.addStudent(studentJ, {
-									grade: randomGrade
-								});
-							}
-
+							var assignmentStudentsGrade = [];
 							for (let k = 10; k < results.length; k++) {
 								var assignmentK = results[k];
 								assignmentK.setClass(savedClass);
 								for (let m = 0; m < 10; m++) {
-									var studentM = results[m];
+									let studentM = results[m];
+									var assignmentGrade = 100 - Math.floor((Math.random() * 40));
+									var studentObjWithAssignGrades = {};
+									studentObjWithAssignGrades.name = studentM.name;
+									studentObjWithAssignGrades.assignmentGrade = assignmentGrade;
+									assignmentStudentsGrade.push(studentObjWithAssignGrades);
 									assignmentK.addStudent(studentM, {
-										grade: 100 - Math.floor((Math.random() * 30)),
+										grade: assignmentGrade,
+									}).then(function(){
+
 									});
 								};
 							}
+							for (let j = 0; j < 10; j++) {
+								var studentJ = results[j];
+								var studentGrades = [];
+								for (var i = 0; i < assignmentStudentsGrade.length; i++) {
+									var studentAssignmentPair = assignmentStudentsGrade[i];
+									if (studentJ.name === studentAssignmentPair.name){
+										studentGrades.push(studentAssignmentPair.assignmentGrade);
+									}
+								}
 
+								var totalStudentPoints = studentGrades.reduce(function (combine, number) {
+									return combine + number;
+								}, 0); 
+								var totalPoints = 400;
+								var percent = totalStudentPoints / totalPoints * 100;
+								var grade;
+								if (percent < 60) {
+									grade = 'F';
+								}
+
+								if (percent >= 60 && percent < 70) {
+									grade = 'D';
+								}
+
+ 								if (percent >= 70 && percent < 80) {
+									grade = 'C';
+								}
+
+								if (percent >= 80 && percent < 90) {
+									grade = 'B';
+								}
+
+								if (percent >= 90) {
+									grade = 'A';
+								}
+
+								// var grades = ['A','B','C','D'];
+								// var index = Math.floor(Math.random()*3);
+								// var randomGrade = grades[index];
+								savedClass.addStudent(studentJ, {
+									grade: grade,
+									percent: percent,
+									points: totalStudentPoints,
+								});
+							};
 						});
 				};
 				
@@ -107,30 +151,70 @@ teacherController.SIGNUP = (req, res) => {
 						.then(function (results) {
 							//console.log('the results should be a list of students and the length should be 14', results, results.length);
 
-							for (let j = 0; j < 10; j++) {
-								var studentJ = results[j];
-								var grades = ['A','B','C','D'];
-								var index = Math.floor(Math.random()*3);
-								var randomGrade = grades[index];
-								savedClass.addStudent(studentJ, {
-									grade: randomGrade
-								});
-							}
+							var assignmentStudentsGrade = [];
 							for (let k = 10; k < results.length; k++) {
 								var assignmentK = results[k];
 								assignmentK.setClass(savedClass);
 								for (let m = 0; m < 10; m++) {
 									let studentM = results[m];
-									
-									let assignments = [];
+									var assignmentGrade = 100 - Math.floor((Math.random() * 40));
+									var studentObjWithAssignGrades = {};
+									studentObjWithAssignGrades.name = studentM.name;
+									studentObjWithAssignGrades.assignmentGrade = assignmentGrade;
+									assignmentStudentsGrade.push(studentObjWithAssignGrades);
 									assignmentK.addStudent(studentM, {
-										grade: 100 - Math.floor((Math.random() * 30)),
+										grade: assignmentGrade,
 									}).then(function(){
-					
+
 									});
 
 								};
-							}
+							};
+							for (let j = 0; j < 10; j++) {
+								var studentJ = results[j];
+								var studentGrades = [];
+								for (var i = 0; i < assignmentStudentsGrade.length; i++) {
+									var studentAssignmentPair = assignmentStudentsGrade[i];
+									if (studentJ.name === studentAssignmentPair.name){
+										studentGrades.push(studentAssignmentPair.assignmentGrade);
+									}
+								}
+
+								var totalStudentPoints = studentGrades.reduce(function (combine, number) {
+									return combine + number;
+								}, 0); 
+								var totalPoints = 400;
+								var percent = totalStudentPoints / totalPoints * 100;
+								var grade;
+								if (percent < 60) {
+									grade = 'F';
+								}
+
+								if (percent >= 60 && percent < 70) {
+									grade = 'D';
+								}
+
+ 								if (percent >= 70 && percent < 80) {
+									grade = 'C';
+								}
+
+								if (percent >= 80 && percent < 90) {
+									grade = 'B';
+								}
+
+								if (percent >= 90) {
+									grade = 'A';
+								}
+
+								// var grades = ['A','B','C','D'];
+								// var index = Math.floor(Math.random()*3);
+								// var randomGrade = grades[index];
+								savedClass.addStudent(studentJ, {
+									grade: grade,
+									percent: percent,
+									points: totalStudentPoints,
+								});
+							};
 						});
 				};
 			});
@@ -165,7 +249,7 @@ teacherController.getClassPoints = (req, res) => {
 			  var count = 0;
 			  maxPoints += assignment.maxPoints; 
 			  assignment.students.forEach(function (student) {
-			    assignmentTotal += student.assignmentStudents.grade;
+			    assignmentTotal += student.AssignmentStudents.grade;
 			    count++;
 			 	} );
 			  classAverage += (assignmentTotal / count);
@@ -217,14 +301,66 @@ teacherController.getProfileInformation = (req, res) => {
 };
 
 teacherController.UPDATEASSIGNMENTGRADE = (req, res) => {
-	assignmentStudents.findOne({
+	var totalPoints;
+	Class.findOne({
 		where: {
-			studentId: req.body.studentId,
-			assignmentId: req.body.assignmentId,
+			id: req.body.classId,
 		}
-	}).then(function(foundInstance){
-		foundInstance.update({
-			grade: req.body.grade,
+	}).then(function(foundClass){
+		totalPoints = foundClass.totalPoints;
+		foundClass.getStudents().then(function(studentsInClass){
+			var student = studentsInClass.filter(function(student){
+				if (student.id === req.body.studentId){
+					return true;
+				} else {
+					return false;
+				}
+				// return student.id === req.body.studentId ? true : false;
+			})[0];
+			// console.log('the student issssss:', student.dataValues);
+			// console.log('the student issssss:', student.dataValues.classStudents);
+			var previousStudentPointsInClass = student.dataValues.classStudents.points;
+			if (previousStudentPointsInClass === null) {
+				previousStudentPointsInClass = 0;
+			};
+			AssignmentStudents.findOne({
+				where: {
+					studentId: req.body.studentId,
+					assignmentId: req.body.assignmentId,
+				}
+			})
+			.then(function(foundInstance){
+				var previousAssignmentGrade = foundInstance.dataValues.grade;
+				console.log('the previous assignmentGrade is:', previousAssignmentGrade);
+				foundInstance.update({
+					grade: req.body.grade,
+				})
+				var newAssignmentGrade = req.body.grade;
+				console.log('the new assignment grade is:', newAssignmentGrade);
+				var newTotalPoints = Number(previousStudentPointsInClass) - Number(previousAssignmentGrade) + Number(newAssignmentGrade);
+				console.log('the old points is:', Number(previousStudentPointsInClass));
+				console.log('the new points is:', newTotalPoints);
+				var newPercent = newTotalPoints / foundClass.totalPoints * 100;
+				console.log('the old percent is:', student.dataValues.classStudents.percent);
+				console.log('the new percent is:', newPercent);
+				var newGrade = mapPercentToGrade(newPercent);
+				console.log('the old grade is:', student.dataValues.classStudents.grade);
+				console.log('the new grade is:', newGrade);
+
+				ClassStudents.findOne({
+					where:{
+						classId: student.classStudents.classId,
+						studentId: student.classStudents.studentId,
+					}
+				})
+				.then(function(pair){
+					pair.update({
+						grade: newGrade,
+						percent: newPercent,
+						points: newTotalPoints,
+					})
+				});
+			});
 		})
 	});
 	res.send('i made it to class/assignment/student');
@@ -232,10 +368,17 @@ teacherController.UPDATEASSIGNMENTGRADE = (req, res) => {
 
 teacherController.addAssignment = (req, res) => {
 	var className = req.body.className;
-	console.log(req.body.className, "-------- this is req.body.className")
 	Class.findOne({where: {name: req.body.className}})
 	.then(function(course){
-		console.log(course, "--------- this is course")
+		//initializing course total to be zero
+		if (course.totalPoints === null) {
+			var initialPoints = 0;
+		}
+		var oldTotal = course.totalPoints ? Number(course.totalPoints) : initialPoints;
+		var points = Number(req.body.maxPoints)
+		course.update({
+			totalPoints: oldTotal + points,
+		});
 		var classId = course.id
 		var newAssignment = Assignment.build({
 			name: req.body.name,
@@ -246,7 +389,6 @@ teacherController.addAssignment = (req, res) => {
 		});
 		newAssignment.save().then(function(response){
 			course.getStudents().then(function(foundPairs){
-				//console.log('i found the students in this class in addassignment', foundPairs);
 				for (let i = 0; i < foundPairs.length; i++) {
 					let foundStudent = foundPairs[i];
 					response.addStudent(foundStudent);
@@ -270,7 +412,7 @@ teacherController.addGrade = (req, res) => {
 	Assignment.findOne({where: {name: req.body.assignment}})
 	.then(function(assignment){
 		assignmentId = assignment.id
-		var newGrade = assignmentStudents.build({
+		var newGrade = AssignmentStudents.build({
 			assignmentId: assignmentId,
 			studentId: studentId,
 			grade: req.body.grade
@@ -409,5 +551,45 @@ teacherController.getTeacher = (req, res) => {
 	})
 };
 
+teacherController.GETSTUDENTSFORASSIGNMENT = function(req,res){
+	console.log('req.query is:', req.query);
+	Assignment.findOne({
+		where: {
+			name: req.query.assignmentName
+		}
+	})
+	.then(function(assignment){
+		var assignmentID = assignment.dataValues.id;
+		return AssignmentStudents.findAll({
+			where: {
+				assignmentId: assignmentID
+			}
+		})
+	})
+	.then(function(assignmentStudentPairs){
+		// console.log('the pairs have only the ids?',assignmentStudentPairs);
+		var dataObjects = assignmentStudentPairs.map(function(pair){
+			return pair.dataValues;
+		});
+		var PromiseArr = [];
+		for (let i = 0; i < dataObjects.length; i++) {
+			PromiseArr.push(Student.findOne({
+				where: {
+					id: dataObjects[i].studentId,
+				}
+			}));
+		}
+		Promise.all(PromiseArr)
+		.then(function(foundStudents){
+			for (let i = 0; i < foundStudents.length; i++) {
+				var foundStudent = foundStudents[i];
+				var dataObject = dataObjects[i];
+				dataObject.name = foundStudent.name;
+			}
+			res.send(dataObjects);
+		})
 
+	})
+	//res.send('i made it to assignment/students');
+}
 module.exports = teacherController;

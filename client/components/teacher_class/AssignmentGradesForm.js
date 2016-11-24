@@ -45,7 +45,7 @@ class AssignmentGradesForm extends Component {
       console.log('the students are:', this.state.students);
       this.state.students.forEach(function(student){
         if (student.grade === null) {
-          student.grade = 'Enter Grade';
+          student.grade = '';
         }
       });
       studentsMap = this.state.students.map((student, index) =>

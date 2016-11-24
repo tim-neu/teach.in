@@ -1,6 +1,11 @@
 var studentController = {};
 const Student = require('../models/student_model');
 const Event = require('../models/event_model');
+const Class = require('../models/class_model');
+const Assignment = require('../models/assignment_model');
+const AssignmentStudents = require('../models/assignmentStudents_model');
+const ClassStudents = require('../models/classStudents_model');
+
 const _ = require('lodash');
 
 studentController.SIGNUP = (req, res) => {
@@ -101,5 +106,14 @@ studentController.GETSTUDENT = (req, res) => {
 	})
 };
 
+studentController.GETCLASSGRADE = (req, res) => {
+	console.log('should have student email and class ID');
+	console.log('req query in studentgetcalssgrade is:', req.query);
 
+	//should be querying classes for all class a student is taking
+	// should be querying all assignments with that class ID
+		//should be querying assignmetn students for all the
+		// assignment students pair with that assignment id and student ID;
+
+};
 module.exports = studentController;

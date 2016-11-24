@@ -74,9 +74,7 @@ teacherClassRouter.route('/student')
 				.then(function (foundAssignments) {
 					for (let i = 0; i < foundAssignments.length; i++) {
 						let foundAssignment = foundAssignments[i];
-						foundAssignment.addStudent(foundStudent, {
-							grade: 0,
-						});
+						foundAssignment.addStudent(foundStudent);
 					}
 				});
 
@@ -119,55 +117,10 @@ teacherClassRouter.route('/assignment/student')
 .put(teacherController.UPDATEASSIGNMENTGRADE);
 
 teacherClassRouter.route('/assignment/students')
-.get(function(req,res){
-	console.log('req.query is:', req.query);
-	Assignment.findOne({
-		where: {
-			name: req.query.assignmentName
-		}
-	})
-	.then(function(assignment){
-		var assignmentID = assignment.dataValues.id;
-		return AssignmentStudents.findAll({
-			where: {
-				assignmentId: assignmentID
-			}
-		})
-	})
-	.then(function(assignmentStudentPairs){
-		// console.log('the pairs have only the ids?',assignmentStudentPairs);
-		var dataObjects = assignmentStudentPairs.map(function(pair){
-			return pair.dataValues;
-		});
-		var PromiseArr = [];
-		for (let i = 0; i < dataObjects.length; i++) {
-			PromiseArr.push(Students.findOne({
-				where: {
-					id: dataObjects[i].studentId,
-				}
-			}));
-		}
-		Promise.all(PromiseArr)
-		.then(function(foundStudents){
-			for (let i = 0; i < foundStudents.length; i++) {
-				var foundStudent = foundStudents[i];
-				var dataObject = dataObjects[i];
-				dataObject.name = foundStudent.name;
-			}
-			res.send(dataObjects);
-		})
-
-	})
-	//res.send('i made it to assignment/students');
-});
+.get(teacherController.GETSTUDENTSFORASSIGNMENT);
 
 teacherClassRouter.route('/grade')
 .post(teacherController.addGrade);
-
-// teacherClassRouter.route('/event')
-// .get(authMiddleware.checkSignIn, function (req, res) {
-// 	res.send(' i should be quertying the data base for events for that class');
-// });
 
 teacherClassRouter.route('/allEvents')
 .get(authMiddleware.checkSignIn, getAllEvents);
