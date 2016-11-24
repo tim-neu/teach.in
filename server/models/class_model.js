@@ -19,6 +19,10 @@ const Class = sequelize.define('classes', {
     type: Sequelize.STRING,
   },
 
+  totalPoints: {
+    type: Sequelize.INTEGER,
+  },
+
   enrolledNumber: {
     type: Sequelize.INTEGER,
   },

@@ -102,6 +102,7 @@ class Class extends Component {
 			method: 'PUT',
 			url: '/api/teacher/classes/class/assignment/student',
 			data: {
+				classId: self.state.classId,
 				studentId: values.studentId,
 				assignmentId: values.assignmentId,
 				grade: values.grade,
