@@ -31,7 +31,7 @@ class AddClass extends Component {
 						className='form-control'
 					/>
 					<div className='input-group-btn'>
-					<button className='btn btn-secondary' type='button' onClick={this.handleSubmit}>Submit</button>
+					<button className='btn btn-secondary' type='submit' onSubmit={this.handleSubmit} onClick={this.handleSubmit}>Submit</button>
 					</div>
 				</form>
 			</div>
