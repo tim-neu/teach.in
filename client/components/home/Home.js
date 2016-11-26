@@ -5,7 +5,7 @@ const Home = function(){
   return <div className="row" id="home-hero">
 	  <HomeNav />
 	  <div>
-		  <div className="container-fluid" id="desktop-view">
+		  <div className="container" id="desktop-view">
 			  <div className="row" id="home-text">
 			  <div className="col-lg-offset-2 col-lg-4 col-md-6 col-sm-6" id="slogan-row">
 			  	<h1 className="home-headline">Teachers<br /> Teach.<br /> We Do<br />The Rest.</h1>
@@ -19,7 +19,7 @@ const Home = function(){
 			  </div>
 			  </div>
 		  </div>
-		  <div className="container-fluid" id="mobile-view">
+		  <div className="container" id="mobile-view">
 			  <div className="row" id="mobile-text">
 			  <div className="col-lg-offset-2 col-lg-4 col-md-6 col-sm-6 col-xs-12" id="slogan-row">
 			  	<h1 class="home-headline" id="mobile-headline">Teachers Teach. We Do The Rest.</h1>

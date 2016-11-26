@@ -31,14 +31,27 @@ import { logOut } from '../actions/sign_in_actions.js'
       </div>;
     }
     return (
-      <nav className="navbar">
-        <div className="row">
-          <Link to="/home" id="nav-logo">Teach.in</Link>
-          <section id="nav-links">
-          {link}
-          </section>
-        </div>
-      </nav>
+      <div>
+        <nav id="navbar">
+          <div className="row">
+            <Link to="/home" className="nav-logo">Teach.in</Link>
+            <section className="nav-links">
+            {link}
+            </section>
+          </div>
+        </nav>
+        <nav id="mobilenav">
+          <div className="row">
+            <Link to="/home" className="nav-logo">Teach.in</Link>
+            <div className="dropdown">
+            <span id="mobile-menu-text" className="glyphicon glyphicon-align-justify"></span>
+            <div className="dropdown-content">
+              {link}
+            </div>
+          </div>
+          </div>
+        </nav>
+      </div>
     );
   }
 }
