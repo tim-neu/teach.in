@@ -10,7 +10,7 @@ export default function(state = INITIAL_STATE, action) {
 			return { ...state, studentResources: action.payload };
 		case GET_STUDENT_CLASSES:
 			console.log('the payload for get student classes in student resources reducer is:', action.payload);
-			return { ...state, studentClasses: action.payload };
+			return { ...state, studentClasses: action.payload.myData };
 		default:
 			return state;
 	}
