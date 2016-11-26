@@ -172,6 +172,7 @@ class Class extends Component {
 							<ResourceList classId={this.state.classId} classTitle={this.state.className}/>
   				  		</div>
   				  		<div className="col-lg-6 chart">
+  				  			<p className='componentHeader'>Class Avg</p>
   				  			<PointsChart classId={this.state.classId}/>
   				  		</div>
   				  	</div>
@@ -179,12 +180,16 @@ class Class extends Component {
     	  	</div>
 		
   				<div className="row">
-  				  <div className="col-lg-4">
-							<AssignmentForm classTitle={this.state.className}/>
-							<AssignmentList classId={this.state.classId} classTitle={this.state.className}/>
+  				  <div className="col-lg-4 createAssignment">
+  				  		<p className='componentHeader'>Create Assignment</p>
+						<AssignmentForm classTitle={this.state.className}/>
   				  </div>
-  				  <div className="col-lg-8">
-  				  	<h4>Grades</h4>
+  				  <div className="col-lg-4 assignmentList">
+  				  		<p className='componentHeader'>Assignment List</p>
+						<AssignmentList classId={this.state.classId} classTitle={this.state.className}/>
+  				  </div>
+  				  <div className="col-lg-4 grades">
+  				    <p className='componentHeader'>Grades</p>
 				  	<AssignmentGradesForm currentAssignment={this.props.currentAssignment} associated={this.props.currentAssociatedStudents} students={this.props.currentAssociatedStudents} submittingGrade={this.state.submittingGrade} classTitle={this.state.className} onSubmit={this.onSubmit}/>
   				  </div>
     	  	</div>

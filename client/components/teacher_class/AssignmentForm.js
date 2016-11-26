@@ -19,18 +19,19 @@ class AssignmentForm extends Component {
 	render () {
 		return (
 			<div className='assignmentForm'>
-				<h4>Create Assignment</h4>
 				<form>
 					<div>
+						<p className='labelForm'>Assignment Title:</p>
 						<input
 							type='text'
 							name='assignment-name'
-							placeholder='Assignment Name' 
+							placeholder='Title' 
 							value={this.state.name} 
 							onChange={assignmentName => this.setState({ name: assignmentName.target.value })}
 						/>
 					</div>
 					<div>
+						<p className='labelForm'>Assignment Type:</p>
 						<input
 							type='text'
 							name='assignment-type'
@@ -40,6 +41,7 @@ class AssignmentForm extends Component {
 						/>
 					</div>
 					<div>
+						<p className='labelForm'>Due Date:</p>
 						<input 
 							type='date'
 							name='assignment-dueDate'
@@ -47,6 +49,7 @@ class AssignmentForm extends Component {
 							value={this.state.dueDate} 
 							onChange={assignmentDueDate => this.setState({ dueDate: assignmentDueDate.target.value })}
 						/>
+						<p className='labelForm'>Total Points:</p>
 						<input 
 							type='number'
 							name='assignment-maxPoints'
