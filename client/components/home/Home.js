@@ -3,7 +3,7 @@ import HomeNav from '../../shared_components/home_nav.js';
 import { Link } from 'react-router';
 const Home = function(){
   return <div className="row" id="home-hero">
-	  <HomeNav />
+	  <HomeNav className='homeNav' />
 	  <div>
 		  <div className="container" id="desktop-view">
 			  <div className="row" id="home-text">

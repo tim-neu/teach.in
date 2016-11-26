@@ -30,7 +30,6 @@ class AssignmentList extends Component {
 		return (
 			<div>
 				<div>
-					<h4>Assignment List</h4>
 					<ul>{list}</ul>
 				</div>
 			</div>
