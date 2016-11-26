@@ -15,7 +15,6 @@ class PointsChart extends Component {
 	render() {
 	return (
 	  <div>
-	    <h2>{this.props.class_points[0]}</h2>
 	    <Doughnut data={
 	    	{
 		labels: [

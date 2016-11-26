@@ -29,7 +29,6 @@ import { postTeacherPhoto, getTeacherPhoto } from '../actions/teacher_profile_ac
         <h4>{this.props.profilePicture.name}</h4>
         <p>Upload Photo</p>
         <form>
-          <input id="nameValue" type="text" />
           <input id="input" type="file" name="pic" />
         </form>
         <button onClick={this.handlePostTeacherPhoto}> Submit </button>

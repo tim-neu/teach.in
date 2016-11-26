@@ -139,7 +139,7 @@ class Class extends Component {
 
 	render() {
 		const studentList = this.props.students.map(function (student, i) {
-			return <li key={i}><img src={student.picture_url} height="42" width="42" />{student.name}</li>;
+			return <li className='studentListItem' key={i}><img className='profileThumbnail' src={student.picture_url} />{student.name}</li>;
 		});
 
 
@@ -152,33 +152,28 @@ class Class extends Component {
     	  <div className="container">
 
     	  	<div className="row top">
-  				  <div className="col-lg-4">
-  				  		<div className='studentList'>
+  				  <div className="col-lg-4 studentList">
+  				  		<div>
 							<p className='componentHeader'>{this.state.className} Roster</p>
   				  			<Select isLoading={this.state.isLoading} name= "form-field-name" value="one" onValueClick={this.addStudent} options={this.state.foundStudents} onInputChange={this.onChange} onChange={this.addStudent} />
-							<ul> {studentList} </ul>
+							<ul className='listHeight'> {studentList} </ul>
 						</div>
   				  </div>
   				  <div className="row">
   				  	<div className="col-lg-8">
   				  		<ClassCalendar classId={this.props.location.query.classId}/>
   				  		<CreateClassEvent classId={this.props.location.query.classId}/>
-  				  	</div>
-  				  </div>
-  				  <div className='row'>
-  				  	<div className="col-lg-4">
-  				  	</div>
-  				  	<div className="col-lg-4">
-  				  		<form onSubmit={this.handleMediaSubmit}>
-							<a href="https://s3.amazonaws.com/teach.in123454321/Screen+Shot+2016-10-05+at+8.00.50+AM.png">hey</a>
-							<input id="nameValue" type="text" />
-							<input id="input" type="file" name="pic" accept="image/*" />
-							<input type="submit" />
-						</form>
-						<ResourceList classId={this.state.classId} classTitle={this.state.className}/>
-  				  	</div>
-  				  	<div className="col-lg-4">
-  				  		<PointsChart classId={this.state.classId}/>
+  				  		<div className="col-lg-6 resourceUploadForm">
+  				  			<p className='componentHeader'>Resources</p>
+  				  			<form onSubmit={this.handleMediaSubmit}>
+								<input id="input" type="file" name="pic" accept="image/*" />
+								<button type="submit">submit</button>
+							</form>
+							<ResourceList classId={this.state.classId} classTitle={this.state.className}/>
+  				  		</div>
+  				  		<div className="col-lg-6 chart">
+  				  			<PointsChart classId={this.state.classId}/>
+  				  		</div>
   				  	</div>
   				  </div>
     	  	</div>

@@ -23,7 +23,6 @@ class ResourceList extends Component {
 		return (
 			<div>
 				<div>
-					<h4>Resource List</h4>
 					<ul>{list}</ul>
 				</div>
 			</div>
