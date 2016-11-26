@@ -5,7 +5,7 @@ Teacher Dashboard
 */
 
 .top {
-	margin-top: 20px;
+	margin-top: 15px;
 }
 
 /* 
@@ -149,21 +149,6 @@ Profile
 	border-radius: 12px;
 }
 
-/*
-
-Student List
-
-*/
-
-.componentHeader {
-	color: #aaa;
-	font-size: 18px;
-}
-
-.studentList {
-	border: 1px solid #e5e5e5;
-	border-radius: 12px;
-}
 
 /*
 
@@ -191,3 +176,86 @@ Add Class Form Styling
 .support {
 	height: 500px;
 }
+
+/*
+
+Student List
+
+*/
+
+.componentHeader {
+	color: #AEB4B7;
+	font-size: 18px;
+	margin: 10px 0px 0px 15px;
+}
+
+.studentList {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+}
+
+.Select-menu-outer {
+	width: 90% !important;
+	margin: 15px 15px;
+}
+
+/*
+
+Roster Component
+
+*/
+
+.Select-control {
+	margin: 0px 15px;
+    width: 90% !important;
+    height: 654px;
+}
+
+.studentListItem {
+	margin: 10px 0px 10px 15px;
+    width: 90%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.profileThumbnail {
+	height: 35px;
+	width: 35px;
+	border-radius: 4px;
+	margin-right: 20px;
+}
+
+.listHeight {
+	height: 550px;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+/* 
+
+Resource Upload Form
+
+*/
+
+.resourceUploadForm {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+	height: 259px;
+}
+
+.resourceUploadForm form {
+	margin: 0px;
+}
+
+/*
+
+Chart
+
+*/
+
+.chart {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+	height: 259px;
+}
+
