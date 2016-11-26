@@ -61,12 +61,12 @@ class StudentDashboard extends Component {
 			  	<div className="col-lg-4">
 					<StudentInformation studentEmail={this.state.email}/>
 				</div>
-				<StudentResources />
 				<div className="col-lg-8">
 					<Calendar teacherEmail={this.state.email}/>
 				</div>
 			  </div>
-			  </div>
+			  <StudentResources />
+			  </div>  
 		  </div>
 			)
 		}

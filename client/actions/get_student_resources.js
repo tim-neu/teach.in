@@ -22,7 +22,7 @@ export default function getClassEvents() {
           singleClass.resources = [];
           flatResourceList.forEach(function(singleResource) {
             if(singleResource.classId === singleClass.id) {
-              singleClass.resources.push({ name: singleClass.name, url: singleResource.url });
+              singleClass.resources.push({ name: singleResource.name, url: singleResource.url });
             }
           });
         });

@@ -11,9 +11,18 @@ class StudentResources extends Component {
 		console.log("component will mount", this.props)
 	}
 	render(){
+		let studentResourceList = this.props.studentResources.map(function(singleClass){
+			return <div key={singleClass.name}> <h1>{singleClass.name}</h1> 
+			<ul>
+				{singleClass.resources.map(function(singleResource){
+					return <li><a href={singleResource.url}>{singleResource.name}</a></li>
+					}	
+				)}
+			</ul></div>
+		});
 		return (
 			<div>
-				<h1>studentResources.name</h1>
+				{studentResourceList}
 			</div>
 
 			)
