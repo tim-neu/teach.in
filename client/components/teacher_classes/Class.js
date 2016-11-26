@@ -144,7 +144,7 @@ class Class extends Component {
 
 	render() {
 		const studentList = this.props.students.map(function (student, i) {
-			return <li key={i}>{student.name}</li>;
+			return <li key={i}><img src={student.picture_url} height="42" width="42" />{student.name}</li>;
 		});
 
 		console.log('this is peops', this.props)
@@ -157,23 +157,35 @@ class Class extends Component {
 
     	  <div className="container">
 
-    	  	<div className="row">
+    	  	<div className="row top">
   				  <div className="col-lg-4">
-  				  			<PointsChart classId={this.state.classId}/>
+  				  		<div className='studentList'>
+							<p className='componentHeader'>{this.state.className} Roster</p>
   				  			<Select isLoading={this.state.isLoading} name= "form-field-name" value="one" onValueClick={this.addStudent} options={this.state.foundStudents} onInputChange={this.onChange} onChange={this.addStudent} />
-
-							<h4>{this.state.className} Roster</h4>
 							<ul> {studentList} </ul>
+						</div>
   				  </div>
-  				  <div className="col-lg-8">
-  				  	<ClassCalendar classId={this.props.location.query.classId}/>
-  				  	<CreateClassEvent classId={this.props.location.query.classId}/>
+  				  <div className="row">
+  				  	<div className="col-lg-8">
+  				  		<ClassCalendar classId={this.props.location.query.classId}/>
+  				  		<CreateClassEvent classId={this.props.location.query.classId}/>
+  				  	</div>
+  				  </div>
+  				  <div className='row'>
+  				  	<div className="col-lg-4">
+  				  	</div>
+  				  	<div className="col-lg-4">
   				  		<form onSubmit={this.handleMediaSubmit}>
-						  <a href="https://s3.amazonaws.com/teach.in123454321/Screen+Shot+2016-10-05+at+8.00.50+AM.png">hey</a>
-						  <input id="nameValue" type="text" />
-						  <input id="input" type="file" name="pic" accept="image/*" />
-						  <input type="submit" />
+							<a href="https://s3.amazonaws.com/teach.in123454321/Screen+Shot+2016-10-05+at+8.00.50+AM.png">hey</a>
+							<input id="nameValue" type="text" />
+							<input id="input" type="file" name="pic" accept="image/*" />
+							<input type="submit" />
 						</form>
+						<ResourceList classId={this.state.classId} classTitle={this.state.className}/>
+  				  	</div>
+  				  	<div className="col-lg-4">
+  				  		<PointsChart classId={this.state.classId}/>
+  				  	</div>
   				  </div>
     	  	</div>
 		
@@ -181,7 +193,6 @@ class Class extends Component {
   				  <div className="col-lg-4">
 							<AssignmentForm classTitle={this.state.className}/>
 							<AssignmentList classId={this.state.classId} classTitle={this.state.className}/>
-							<ResourceList classId={this.state.classId} classTitle={this.state.className}/>
   				  </div>
   				  <div className="col-lg-8">
   				  	<h4>Grades</h4>
