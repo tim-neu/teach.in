@@ -12,7 +12,6 @@ import { logOut } from '../actions/sign_in_actions.js'
   };
 
   handleClick() {
-    console.log('i was clicked');
     sessionStorage.setItem('isAuthenticated', false);
     this.props.logOut(this.state.userType);
   }
@@ -25,14 +24,14 @@ import { logOut } from '../actions/sign_in_actions.js'
     } else {
       link =
       <div>           
-          <Link to="/teacherSignIn" className="btn btn-default navbar-btn">TEACHER LOGIN</Link>
-          <Link to="/studentSignIn" className="btn btn-default navbar-btn">STUDENT LOGIN</Link>
-          <Link to="/teacherSignUp" className="btn btn-default navbar-btn">TEACHER SIGN UP</Link>
-          <Link to="/studentSignUp" className="btn btn-default navbar-btn">STUDENT SIGN UP</Link>
+          <Link to="/teacherSignIn" className="btn navbar-btn">TEACHER LOGIN</Link>
+          <Link to="/studentSignIn" className="btn navbar-btn">STUDENT LOGIN</Link>
+          <Link to="/teacherSignUp" className="btn navbar-btn">TEACHER SIGN UP</Link>
+          <Link to="/studentSignUp" className="btn navbar-btn">STUDENT SIGN UP</Link>
       </div>;
     }
     return (
-      <nav className="navbar navbar-default">
+      <nav className="navbar">
         <div className="row">
           <Link to="/home" id="nav-logo">Teach.in</Link>
           <section id="nav-links">
@@ -45,7 +44,6 @@ import { logOut } from '../actions/sign_in_actions.js'
 }
 
 function mapStateToProps(state) {
-  console.log('state in home nav is:', state);
   return {
     isAuthenticated: state.isAuthenticated.isAuthenticated,
   };

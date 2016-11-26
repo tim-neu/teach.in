@@ -16,10 +16,6 @@ class Classes extends Component {
 	}
 
 	render () {
-		// const classList = this.state.classes.map((Class,i) => {
-		// return <Link to={`/class/:${Class.name}`} key={i}><li> {Class.name} </li> </Link> 
-		// });
-		console.log(this.props)
 		const classList = this.props.classes.map((Class, i) => {
 			return <Link to={{ pathname: '/class', query: { className: Class.name, classId: Class.id }}}><li key={i}> {Class.name} </li> </Link> 
 		});
@@ -33,7 +29,6 @@ class Classes extends Component {
 };
 
 function mapStateToProps(state, action) {
-	console.log("state", state)
 	return {
 		classes: state.classes.classes
 	};

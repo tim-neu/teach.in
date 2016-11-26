@@ -12,7 +12,6 @@ import _ from 'lodash';
       this.state = { name: '', email: '', password: '', userType: 'student' };
     } else {
       this.state = { name: '', email: '', password: '', userType: 'teacher' };
-      console.log('i set the state to teacher', this.state.userType);
     };
 
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -36,7 +35,6 @@ import _ from 'lodash';
 
   handleSubmit(event) {
     if (_.includes(window.location.href, 'studentSignUp')) {
-      console.log('i should be switching usertype to student');
       this.setState({ userType: 'student' });
     } else {
       this.setState({ userType: 'teacher' });

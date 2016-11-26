@@ -35,8 +35,8 @@ export function postTeacherPhoto(selectedFile) {
 		  "mimeType": "multipart/form-data",
 		  "data": form,
 		  success: function (resp) {
-		  	console.log(resp);
-	        dispatch({ type: GET_TEACHER_PHOTO, payload: resp.picture });
+		  	console.log(resp, "this is the response from photo post");
+	        dispatch({ type: GET_TEACHER_PHOTO, payload: resp });
 	      },
 	      error: function (error) {
 	        console.log(error)
