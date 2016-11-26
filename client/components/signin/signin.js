@@ -36,7 +36,7 @@ import _ from 'lodash';
     self = this;
     setTimeout(()=> {
         self.setState({ showInvalidEmail: true });
-    }, 1250);
+    }, 1750);
     self.setState({ submitted: true });
     event.preventDefault();
     _.delay(function () {

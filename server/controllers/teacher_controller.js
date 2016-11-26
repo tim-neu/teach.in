@@ -1,5 +1,6 @@
 var teacherController = {};
 const Teacher = require('../models/teacher_model');
+const sequelize = require('../database').sequelize;
 const Class = require('../models/class_model');
 const Student = require('../models/student_model');
 const Assignment = require('../models/assignment_model');
@@ -293,9 +294,17 @@ teacherController.GETCLASSES = function(req,res) {
 	Teacher.findOne({where: {email: req.query.teacherEmail}})
 	.then(function(teacher){
 		var teacherID = teacher.id;
-		Class.findAll({where: {teacherId: teacherID}})
+		Class.findAll({
+			where: {
+				teacherId: teacherID,
+			},
+			order: [
+				['createdAt', 'DESC']
+			],
+		})
 		.then(function(allClasses){
-			console.log(allClasses)
+			// allClasses.reverse();
+			console.log('---------------', allClasses)
 			res.send(allClasses);
 		})
 		.catch(function(err){
@@ -315,7 +324,11 @@ teacherController.UPDATEASSIGNMENTGRADE = (req, res) => {
 		}
 	}).then(function(foundClass){
 		totalPoints = foundClass.totalPoints;
-		foundClass.getStudents().then(function(studentsInClass){
+		foundClass.getStudents({
+			order: [
+				['createdAt', 'ASC']
+			],
+		}).then(function(studentsInClass){
 			var student = studentsInClass.filter(function(student){
 				if (student.id === req.body.studentId){
 					return true;
@@ -440,7 +453,13 @@ teacherController.getAssignments = (req,res) => {
 	// .then(function(foundClass){
 	// 	classId = foundClass.id
 		console.log(req.query.classId, "req.query")
-		Assignment.findAll({where: {classId: req.query.classId}})
+		Assignment.findAll({
+			where: {classId: req.query.classId
+			},
+			order: [
+				['createdAt', 'ASC']
+			],
+		})
 		.then(function(response){
 			console.log("Assignments here!", response)
 			res.send(response)
@@ -570,7 +589,10 @@ teacherController.GETSTUDENTSFORASSIGNMENT = function(req,res){
 		return AssignmentStudents.findAll({
 			where: {
 				assignmentId: assignmentID
-			}
+			},
+			order: [
+				['createdAt', 'ASC']
+			],
 		})
 	})
 	.then(function(assignmentStudentPairs){
