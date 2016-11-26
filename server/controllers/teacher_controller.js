@@ -249,7 +249,7 @@ teacherController.getClassPoints = (req, res) => {
 			  var count = 0;
 			  maxPoints += assignment.maxPoints; 
 			  assignment.students.forEach(function (student) {
-			    assignmentTotal += student.AssignmentStudents.grade;
+			    assignmentTotal += student.assignmentStudents.grade;
 			    count++;
 			 	} );
 			  classAverage += (assignmentTotal / count);
