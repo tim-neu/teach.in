@@ -20,17 +20,18 @@ class AddClass extends Component {
 	render () {
 		return (
 			<div>
-				<p>Add a Class</p>
-				<form className='addClassForm'>
+				<p>Add a Class:</p>
+				<form className='addClassForm input-group'>
 					<input 	
 						type='text'
 						name='class-name'
 						placeholder='Enter class name' 
 						value={this.state.name} 
 						onChange={nameEvent => this.setState({ name: nameEvent.target.value })}
+						className='form-control'
 					/>
-					<div>
-					<button onClick={this.handleSubmit}>Submit</button>
+					<div className='input-group-btn'>
+					<button className='btn btn-secondary' type='button' onClick={this.handleSubmit}>Submit</button>
 					</div>
 				</form>
 			</div>
