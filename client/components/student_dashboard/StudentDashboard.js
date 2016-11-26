@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Calendar from '../../shared_components/Calendar.js';
 import DashboardNav from '../../shared_components/dashboard_nav.js';
 import StudentInformation from './StudentInformation.js';
 import handleMediaSubmit from '../../actions/resource_actions.js';
-import StudentResources from './StudentResources'
+import StudentResources from './StudentResources';
+import StudentClassCards from './Student_ClassCards';
 
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
@@ -63,7 +64,7 @@ class StudentDashboard extends Component {
 					<Calendar teacherEmail={this.state.email}/>
 				</div>
 			  </div>
-			  <StudentResources />
+			  <StudentClassCards />
 			  </div>  
 		  </div>
 			)
