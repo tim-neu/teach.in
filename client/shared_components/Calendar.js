@@ -12,10 +12,8 @@ export default class Calendar extends Component {
     super(props);
     if (_.includes(window.location.href, 'studentDashboard')) {
       this.state = { events: [], userType: 'student' };
-      console.log('i set the state to student for calendar', this.state.userType);
     } else {
       this.state = { events: [], userType: 'teacher' };
-      console.log('i set the state to teacher for calendar', this.state.userType);
     };
     this.getAllEvents();
   }
@@ -25,9 +23,6 @@ export default class Calendar extends Component {
     if(this.state.userType === 'teacher'){
       axios.get(`/api/teacher/classes/class/allEvents?email=${this.props.teacherEmail}`)
       .then (function (response) {
-        console.log('This is the response in getAllEvents:', response);
-        // console.log('self.state.events ------------------>', self.state.events);
-        // resolves all start and event times back into date object
         function map(arr){
           for(var i = 0; i < arr.length; i++){
             var obj = arr[i];
@@ -41,7 +36,6 @@ export default class Calendar extends Component {
           }
         }
         map(response.data);
-        // console.log('-----------',response.data);
         self.setState({events: response.data})
       })
       .catch(function (error) {
@@ -50,9 +44,6 @@ export default class Calendar extends Component {
     } else {
       axios.get('/api/student/classes/class/event')
       .then (function (response) {
-        console.log('This is the response in getAllEvents for students:', response);
-        // console.log('self.state.events ------------------>', self.state.events);
-        // resolves all start and event times back into date object
         function map(arr){
           for(var i = 0; i < arr.length; i++){
             var obj = arr[i];
@@ -66,18 +57,15 @@ export default class Calendar extends Component {
           }
         }
         map(response.data);
-        // console.log('-----------',response.data);
           self.setState({events: response.data})
       })
       .catch(function (error) {
-        console.log('Hey, sooooo...shit went left when I tried to get STUDENT\'S events:', error);
+        console.log('this is the error with the class event', error);
       });
     }
   }
 
   render(){
-  // console.log('Testing new Date object in Calendar.js:', new Date(2016, 3, 11, 10, 30, 0, 0));
-  // console.log('this.state.events',this.state.events)
     return (
       <div>
         <BigCalendar

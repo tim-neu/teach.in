@@ -29,6 +29,7 @@ nav a {
 
 #nav-logo {
     margin-top: 5px;
+    margin-left:20px;
     font-weight: 700;
     display: inline-block;
     font-size: 20px;
@@ -79,7 +80,7 @@ label {
 }
 
 #home-text  {
-	margin-top: 200px;
+	margin-top: 250px;
 }
 
 .Auth-header {
@@ -126,7 +127,7 @@ textarea:focus, input:focus{
     width: 250px;
 }
 
-div#home-hero {
+#home-hero {
     background-color: #7625FB;
     height: 100vh;
 }
@@ -137,20 +138,41 @@ div#home-hero {
     text-align: right;
 }
 
-.home-buttons {
-    background-color: #fff;
-    color: #7625FB;
-    padding: 8px 20px;
+.hero-buttons {
+    background-color: #7625FB;
+    color: #fff;
+    padding: 10px 35px;
     border: 1px solid #fff;
 }
 
-.home-buttons:hover {
-    background-color:#7625FB;
+.hero-buttons:hover {
+    background-color: #fff;
+    color: #7625FB;
+    border: 1px solid #fff;
 }
 
 #hero-sighnup {
     font-size: 18px;
     color: #fff;
+}
+
+#slogan-row {
+    padding-right: 5%;
+}
+
+#hero-sighnup {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 300;
+}
+
+#hero-buttons-row {
+    position: relative;
+    top: 125px;
+}
+
+.btn{
+    border-radius: 8px;
 }
 
 .button-group {

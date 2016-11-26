@@ -12,7 +12,6 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
       this.state = { email: '', password: '', userType: 'student', submitted: false, };
     } else {
       this.state = { email: '', password: '', userType: 'teacher', submitted: false, showInvalidEmail: false, };
-      console.log('i set the state to teacher', this.state.userType);
     };
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -20,10 +19,6 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
-  componentWillMount() {
-    console.log('the current url is:', window.location.href);
-
-  }
   handleEmailChange(event) {
     this.setState({email: event.target.value});
   }
@@ -42,7 +37,6 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
         email: this.state.email,
         password: this.state.password,
       }).then(function (response) {
-        console.log('the teacher should be authenticated', response.data);
         if (response.data === 'Authenticated'){
           localStorage.setItem("email", self.state.email);
           self.props.setUserType('teacher');
@@ -54,14 +48,12 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
           self.props.checkAuthentication(false);
         }
       }).catch(function (error) {
-        console.log('error with sign in')
       });
     } else {
       axios.post('/api/student/signin',{
         email: this.state.email,
         password: this.state.password,
       }).then(function (response) {
-        console.log('the student should be authenticated', response.data);
         if (response.data === 'Authenticated') {
           localStorage.setItem("email", self.state.email);
           self.props.setUserType('student');
@@ -73,7 +65,6 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
           self.props.checkAuthentication(false);
         }
       }).catch(function (error) {
-        console.log('error with sign in')
       });
     }
   }
@@ -98,7 +89,6 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
 }
 
 function mapStateToProps(state) {
-  console.log('the state in sign in is;', state);
   return {
     userType: state.userType.userType,
     isAuthenticated: state.isAuthenticated.isAuthenticated,

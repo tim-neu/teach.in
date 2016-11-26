@@ -12,8 +12,6 @@ class AssignmentList extends Component {
 			classId: this.props.classId,
 			classTitle: this.props.classTitle,
 		};
-
-		// this.props.assignments(this.props.classId);
 		this.selectAssignment = this.props.selectAssignment.bind(this);
 		this.getAssignmentsStudents = this.props.getAssignmentsStudents.bind(this);
 	}
@@ -24,13 +22,11 @@ class AssignmentList extends Component {
 
 	render () {
 		self = this;
-		console.log(this.props,"currentAssignment")
 		const list = this.props.assignments.map(function(assignment, i){
 			return <li onClick={
 				() => {self.selectAssignment(assignment); self.getAssignmentsStudents(self.state.classTitle, assignment.name, self.state.classId)}}
 						key={i}>{assignment.name}</li>
 		})
-		console.log("assignment props", this.props.classId)
 		return (
 			<div>
 				<div>

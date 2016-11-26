@@ -10,7 +10,6 @@ class AssignmentGradeForm extends Component {
 	}
 
 	changeSubmit() {
-		console.log(' i cahnged the state to submitting');
 		this.setState({ submitting: true });
 		var self = this;
 		_.delay(()=>{this.setState({ submitting: false })}, 1000);
@@ -28,7 +27,6 @@ class AssignmentGradeForm extends Component {
 		if (this.state.submitting){
 			submit = 'Submitting...';
 		}
-		console.log('submitting is:', submitting);
 		return (<form onSubmit={handleSubmit} className="assignment-grade-form">
 				<input type='text' placeholder='student' {...name} />
 

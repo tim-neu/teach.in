@@ -14,12 +14,10 @@ class AddClass extends Component {
 
 	handleSubmit (e) {
 		e.preventDefault();
-		// console.log(this,"this this this")
 		this.props.addClass(this.state.name);
 	}
 
 	render () {
-		console.log('this is props', this.props)
 		return (
 			<div>
 				<p>Add a Class</p>

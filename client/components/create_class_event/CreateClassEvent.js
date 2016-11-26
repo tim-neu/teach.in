@@ -13,14 +13,11 @@ class CreateClassEvent extends Component {
 	}
 
 	handleSubmit (e) {
-		console.log(this.props.classId, "******** this.classId ********")
 		e.preventDefault();
-		// console.log(this,"this this this")
 		this.props.createClassEvent(this.state.name,this.state.start,this.state.end,this.state.date,this.props.classId);
 	}
 
 	render () {
-		console.log('this is props', this.props)
 		return (
 			<div>
 				<form className='eventForm'>
