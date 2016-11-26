@@ -28,6 +28,7 @@ teacherController.SIGNUP = (req, res) => {
 			name: 'student' + i,
 			gpa: 4 - (Math.random() * 3).toFixed(2),
 			email: 'email' + i,
+			picture_url: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png',
 		});
 		studentArr1.push(studentI.save());
 	}
@@ -37,7 +38,8 @@ teacherController.SIGNUP = (req, res) => {
 		let studentI = Student.build({
 			name: 'student' + i,
 			email: 'email' + i,
-			gpa: 4 - (Math.random()*3).toFixed(2)
+			gpa: 4 - (Math.random()*3).toFixed(2),
+			picture_url: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png',
 		});
 		studentArr2.push(studentI.save());
 	}

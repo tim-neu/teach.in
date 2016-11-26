@@ -76,7 +76,7 @@ export default class ClassCalendar extends Component {
           events={this.state.events}
           timeslots={4}
           step={15}
-          style={{height: "400px"}}
+          style={{height: "350px"}}
           startAccessor={this.state.events.start}
           endAccessor={this.state.events.end}
           scrollToTime={new Date(1970, 1, 1, 7)}

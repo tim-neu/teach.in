@@ -1,3 +1,13 @@
+/*
+
+Teacher Dashboard
+
+*/
+
+.top {
+	margin-top: 20px;
+}
+
 /* 
 
 Calendar Styling 
@@ -18,8 +28,13 @@ Calendar Styling
 .rbc-current-time-indicator {
 	z-index: 900px;
 }
+
 .rbc-event-content {
 	font-size: 10px;
+}
+
+.rbc-header {
+	font-size: 60%;
 }
 
 .rbc-selected {
@@ -100,6 +115,10 @@ Upload Form Styling
 
 */
 
+.uploadForm {
+	margin-top: 15px;
+}
+
 .uploadForm input {
 	width: 100%;
 	text-align: left;
@@ -121,6 +140,33 @@ Upload Form Styling
 
 /*
 
+Profile
+
+*/
+
+.profile {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+}
+
+/*
+
+Student List
+
+*/
+
+.componentHeader {
+	color: #aaa;
+	font-size: 18px;
+}
+
+.studentList {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+}
+
+/*
+
 Add Class Form Styling
 
 */
@@ -130,14 +176,18 @@ Add Class Form Styling
 	padding: 0px;
 	text-align: left;
 	width: 100%;
+	margin-bottom: 15px;
 }
 
 .addClassForm input{
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
+	height: 35px;
 	border-radius: 4px;
 	font-size: 14px;
 }
 
-
+.support {
+	height: 500px;
+}
