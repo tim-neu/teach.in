@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import HomeNav from '../../shared_components/home_nav.js';
 import { connect } from 'react-redux';
 import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.js';
+import _ from 'lodash';
 
   class Signin extends React.Component {
   constructor (props) {
@@ -12,7 +13,6 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
       this.state = { email: '', password: '', userType: 'student', submitted: false, };
     } else {
       this.state = { email: '', password: '', userType: 'teacher', submitted: false, showInvalidEmail: false, };
-      console.log('i set the state to teacher', this.state.userType);
     };
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -31,51 +31,59 @@ import { setUserType, checkAuthentication } from '../../actions/sign_in_actions.
     this.setState({password: event.target.value});
   }
   handleSubmit(event) {
+    if (_.includes(window.location.href, 'studentSignIn')) {
+      this.setState({ userType: 'student' });
+    } else {
+      this.setState({ userType: 'teacher' });
+    };
+
     self = this;
     setTimeout(()=> {
         self.setState({ showInvalidEmail: true });
     }, 1250);
     self.setState({ submitted: true });
     event.preventDefault();
-    if (this.state.userType === 'teacher') {
-      axios.post('/api/teacher/signin',{
-        email: this.state.email,
-        password: this.state.password,
-      }).then(function (response) {
-        console.log('the teacher should be authenticated', response.data);
-        if (response.data === 'Authenticated'){
-          localStorage.setItem("email", self.state.email);
-          self.props.setUserType('teacher');
-          sessionStorage.setItem("isAuthenticated", true);
-          self.props.checkAuthentication(true);
-          browserHistory.push('/dashboard');
-        } else {
-          sessionStorage.setItem("isAuthenticated", false);
-          self.props.checkAuthentication(false);
-        }
-      }).catch(function (error) {
-        console.log('error with sign in')
-      });
-    } else {
-      axios.post('/api/student/signin',{
-        email: this.state.email,
-        password: this.state.password,
-      }).then(function (response) {
-        console.log('the student should be authenticated', response.data);
-        if (response.data === 'Authenticated') {
-          localStorage.setItem("email", self.state.email);
-          self.props.setUserType('student');
-          sessionStorage.setItem("isAuthenticated", true);
-          self.props.checkAuthentication(true);
-          browserHistory.push('/studentDashboard');   
-        } else {
-          sessionStorage.setItem("isAuthenticated", false);
-          self.props.checkAuthentication(false);
-        }
-      }).catch(function (error) {
-        console.log('error with sign in')
-      });
-    }
+    _.delay(function () {
+      if (self.state.userType === 'teacher') {
+        axios.post('/api/teacher/signin',{
+          email: self.state.email,
+          password: self.state.password,
+        }).then(function (response) {
+          console.log('the teacher should be authenticated', response.data);
+          if (response.data === 'Authenticated'){
+            localStorage.setItem("email", self.state.email);
+            self.props.setUserType('teacher');
+            sessionStorage.setItem("isAuthenticated", true);
+            self.props.checkAuthentication(true);
+            browserHistory.push('/dashboard');
+          } else {
+            sessionStorage.setItem("isAuthenticated", false);
+            self.props.checkAuthentication(false);
+          }
+        }).catch(function (error) {
+          console.log('error with sign in')
+        });
+      } else {
+        axios.post('/api/student/signin',{
+          email: self.state.email,
+          password: self.state.password,
+        }).then(function (response) {
+          console.log('the student should be authenticated', response.data);
+          if (response.data === 'Authenticated') {
+            localStorage.setItem("email", self.state.email);
+            self.props.setUserType('student');
+            sessionStorage.setItem("isAuthenticated", true);
+            self.props.checkAuthentication(true);
+            browserHistory.push('/studentDashboard');   
+          } else {
+            sessionStorage.setItem("isAuthenticated", false);
+            self.props.checkAuthentication(false);
+          }
+        }).catch(function (error) {
+          console.log('error with sign in')
+        });
+      }
+    }, 500);
   }
 
   render () {

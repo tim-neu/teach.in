@@ -2,7 +2,7 @@ const studentRouter = require('express').Router();
 const authMiddleware = require('../../middlewares/studentAuth.js');
 const studentController = require('../../controllers/student_controller');
 const getAllEvents = require('../../controllers/student_controller').getAllEvents;
-const studentClassRouter = require('./classes_router/student_classes_router');
+const studentClassesRouter = require('./classes_router/student_classes_router');
 
 
 
@@ -29,6 +29,6 @@ studentRouter.route('/resources')
 studentRouter.route('/event')
 .get(authMiddleware.checkSignIn, getAllEvents);
 
-studentRouter.use('/classes', studentClassRouter);
+studentRouter.use('/classes', studentClassesRouter);
 
 module.exports = studentRouter;

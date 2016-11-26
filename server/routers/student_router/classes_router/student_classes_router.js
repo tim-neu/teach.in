@@ -1,6 +1,6 @@
 const studentClassesRouter = require('express').Router();
 const studentClassRouter = require('./class_router/student_class_router');
-const authMiddleware = require('../../../middlewares/auth.js');
+const authMiddleware = require('../../../middlewares/studentAuth.js');
 const studentController = require('../../../controllers/student_controller');
 
 // studentClassesRouter.route('/')
@@ -16,6 +16,9 @@ studentClassesRouter.route('/createClass')
 .post(authMiddleware.checkSignIn, function (req, res) {
 	res.send('i should be creating a class in the database');
 });
+
+studentClassesRouter.route('/')
+.get(authMiddleware.checkSignIn, studentController.GETCLASSES);
 
 studentClassesRouter.use('/class', studentClassRouter);
 // studentClassesRouter.route('/resourses')

@@ -1,5 +1,5 @@
 const studentClassRouter = require('express').Router();
-const authMiddleware = require('../../../../middlewares/auth.js');
+const authMiddleware = require('../../../../middlewares/studentAuth.js');
 const studentController = require('../../../../controllers/student_controller');
 const Event = require('../../../../models/event_model.js');
 const getAllEvents = require('../../../../controllers/student_controller').getAllEvents;
