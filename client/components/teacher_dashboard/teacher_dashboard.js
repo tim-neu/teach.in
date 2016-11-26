@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Graph from '../../shared_components/graph.js';
 import Calendar from '../../shared_components/Calendar.js';
+import Classes from '../../components/teacher_classes/Classes';
 import DashboardNav from '../../shared_components/dashboard_nav.js';
 import UserInformation from '../../shared_components/User_information.js';
 import handleMediaSubmit from '../../actions/resource_actions.js';
@@ -69,6 +70,7 @@ class TeacherDashboard extends Component {
 					</div>
 			  	</div>
 			  </div>
+			  <Classes />
 		  </div>
 			)
 		}
