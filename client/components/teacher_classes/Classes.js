@@ -15,9 +15,13 @@ class Classes extends Component {
 		this.props.getClasses();
 	}
 
+	componentWillReceiveProps(nextProps){
+		console.log('the next props are:', nextProps);
+	}
+
 	render () {
-		const classList = this.props.classes.map((Class, i) => {
-			return <Link to={{ pathname: '/class', query: { className: Class.name, classId: Class.id }}}><li key={i}> {Class.name} </li> </Link> 
+		var classList = this.props.classes.map((Class, i) => {
+			return <div key={Class.name}><Link to={{ pathname: '/class', query: { className: Class.name, classId: Class.id }}}><li key={i}> {Class.name} </li> </Link></div>
 		});
 
 		return (

@@ -162,8 +162,7 @@ teacherClassRouter.route('/event')
  		console.log('array is ------------>', arr);
 		var mapped = arr.map(function(string){
 		  if (string == " 0") {
-		    return string[1]
-		    
+		    return string[1];
 		  }
 		  else if (string[1] === '0' && string[0] === " ") {
 		    return string.slice(2);
@@ -175,19 +174,15 @@ teacherClassRouter.route('/event')
     	console.log('mapped is: ', mapped);
  		var dateEndObj = new Date(Number(mapped[0]), Number(mapped[1]) -1, Number(mapped[2]), Number(mapped[3]), Number(mapped[4]));
  		end = dateEndObj;
-
- 		
- 		console.log('****************************** This is the classId: ----------->', req.body.classId);
-
  		Event.create({
  			title: req.body.name,
  			start: dateStartObj,
  			end: end,
  			classId: req.body.classId
  		}).then(function(savedEvent) {
- 			console.log('SAVED TO DB!')
+ 			console.log('SAVED TO DB!');
  		}).catch(function(error){
- 			console.log('ERROR:', error)
+ 			console.log('ERROR:', error);
  		});
 });
 
@@ -200,11 +195,12 @@ teacherClassRouter.route('/addClass')
  		enrolledNumber: 0,
  		teacherId: 1,
  		date: req.body.date
- 	}).then(function(savedEvent) {
- 		console.log('savedClass')
+ 	}).then(function(savedClass) {
+ 		console.log('savedClass');
+ 		res.send(savedClass.dataValues);
  	})
  	.catch(function(error){
- 		console.log(error,"error saving class")
+ 		console.log(error,"error saving class");
  	});
 });
 
