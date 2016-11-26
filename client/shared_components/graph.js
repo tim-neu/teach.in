@@ -27,10 +27,8 @@ import axios from 'axios';
 
   getCurrentClassGpa(){
     let that = this;
-    console.log(that)
     axios.get('/api/teacher/classes/class/classGPA')
     .then(function (gpa) {
-      console.log(gpa, "this is gpa")
       that.setState({
         data: {
               labels: [
@@ -50,7 +48,7 @@ import axios from 'axios';
       })
     })
     .catch(function (error) {
-      console.log("this didn't work");
+      console.log("this is the error with the class gpa", error);
     });
   }
 

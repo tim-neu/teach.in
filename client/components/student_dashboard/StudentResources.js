@@ -8,7 +8,6 @@ class StudentResources extends Component {
 	}
 	componentDidMount(){
 		this.props.getResources(this.props.studentEmail);
-		console.log("component will mount", this.props)
 	}
 	render(){
 		let studentResourceList = this.props.studentResources.map(function(singleClass){

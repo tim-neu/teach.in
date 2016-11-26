@@ -50,12 +50,10 @@ class TeacherDashboard extends Component {
 		}
 
 		$.ajax(settings).done(function (response) {
-		  console.log(response);
 		});
 	}
 
 	render(){
-		console.log(this.state, "state");
 		return (
 		  <div className="row">
 			  <DashboardNav />
@@ -78,7 +76,6 @@ class TeacherDashboard extends Component {
   
 
 function mapStateToProps(state){
-	console.log('state in teacher dashboard is:', state);
   return {
     isAuthenticated: state.isAuthenticated.isAuthenticated,
     userType: state.userType.userType,

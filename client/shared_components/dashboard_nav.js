@@ -9,16 +9,13 @@ import { browserHistory } from 'react-router';
     super(props);
     if (_.includes(window.location.href, 'studentDashboard')) {
       this.state = { userType: 'student' };
-      console.log('i set the state to student for navBar', this.state.userType);
     } else {
       this.state = { userType: 'teacher' };
-      console.log('i set the state to teacher for navBar', this.state.userType);
     };
     this.handleClick = this.handleClick.bind(this);
   };
 
   handleClick(){
-    console.log('i was clicked');
     sessionStorage.setItem('isAuthenticated', false);
     this.props.logOut(this.state.userType);
   }

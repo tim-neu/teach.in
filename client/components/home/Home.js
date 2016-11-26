@@ -5,16 +5,16 @@ const Home = function(){
   return <div className="row" id="home-hero">
 	  <HomeNav />
 	  <div>
-		  <div className="container">
+		  <div className="container-fluid">
 			  <div className="row" id="home-text">
-			  <div className="col-lg-6">
-			  	<h1 className="text-right" id="home-headline">Teachers<br /> Teach.<br /> We Do<br />The Rest.</h1>
+			  <div className="col-lg-offset-3 col-lg-3" id="slogan-row">
+			  	<h1 id="home-headline">Teachers<br /> Teach.<br /> We Do<br />The Rest.</h1>
 			  </div>
-			  <div>
+			  <div className="col-lg-2" id="hero-buttons-row">
 			  	<h3 id="hero-sighnup">Sign Up:</h3>
-			  	<div className="btn-group">
-			  	<button className="home-buttons btn btn-primary">Teacher</button>
-			  	<button className="home-buttons btn btn-primary">Student</button>
+			  	<div className="btn-group" id="hero-buttons">
+			  	<button className="hero-buttons btn btn-primary" id="hero-button">Teacher</button>
+			  	<button className="hero-buttons btn btn-primary" id="hero-button">Student</button>
 			  	</div>
 			  </div>
 			  </div>

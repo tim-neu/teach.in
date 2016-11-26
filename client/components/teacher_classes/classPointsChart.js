@@ -41,7 +41,6 @@ class PointsChart extends Component {
 };
 
 function mapStateToProps(state) {
-	console.log('state in class.js is:', state);
 	return {
 		class_points: state.class_points.class_points,
 	};

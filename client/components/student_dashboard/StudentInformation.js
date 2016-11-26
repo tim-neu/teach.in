@@ -49,7 +49,6 @@ import { postStudentPhoto, getStudentPhoto } from '../../actions/student_profile
 }
 
 function mapStateToProps(state){
-  console.log(state)
   return {
     studentInformation: state.studentInformation.studentInformation
   };
