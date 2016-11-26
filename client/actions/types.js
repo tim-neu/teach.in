@@ -20,3 +20,4 @@ export const CREATE_CLASS = 'create_class';
 export const GET_STUDENT_RESOURCES = 'get_student_resources';
 export const CHECK_AUTHENTICATION = 'CHECK_AUTHENTICATION';
 export const SIGN_OUT_USER = 'sign_out_user';
+export const GET_STUDENT_CLASSES = 'get_student_classes';

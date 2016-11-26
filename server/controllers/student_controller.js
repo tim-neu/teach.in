@@ -147,4 +147,19 @@ studentController.studentResources = (req, res) => {
 
 	}
 
+studentController.GETCLASSES = function(req,res) {
+	console.log(req.query.studentEmail, "<----------------- student EMAIL")
+	Student.findOne({where: {email: req.query.studentEmail}})
+	.then(function(student){
+		var studentID = student.id;
+		student.getClasses()
+		.then(function(studentClasses){
+			console.log('all the student classes are:', studentClasses);
+			res.send(studentClasses);
+		})
+		.catch(function(err){
+			console.log('err in getting student classes');
+		})
+	});
+};
 module.exports = studentController;
