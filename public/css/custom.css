@@ -80,7 +80,7 @@ label {
 }
 
 #home-text  {
-	margin-top: 250px;
+	margin-top: 22vh;
 }
 
 .Auth-header {
@@ -132,7 +132,7 @@ textarea:focus, input:focus{
     height: 100vh;
 }
 
-#home-headline {
+.home-headline {
     font-size: 70px;
     color: #fff;
     text-align: right;
@@ -151,7 +151,7 @@ textarea:focus, input:focus{
     border: 1px solid #fff;
 }
 
-#hero-sighnup {
+#hero-sighnup, #mobile-sighnup {
     font-size: 18px;
     color: #fff;
 }
@@ -178,4 +178,35 @@ textarea:focus, input:focus{
 .button-group {
     border: 1px solid #fff;
     border-radius: 5px;
+}
+
+#mobile-view {
+    display: none;
+}
+
+#mobile-headline {
+    text-align: center;
+    font-size: 50px;
+    color:#fff;
+    margin-top:20vh;
+}
+
+#mobile-buttons {
+    width: 242.28px;
+    margin: auto;
+    margin-top: 20px;
+    display: block;
+}
+
+#mobile-sighnup {
+    text-align: center ;
+}
+
+@media only screen and (max-width:767px) { 
+    #mobile-view {
+        display: block;
+    }
+    #desktop-view {
+        display: none;
+    }
 }
