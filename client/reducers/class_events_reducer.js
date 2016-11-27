@@ -10,7 +10,6 @@ function appendedClassEvents(prevState, addedClass) {
 	_.update(addedClass, 'end', function (e) {
 		return new Date(e);
 	});
-	console.log('the new added class is:', addedClass);
 	var oldClassEvents = prevState.classEvents;
 	var newClassEvents = prevState.classEvents.concat(addedClass);
 	return { ...prevState, classEvents: newClassEvents };

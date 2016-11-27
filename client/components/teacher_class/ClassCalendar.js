@@ -24,53 +24,6 @@ class ClassCalendar extends Component {
     this.props.getClassEventsRed(this.state.userType, this.props.classId);
   }
 
-  // getClassEvents(userType,classId) {
-  //   var self = this;
-
-  //   if(this.state.userType === 'teacher'){
-  //     axios.get(`/api/teacher/classes/class/events?classId=${this.props.classId}`)
-  //     .then (function (response) {
-  //       function map(arr){
-  //         for(var i = 0; i < arr.length; i++){
-  //           var obj = arr[i];
-  //           _.update(obj, 'start', function(s){
-  //             return new Date(s);
-  //           });
-
-  //           _.update(obj, 'end', function(e){
-  //             return new Date(e);
-  //           });
-  //         }
-  //       }
-  //       map(response.data);
-  //       console.log('the response data for the calendar issssss:', response.data);
-  //       self.setState({events: response.data})
-  //     })
-  //     .catch(function (error) {
-  //     });
-  //   } else {
-  //     axios.get('/api/student/classes/class/event')
-  //     .then (function (response) {
-  //       function map(arr){
-  //         for(var i = 0; i < arr.length; i++){
-  //           var obj = arr[i];
-  //           _.update(obj, 'start', function(s){
-  //             return new Date(s);
-  //           });
-
-  //           _.update(obj, 'end', function(e){
-  //             return new Date(e);
-  //           });
-  //         }
-  //       }
-  //       map(response.data);
-  //         self.setState({events: response.data})
-  //     })
-  //     .catch(function (error) {
-  //     });
-  //   }
-  // }
-
   render() {
     return (
       <div>

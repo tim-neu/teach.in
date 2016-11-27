@@ -2,8 +2,6 @@ import axios from 'axios';
 import { GET_CLASS_EVENTS } from './types';
 
 export function getClassEventsRed(userType, classId) {
-  console.log('user type in get class action is:', userType);
-  console.log('classId in get class action is:', classId);
   return function (dispatch) {
     if (userType === 'teacher') {
       axios.get(`/api/teacher/classes/class/events?classId=${classId}`)
@@ -22,8 +20,6 @@ export function getClassEventsRed(userType, classId) {
         };
 
         map(response.data);
-        console.log('the response data for the calendar issssss:', response.data);
-        // self.setState({events: response.data})
         dispatch({ type: GET_CLASS_EVENTS, payload: response.data });
       })
       .catch(function (error) {

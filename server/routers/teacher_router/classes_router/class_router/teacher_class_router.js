@@ -172,7 +172,6 @@ teacherClassRouter.route('/event')
 		    return string;
 		  }
 		});
-    	console.log('mapped is: ', mapped);
  		var dateEndObj = new Date(Number(mapped[0]), Number(mapped[1]) -1, Number(mapped[2]), Number(mapped[3]), Number(mapped[4]));
  		end = dateEndObj;
  		Event.create({
@@ -182,9 +181,7 @@ teacherClassRouter.route('/event')
  			classId: req.body.classId
  		}).then(function(savedEvent) {
  			var mappedDataValue = savedEvent.dataValues;
- 			console.log('savedEvent is ---------------------!!!!!!!!!!!!!', savedEvent);
  			var newEvent = _.pick(mappedDataValue, ['title','start','end']);
- 			console.log('new event is -------------------!!!!!!!!!!!!', newEvent);
  			res.send(newEvent);
  			console.log('SAVED TO DB!');
  		}).catch(function(error){
