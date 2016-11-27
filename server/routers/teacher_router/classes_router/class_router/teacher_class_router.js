@@ -8,6 +8,7 @@ const ClassStudents = require('../../../../models/classStudents_model.js');
 const Students = require('../../../../models/student_model.js');
 const AssignmentStudents = require('../../../../models/assignmentStudents_model.js');
 const Assignment = require('../../../../models/assignment_model.js');
+const _ = require('lodash');
 
 teacherClassRouter.route('/')
 .get(authMiddleware.checkSignIn, function (req, res) {
@@ -180,6 +181,11 @@ teacherClassRouter.route('/event')
  			end: end,
  			classId: req.body.classId
  		}).then(function(savedEvent) {
+ 			var mappedDataValue = savedEvent.dataValues;
+ 			console.log('savedEvent is ---------------------!!!!!!!!!!!!!', savedEvent);
+ 			var newEvent = _.pick(mappedDataValue, ['title','start','end']);
+ 			console.log('new event is -------------------!!!!!!!!!!!!', newEvent);
+ 			res.send(newEvent);
  			console.log('SAVED TO DB!');
  		}).catch(function(error){
  			console.log('ERROR:', error);

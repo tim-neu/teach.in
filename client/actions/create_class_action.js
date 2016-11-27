@@ -17,7 +17,7 @@ export function createClassEvent(name, start, end, date, classId) {
 		})
 		.then(function (resp) {
 			console.log('the respo in createclassactions createClassEvent is:', resp.data);
-			disptach({ type: CREATE_CLASS_EVENT, payload: resp.data });
+			dispatch({ type: CREATE_CLASS_EVENT, payload: resp.data });
 		})
 		.catch(function (err) {
 			console.log(' the err in create class event is:', err);
