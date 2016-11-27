@@ -20,7 +20,7 @@ class AddClass extends Component {
 	render () {
 		return (
 			<div>
-				<p>Add a Class:</p>
+				<p className='classListHeader'>My Classes</p>
 				<form className='addClassForm input-group'>
 					<input 	
 						type='text'
@@ -31,7 +31,7 @@ class AddClass extends Component {
 						className='form-control'
 					/>
 					<div className='input-group-btn'>
-					<button className='btn btn-secondary' type='submit' onSubmit={this.handleSubmit} onClick={this.handleSubmit}>Submit</button>
+					<button className='btn btn-secondary' type='submit' onSubmit={this.handleSubmit} onClick={this.handleSubmit}>Add</button>
 					</div>
 				</form>
 			</div>

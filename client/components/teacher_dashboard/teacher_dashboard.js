@@ -59,16 +59,21 @@ class TeacherDashboard extends Component {
 			  <DashboardNav />
 			  <div className="container">
 			  	<div className="row top">
-			  		<div className="col-lg-4 profile addClassForm">
+			  		<div className="col-lg-4 profile">
 						<UserInformation />
-						<AddClass />
 					</div>
 					<div className="col-lg-8">
 						<Calendar teacherEmail={this.state.email}/>
 					</div>
 			  	</div>
+			  	<div className='row top'>
+			  		<div className='col-lg-4 classList addClassForm'>
+			  			<AddClass />
+			  			<Classes />
+			  		</div>
+			  	</div>
 			  </div>
-			  <Classes />
+
 		  </div>
 			)
 		}
