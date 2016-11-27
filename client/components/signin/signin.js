@@ -36,7 +36,7 @@ import _ from 'lodash';
     self = this;
     setTimeout(()=> {
         self.setState({ showInvalidEmail: true });
-    }, 1750);
+    }, 2000);
     self.setState({ submitted: true });
     event.preventDefault();
     _.delay(function () {
@@ -45,7 +45,6 @@ import _ from 'lodash';
           email: self.state.email,
           password: self.state.password,
         }).then(function (response) {
-          console.log('the teacher should be authenticated', response.data);
           if (response.data === 'Authenticated'){
             localStorage.setItem("email", self.state.email);
             self.props.setUserType('teacher');
@@ -64,7 +63,6 @@ import _ from 'lodash';
           email: self.state.email,
           password: self.state.password,
         }).then(function (response) {
-          console.log('the student should be authenticated', response.data);
           if (response.data === 'Authenticated') {
             localStorage.setItem("email", self.state.email);
             self.props.setUserType('student');
