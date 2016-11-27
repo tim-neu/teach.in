@@ -13,8 +13,8 @@ const Home = function(){
 			  <div className="col-lg-6 col-md-6 col-sm-6" id="hero-buttons-row">
 			  	<h3 id="hero-sighnup">Sign Up:</h3>
 			  	<div className="btn-group" id="desktop-buttons">
-			  	<button className="hero-buttons btn btn-primary" id="hero-button">Teacher</button>
-			  	<button className="hero-buttons btn btn-primary" id="hero-button">Student</button>
+			  	<Link to="/teacherSignUp" className="hero-buttons btn btn-primary teacher-hero-button hero-button" >Teacher</Link>
+			  	<Link to="studentSignUp"  className="hero-buttons btn btn-primary student-hero-button hero-button" >Student</Link>
 			  	</div>
 			  </div>
 			  </div>
@@ -27,8 +27,8 @@ const Home = function(){
 			  <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="hero-buttons-row">
 			  	<h3 id="mobile-sighnup">Sign Up:</h3>
 			  	<div className="btn-group" id="mobile-buttons">
-			  	<button className="hero-buttons btn btn-primary" id="hero-button">Teacher</button>
-			  	<button className="hero-buttons btn btn-primary" id="hero-button">Student</button>
+			  	<button className="hero-buttons btn btn-primary teacher-hero-button" >Teacher</button>
+			  	<button className="hero-buttons btn btn-primary student-hero-button" >Student</button>
 			  	</div>
 			  </div>
 			  </div>

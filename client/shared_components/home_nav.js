@@ -23,19 +23,19 @@ import { logOut } from '../actions/sign_in_actions.js'
       link = <Link to="/home" className="btn btn-default navbar-btn" onClick={this.handleClick}>SIGN OUT</Link>
     } else {
       link =
-      <div>           
+      <div>
+
           <Link to="/teacherSignIn" className="btn navbar-btn">TEACHER LOGIN</Link>
           <Link to="/studentSignIn" className="btn navbar-btn">STUDENT LOGIN</Link>
-          <Link to="/teacherSignUp" className="btn navbar-btn">TEACHER SIGN UP</Link>
-          <Link to="/studentSignUp" className="btn navbar-btn">STUDENT SIGN UP</Link>
       </div>;
     }
     return (
       <div>
         <nav id="navbar">
-          <div className="row">
+          <div className="row" id="home-nav-links">
             <Link to="/home" className="nav-logo">Teach.in</Link>
             <section className="nav-links">
+
             {link}
             </section>
           </div>

@@ -48,10 +48,7 @@ class CreateClassEvent extends Component {
 						value={this.state.date} 
 						onChange={date => this.setState({ date: date.target.value })}
 					/>
-					<div>
-					<button onClick={this.handleSubmit}>Submit</button>
-					<button>Cancel</button>
-					</div>
+					<input id="class-event-submit" type="submit" onClick={this.handleSubmit} />
 				</form>
 			</div>
 		);
