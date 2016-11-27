@@ -21,11 +21,11 @@ class Classes extends Component {
 
 	render () {
 		var classList = this.props.classes.map((Class, i) => {
-			return <div key={Class.name}><Link to={{ pathname: '/class', query: { className: Class.name, classId: Class.id }}}><li key={i}> {Class.name} </li> </Link></div>
+			return <div key={Class.name}><Link to={{ pathname: '/class', query: { className: Class.name, classId: Class.id }}}><li key={i} className='classListItem'> {Class.name} </li> </Link></div>
 		});
 
 		return (
-			<div> Classes
+			<div>
 				<ul> {classList} </ul>
 			</div>
 		);
