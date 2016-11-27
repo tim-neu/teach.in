@@ -161,11 +161,13 @@ class Class extends Component {
   				  </div>
   				  <div className="row">
   				  	<div className="col-lg-8">
-  				  		<ClassCalendar classId={this.props.location.query.classId}/>
-  				  		<CreateClassEvent classId={this.props.location.query.classId}/>
+  				  		<div id="calendar-container">
+  				  			<ClassCalendar classId={this.props.location.query.classId}/>
+  				  			<CreateClassEvent classId={this.props.location.query.classId}/>
+  				  		</div>
   				  		<div className="col-lg-6 resourceUploadForm">
   				  			<p className='componentHeader'>Resources</p>
-  				  			<form onSubmit={this.handleMediaSubmit}>
+  				  			<form id="resource-form"onSubmit={this.handleMediaSubmit}>
 								<input id="input" type="file" name="pic" accept="image/*" />
 								<button type="submit">submit</button>
 							</form>
@@ -180,16 +182,15 @@ class Class extends Component {
     	  	</div>
 		
   				<div className="row">
-  				  <div className="col-lg-4 createAssignment">
+  				  <div className="col-lg-4 createAssignment class-bottom-row">
   				  		<p className='componentHeader'>Create Assignment</p>
 						<AssignmentForm classTitle={this.state.className}/>
   				  </div>
-  				  <div className="col-lg-4 assignmentList">
+  				  <div className="col-lg-4 assignmentList class-bottom-row">
   				  		<p className='componentHeader'>Assignment List</p>
 						<AssignmentList classId={this.state.classId} classTitle={this.state.className}/>
   				  </div>
-  				  <div className="col-lg-4 grades">
-  				    <p className='componentHeader'>Grades</p>
+  				  <div className="col-lg-4 grades class-bottom-row">
 				  	<AssignmentGradesForm currentAssignment={this.props.currentAssignment} associated={this.props.currentAssociatedStudents} students={this.props.currentAssociatedStudents} submittingGrade={this.state.submittingGrade} classTitle={this.state.className} onSubmit={this.onSubmit}/>
   				  </div>
     	  	</div>

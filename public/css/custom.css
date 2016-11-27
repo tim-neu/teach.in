@@ -127,9 +127,9 @@ textarea:focus, input:focus{
 }
 
 .assignment-grade-form input {
-    margin: 0px 0px 20px 0px;
+    margin: 20px 0px 0px 0px;
+    border: none;
 }
-
 .assignment-name {
     font-size: 18px;
 }
@@ -164,8 +164,8 @@ textarea:focus, input:focus{
 }
 
 .hero-buttons:hover {
-    background-color: #fff;
-    color: #7625FB;
+    background-color: #fff !important;
+    color: #7625FB !important;
     border: 1px solid #fff;
 }
 
@@ -233,7 +233,7 @@ div#mobile-view {
     position: relative;
     display: inline-block;
     z-index: 1000;
-    top:10px;
+    top:20px;
     height:40px;
     width: 20px;
 }
@@ -265,6 +265,17 @@ div#mobile-view {
     z-index: 1000;
 }
 
+#calendar-container {
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+}
+
+#class-event-submit {
+    height: 30px;
+    font-size: 12px;
+}
 
 @media only screen and (max-width:767px) { 
 
@@ -286,4 +297,8 @@ div#mobile-view {
 
 .navbar {
      border-radius: 0px; 
+}
+
+#home-nav-links {
+    margin-right:15px;
 }
