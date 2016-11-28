@@ -20,7 +20,7 @@ import { logOut } from '../actions/sign_in_actions.js'
     const isLoggedIn = this.props.isAuthenticated;
     var link = null;
     if (isLoggedIn){
-      link = <Link to="/home" className="btn btn-default navbar-btn" onClick={this.handleClick}>SIGN OUT</Link>
+      link = <Link id="home-style" to="/home" className="btn btn-default navbar-btn" onClick={this.handleClick}>SIGN OUT</Link>
     } else {
       link =
       <div>

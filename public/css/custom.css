@@ -86,6 +86,27 @@ form {
     margin-top: 200px;
 }
 
+.teacher-upload-form {
+    margin: 0px;
+}
+
+.teacher-upload-form input {
+    width: 100%;
+    border: none;
+    margin: 0px;
+}
+
+.teacher-upload-form button {
+    background: #7625FB;
+    border: none;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 180px;
+    display: inherit;
+    text-align: left !important;
+    margin-bottom: 10px;
+}
+
 label {
     color: lightgray;
     background: #fff;

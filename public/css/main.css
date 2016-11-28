@@ -133,11 +133,26 @@ Upload Form Styling
 }
 
 .uploadForm input {
-	width: 100%;
-	text-align: left;
-	padding: 0px;
-	margin: 0px;
-	border: none;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 4px;
+    border: none;
+}
+
+#home-style {
+    background: transparent;
+    color: #fff;
+    border: none;
+}
+
+.uploadForm button {
+    background: #7600FF;
+    color: #fff;
+    border: none;
+    border-radius: 180px;
+    padding: 3px 8px;
+    margin-bottom: 10px;
 }
 
 #nameValue {
@@ -286,6 +301,7 @@ Resource Upload Form
 	height: 259px;
 	margin: 0px 21px 15px 0px;
 	width: 48.5%;
+	overflow: hidden;
 }
 
 .resourceUploadForm form {
