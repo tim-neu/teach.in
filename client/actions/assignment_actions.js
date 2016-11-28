@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {getClassGPA} from './points_actions.js';
 import { HANDLE_SUBMIT_ASSIGNMENTS } from './types';
 import { ALL_TEACHER_ASSIGNMENTS } from './types';
 import { SELECT_ASSIGNMENTS } from './types';
@@ -19,8 +20,9 @@ export function getAssignments (classId) {
 
 }
 
-export function handleSubmitAssignment (name, classTitle, type, date, maxPoints) {
+export function handleSubmitAssignment (name, classTitle, type, date, maxPoints,classId) {
 	return function(dispatch) {
+		console.log([name, classTitle, type, date, maxPoints,classId])
 		axios.post('/api/teacher/classes/class/assignment', {
 					name: name,
 					className: classTitle,
@@ -30,10 +32,11 @@ export function handleSubmitAssignment (name, classTitle, type, date, maxPoints)
 				})
 			  .then(function (response) {
 					console.log('assignments:', response.data);
-					dispatch({type: HANDLE_SUBMIT_ASSIGNMENTS, payload: response.data})
+					dispatch({type: HANDLE_SUBMIT_ASSIGNMENTS, payload: response.data});
+					getClassGPA(classId);
   			})
   	  	.catch(function (error) {
-  	  		console.log("error with the assignment post");
+  	  		console.log("error with the assignment post", error);
   	  	})
 	}
 

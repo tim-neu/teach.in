@@ -277,6 +277,26 @@ div#mobile-view {
     font-size: 12px;
 }
 
+.assignment-grade-form button {
+    background-color: #7625FB;
+    border-radius: 180px;
+    border: none;
+    color: #fff;
+    padding: 4px 8px;
+}
+
+.assignmentForm button {
+    margin: 20px 19px;
+    background-color: #7625FB;
+    color: #fff;
+    width: 100px;
+    border-radius: 180px;
+}
+  
+form.assignment-grade-form input {
+    width: 19.5%;
+}
+
 @media only screen and (max-width:767px) { 
 
     #navbar {
@@ -301,4 +321,112 @@ div#mobile-view {
 
 #home-nav-links {
     margin-right:15px;
+}
+
+.teacher-dashboard-nav {
+    display: inline;
+    float: right;
+    position: relative;
+    top: 8px;
+}
+
+.home-container {
+    padding: 0;
+    margin:0;
+    width: 100% !important;
+}
+
+#after-hero {
+    height:100vh;
+    background-image: url("https://s3.amazonaws.com/teach.in123454321/teachin-desk-white-bg.png");
+    background-size: cover;
+}
+
+#after-hero h2, #info-section h2, #info-section h2{
+    color: #7625FB;
+    font-size: 60px;
+    margin-top: 50px;
+}
+
+#info-section h2 {
+    margin-bottom: 50px;
+}
+
+.feature-row {
+    margin: 75px 0px;
+}
+
+.feature-row p {
+    color: #95989A;
+}
+
+.feature-row h3 {
+    font-size: 40px;
+    color:#95989A;
+    font-weight: 500;
+    margin-bottom:20px;
+}
+
+.feature-text {
+    padding: 0px 40px;
+}
+
+.feature-row img {
+    width: 350px;
+}
+
+#info-section p {
+    line-height: 1.8;
+}
+
+#after-hero h3{
+    color:#95989A;
+    font-weight: 300;
+    font-size: 30px;
+}
+
+.teacher-dashboard-nav:hover a {
+    color:#fff !important;
+}
+
+.after-feature a {
+    margin: auto;
+    font-size: 25px;
+    background: #fff;
+    padding: 10px 40px;
+    border-radius: 180px;
+    color: #7625FB;
+    border: #7625FB 2.5px solid;
+    top: 42%;
+    position: relative;
+    text-decoration: none;
+}
+
+#home-bottom-button-container{
+    height: 400px;
+}
+
+#home-desk-image {
+    height: 400px;
+    background: url('https://s3.amazonaws.com/teach.in123454321/teach.jpg');
+}
+
+.dev-team {
+    background-color: #EFEFEF;
+    padding: 0px 50px;
+}
+
+.dev-team h2 {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.team-name {
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.footer {
+    height: 200px;
+    background-color: #7625FB;
 }

@@ -50,8 +50,8 @@ class AssignmentGradesForm extends Component {
     }
 
     return (<div>
-        <div className="assignment-name">
-          <p className='componentHeader'>Grades for {assignmentName}</p> 
+        <div>
+          <h3 className='componentHeader'>Grades for {assignmentName}</h3> 
         </div>
         {studentsMap}
       </div>

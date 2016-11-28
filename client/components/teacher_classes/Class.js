@@ -149,12 +149,12 @@ class Class extends Component {
   			  <DashboardNav />
     	  </div>
 
-    	  <div className="container">
+    	  <div className="container" id="class-dashboard-container">
 
     	  	<div className="row top">
   				  <div className="col-lg-4 studentList">
   				  		<div>
-							<p className='componentHeader'>{this.state.className} Roster</p>
+							<h3 className='componentHeader'>{this.state.className} Roster</h3>
   				  			<Select isLoading={this.state.isLoading} name= "form-field-name" value="one" onValueClick={this.addStudent} options={this.state.foundStudents} onInputChange={this.onChange} onChange={this.addStudent} />
 							<ul className='listHeight'> {studentList} </ul>
 						</div>
@@ -166,7 +166,7 @@ class Class extends Component {
   				  			<CreateClassEvent classId={this.props.location.query.classId}/>
   				  		</div>
   				  		<div className="col-lg-6 resourceUploadForm">
-  				  			<p className='componentHeader'>Resources</p>
+  				  			<h3 className='componentHeader'>Resources</h3>
   				  			<form id="resource-form"onSubmit={this.handleMediaSubmit}>
 								<input id="input" type="file" name="pic" accept="image/*" />
 								<button type="submit">submit</button>
@@ -174,7 +174,7 @@ class Class extends Component {
 							<ResourceList classId={this.state.classId} classTitle={this.state.className}/>
   				  		</div>
   				  		<div className="col-lg-6 chart">
-  				  			<p className='componentHeader'>Class Avg</p>
+  				  			<h3 className='componentHeader'>Class Avgerage</h3>
   				  			<PointsChart classId={this.state.classId}/>
   				  		</div>
   				  	</div>
@@ -183,11 +183,11 @@ class Class extends Component {
 		
   				<div className="row">
   				  <div className="col-lg-4 createAssignment class-bottom-row">
-  				  		<p className='componentHeader'>Create Assignment</p>
+  				  		<h3 className='componentHeader'>Create Assignment</h3>
 						<AssignmentForm classTitle={this.state.className}/>
   				  </div>
   				  <div className="col-lg-4 assignmentList class-bottom-row">
-  				  		<p className='componentHeader'>Assignment List</p>
+  				  		<h3 className='componentHeader'>Assignment List</h3>
 						<AssignmentList classId={this.state.classId} classTitle={this.state.className}/>
   				  </div>
   				  <div className="col-lg-4 grades class-bottom-row">

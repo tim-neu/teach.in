@@ -13,7 +13,7 @@ class AssignmentForm extends Component {
 	handleSubmitAssignment(event){
 		self = this;
 		event.preventDefault();
-		self.props.handleSubmitAssignment(self.state.name, self.props.classTitle, self.state.type, self.state.date, self.state.maxPoints);
+		self.props.handleSubmitAssignment(self.state.name, self.props.classTitle, self.state.type, self.state.date, self.state.maxPoints,self.state.classId);
 	}
 
 	render () {
