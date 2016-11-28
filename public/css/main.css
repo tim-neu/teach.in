@@ -134,11 +134,10 @@ Upload Form Styling
 
 .uploadForm input {
 	width: 100%;
-    text-align: left;
-    padding: 0px;
-    margin: 0px;
-    border-radius: 4px;
-    height: 30px;
+	text-align: left;
+	padding: 0px;
+	margin: 0px;
+	border: none;
 }
 
 #nameValue {
