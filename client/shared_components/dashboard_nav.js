@@ -23,11 +23,12 @@ import { browserHistory } from 'react-router';
   render () {
     return (
       <nav className="navbar navbar-default">
-        <div className="row">
-          <Link to="/home" id="nav-logo">Teach.in</Link>
-          <Link to="/dashboard" className="btn btn-default navbar-btn">DASHBOARD</Link>
-          <Link to="/classes" className="btn btn-default navbar-btn">CLASSES</Link>
-          <Link to="/home" className="btn btn-default navbar-btn" onClick={this.handleClick}>SIGNOUT</Link>
+        <div className="row" id="dashboard-nav">
+          <Link to="/home" className="nav-logo">Teach.in</Link>
+          <section className="teacher-dashboard-nav">
+            <Link to="/dashboard" className="btn">DASHBOARD</Link>
+            <Link to="/home" className="btn" onClick={this.handleClick}>SIGNOUT</Link>
+          </section>
         </div>
       </nav>
     );

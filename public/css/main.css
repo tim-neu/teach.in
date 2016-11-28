@@ -111,6 +111,14 @@ Assignment Form Styling
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
+    width:100%;
+}
+
+#class-dashboard-container div h3 {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
 }
 
 /*
@@ -212,6 +220,7 @@ Student List
 .studentList {
 	border: 1px solid #e5e5e5;
 	border-radius: 12px;
+	height:735px;
 }
 
 .Select-menu-outer {
@@ -246,7 +255,6 @@ Roster Component
 }
 
 .listHeight {
-	height: 550px;
 	overflow: hidden;
 	overflow-y: scroll;
 }
@@ -373,6 +381,8 @@ Grades
 Class List
 
 */
+
+
 
 .classListHeader {
 	color: #AEB4B7;
