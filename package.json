@@ -7,6 +7,7 @@
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watch",
     "bundle": "webpack -w",
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress",
     "start": "nodemon server/server.js --history-api-fallback"
   },
   "babel": {
