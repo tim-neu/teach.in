@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const dotenv = require('dotenv').load();
-// const sequelize = new Sequelize(process.env.DB_URL);
-const sequelize = new Sequelize('postgres://hmfhocyp:fD7IzCJTB-7g5AMH6e0FKWzXqBmMmnVL@elmer.db.elephantsql.com:5432/hmfhocyp');
+const sequelize = new Sequelize(process.env.DB_URL);
+// const sequelize = new Sequelize('postgres://hmfhocyp:fD7IzCJTB-7g5AMH6e0FKWzXqBmMmnVL@elmer.db.elephantsql.com:5432/hmfhocyp');
 // const sequelize = new Sequelize('postgres://nhhfsvxl:PmfmyAew57jYcGCbVPbLg2A2n13rEyXD@elmer.db.elephantsql.com:5432/nhhfsvxl');
 
 module.exports = {
@@ -35,57 +35,5 @@ Group.belongsToMany(Student, { through: 'groupStudents' });
 GroupMessages.belongsTo(Group);
 GroupMessages.hasMany(GroupMessages, { as: 'nestedMessages'});
 Event.belongsTo(Class);
-
-// Teacher.create({
-// 	name: 'teacher1',
-// 	email: 'teacher1@gmail.com',
-// 	password: 'teacher1pw'
-// })
-//Class.hasOne(resource);
-
-sequelize.sync({ force: true }).then(function () {
-	var teacher1 = Teacher.build({
-		name: 'teacher1',
-		email: 'teacher1@gmail.com',
-		password: 'teacher1pw',
-	});
-	var class1 = Class.build({
-		name: 'Math',
-	});
-
-	// var student1 = Student.build({
-	// 	name: 'student1',
-	// });
-	// var resource1 = Resource.build({
-	// 	url: 'url1forclass1',
-	// });
-	// teacher1.save().then(function (savedTeacher) {
-	// 	class1.save().then(function (savedClass) {
-	// 		// teacher1.setClass(this);
-	// 		savedClass.setTeacher(savedTeacher);
-	// 		student1.save().then(function (savedStudent) {
-	// 			savedClass.addStudent(savedStudent);
-	// 			// savedStudent.addClass(savedClass);
-	// 			// this.setClass([class1]);
-	// 			// class1.setStudent([student1]);
-	// 		});
-
-	// 		resource1.save().then(function () {
-	// 			this.setClass(class1);
-	// 		});
-	// 	});
-	// });
-
-	// Student.findOne({
-	// 	where: { id: 1 },
-	// })
-	// .then(function (student) {
-	// 	Class.findOne({
-	// 		where:{ id: 1 },
-	// 	})
-	// 	.then(function (foundClass) {
-	// 		student.setClass(foundClass);
-	// 	});
-	// });
-});
+sequelize.sync().then(function () {});
 
