@@ -34,11 +34,10 @@ import { postStudentPhoto, getStudentPhoto } from '../../actions/student_profile
     };
 
     return (
-      <div>
+      <div className='top'>
         <img id="profile-photo" src={picture} />
         <h4>{name}</h4>
-        <form>
-          <input id="nameValue" type="text" />
+        <form className='uploadForm'>
           <input id="input" type="file" name="pic" />
         </form>
         <button onClick={this.handlePostStudentPhoto}> Submit </button>

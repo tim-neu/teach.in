@@ -79,7 +79,6 @@ export default class Calendar extends Component {
           startAccessor={this.state.events.start}
           endAccessor={this.state.events.end}
           scrollToTime={new Date(1970, 1, 1, 7)}
-          defaultDate={new Date(2016, 10, 11)}
         />
       </div>
     )

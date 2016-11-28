@@ -17,18 +17,19 @@ class StudentClassCards extends Component {
 		let studentClassList = this.props.studentClasses ?
 		this.props.studentClasses.map(function (singleClass) {
 			return (
-				<div key={singleClass.name}>
-					<h1>{singleClass.name}</h1>
-					<div> Grade: { singleClass.classStudents.grade? singleClass.classStudents.grade : 'No Grade yet'}</div>
-					<div> Your Points : { singleClass.classStudents.points? singleClass.classStudents.points : 'No Points yet'}</div>
-					<div> Total Points: { singleClass.totalPoints? singleClass.totalPoints : 'No assignments yet' } </div>
-					<div> Percent in Class : { singleClass.classStudents.percent? singleClass.classStudents.percent : 'No Percent yet'}</div>
+				<div className='col-lg-4 card' key={singleClass.name}>
+					<h3 className='componentHeader'>{singleClass.name}</h3>
+					<div className='classCard'> Grade: { singleClass.classStudents.grade? <strong>{singleClass.classStudents.grade}</strong> : 'No Grade yet'}</div>
+					<div className='classCard'> Your Points: { singleClass.classStudents.points? <strong>{singleClass.classStudents.points}</strong> : 'No Points yet'}</div>
+					<div className='classCard'> Total Points: { singleClass.totalPoints? <strong>{singleClass.totalPoints}</strong> : 'No assignments yet' } </div>
+					<div className='classCard'> Percent in Class: { singleClass.classStudents.percent? <strong>{singleClass.classStudents.percent}%</strong> : 'No Percent yet'}</div>
+					<div className='classCard'> Resources: </div>
 					<ul>
 						{ singleClass.resources ?
 						singleClass.resources.map(function(resource){
 							return  <li key={resource.name}> <a href={resource.url}> { resource.name } </a> </li>
 						}) :
-						null
+						'No Resources have been released'
 						}
 					</ul>
 				</div>
