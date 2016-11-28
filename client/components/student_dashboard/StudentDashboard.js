@@ -57,14 +57,19 @@ class StudentDashboard extends Component {
 			  <DashboardNav />
 			  <div className="container">
 			  <div className="row">
-			  	<div className="col-lg-4">
+			  	<div className="col-lg-4 student-profile">
 					<StudentInformation studentEmail={this.state.email}/>
 				</div>
 				<div className="col-lg-8">
-					<Calendar teacherEmail={this.state.email}/>
+					<div id="calendar-container">
+						<Calendar teacherEmail={this.state.email}/>
+					</div>
 				</div>
 			  </div>
-			  <StudentClassCards />
+			  	<div className='cardContainer'>
+			  		<h2 className='componentHeader'>My Classes</h2>
+			  		<StudentClassCards />
+			  	</div>
 			  </div>  
 		  </div>
 			)

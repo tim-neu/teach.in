@@ -183,7 +183,7 @@ class Class extends Component {
 		
   				<div className="row">
   				  <div className="col-lg-4 createAssignment class-bottom-row">
-  				  		<p className='componentHeader'>Create Assignment</p>
+  				  		<p className='createAssignmentHeader'>Create Assignment</p>
 						<AssignmentForm classTitle={this.state.className}/>
   				  </div>
   				  <div className="col-lg-4 assignmentList class-bottom-row">
