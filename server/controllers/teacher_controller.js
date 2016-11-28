@@ -13,58 +13,6 @@ const mapPercentToGrade = require('../helpers/helpers').mapPercentToGrade;
 
 teacherController.SIGNUP = (req, res) => {
 
-	//seeding two classes automatically for this teacher
-	var classArr = [];
-	for (let i = 0; i < 2; i++) {
-		let classI = Class.build({
-			name: 'class ' + i,
-			totalPoints: 400,
-		});
-		classArr.push(classI);
-	};
-
-	var studentArr1 = [];
-	for (let i = 0; i < 10; i++) {
-		let studentI = Student.build({
-			name: 'student' + i,
-			gpa: 4 - (Math.random() * 3).toFixed(2),
-			email: 'email' + i,
-			picture_url: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png',
-		});
-		studentArr1.push(studentI.save());
-	}
-
-	var studentArr2 = [];
-	for (let i = 10; i < 20; i++) {
-		let studentI = Student.build({
-			name: 'student' + i,
-			email: 'email' + i,
-			gpa: 4 - (Math.random()*3).toFixed(2),
-			picture_url: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png',
-		});
-		studentArr2.push(studentI.save());
-	}
-
-	var assignmentArr1 = [];
-	for (let i = 0; i < 4; i++) {
-		let assignmentI = Assignment.build({
-			name: 'Assignment' + i,
-			maxPoints: 100,
-		});
-		assignmentArr1.push(assignmentI.save());
-	}
-
-	var student1Assignment1 = studentArr1.concat(assignmentArr1);
-	var assignmentArr2 = [];
-	for (let i = 4; i < 8; i++) {
-		let assignmentI = Assignment.build({
-			name: 'Assignment' + i,
-			maxPoints: 100,
-		});
-		assignmentArr2.push(assignmentI.save());
-	}
-	var student2Assignment2 = studentArr2.concat(assignmentArr2);
-
 	console.log('i changed the password from 123 to:', req.body.password);
 	Teacher.create({
 		name: req.body.name,
@@ -73,6 +21,58 @@ teacherController.SIGNUP = (req, res) => {
 		picture: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png'
 	}).then((teacher) => {
 		if (req.body.email === 'teacher@edu.com') {
+			//seeding two classes automatically for this teacher
+			var classArr = [];
+			for (let i = 0; i < 2; i++) {
+				let classI = Class.build({
+					name: 'class ' + i,
+					totalPoints: 400,
+				});
+				classArr.push(classI);
+			};
+
+			var studentArr1 = [];
+			for (let i = 0; i < 10; i++) {
+				let studentI = Student.build({
+					name: 'student' + i,
+					gpa: 4 - (Math.random() * 3).toFixed(2),
+					email: 'email' + i,
+					picture_url: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png',
+				});
+				studentArr1.push(studentI.save());
+			}
+
+			var studentArr2 = [];
+			for (let i = 10; i < 20; i++) {
+				let studentI = Student.build({
+					name: 'student' + i,
+					email: 'email' + i,
+					gpa: 4 - (Math.random()*3).toFixed(2),
+					picture_url: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png',
+				});
+				studentArr2.push(studentI.save());
+			}
+
+			var assignmentArr1 = [];
+			for (let i = 0; i < 4; i++) {
+				let assignmentI = Assignment.build({
+					name: 'Assignment' + i,
+					maxPoints: 100,
+				});
+				assignmentArr1.push(assignmentI.save());
+			}
+
+			var student1Assignment1 = studentArr1.concat(assignmentArr1);
+			var assignmentArr2 = [];
+			for (let i = 4; i < 8; i++) {
+				let assignmentI = Assignment.build({
+					name: 'Assignment' + i,
+					maxPoints: 100,
+				});
+				assignmentArr2.push(assignmentI.save());
+			}
+			var student2Assignment2 = studentArr2.concat(assignmentArr2);
+
 			//console.log(teacher,"teacher")
 
 			//Code below seeds two classes to the teacher;

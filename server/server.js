@@ -31,4 +31,4 @@ app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'))
 })
 //app.get('/api', function(req,res){res.send('i made it')});
-app.listen(PORT, () => console.log('Server running on port', PORT));
+app.listen(process.env.PORT || PORT, () => console.log('Server running on port', PORT));
