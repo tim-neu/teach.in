@@ -16,7 +16,7 @@ import Signup from './components/signup/signup.js';
 import Signin from './components/signin/signin.js';
 import TeacherDashboard from './components/teacher_dashboard/teacher_dashboard.js';
 import Calendar from './shared_components/Calendar.js';
-import Home from './components/home/home.js';
+import Home from './components/home/Home.js';
 import Classes from './components/teacher_classes/Classes';
 import Class from './components/teacher_classes/Class';
 import routes from './router';

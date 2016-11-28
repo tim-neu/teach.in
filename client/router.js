@@ -13,7 +13,7 @@ import TeacherDashboard from './components/teacher_dashboard/teacher_dashboard.j
 import StudentDashboard from './components/student_dashboard/StudentDashboard.js';
 import Calendar from './shared_components/Calendar.js';
 import Upload from './shared_components/Upload-Component.js';
-import Home from './components/home/home.js';
+import Home from './components/home/Home.js';
 import Classes from './components/teacher_classes/Classes';
 import Class from './components/teacher_classes/Class';
 import ClassGradeDash from './components/teacher_class/ClassGradeDash';
