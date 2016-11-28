@@ -120,7 +120,7 @@ class Class extends Component {
 		var settings = {
 		  "async": true,
 		  "crossDomain": true,
-		  "url": "http://localhost:8000/api/upload/s3",
+		  "url": "/api/upload/s3",
 		  "method": "POST",
 		  "name": "name",
 		  "headers": {

@@ -301,6 +301,7 @@ Resource Upload Form
 	height: 259px;
 	margin: 0px 21px 15px 0px;
 	width: 48.5%;
+	overflow: hidden;
 }
 
 .resourceUploadForm form {
