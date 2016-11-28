@@ -38,7 +38,6 @@ class ClassCalendar extends Component {
           startAccessor={this.props.events.start}
           endAccessor={this.props.events.end}
           scrollToTime={new Date(1970, 1, 1, 7)}
-          defaultDate={new Date(2016, 10, 11)}
         />
       </div>
     )
