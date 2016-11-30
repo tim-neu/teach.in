@@ -17,40 +17,12 @@ class TeacherDashboard extends Component {
 	this.state = {
 		email: localStorage.getItem("email")
 	};
-	this.handleMediaSubmit = this.handleMediaSubmit.bind(this);
 	}
 
 	componentWillMount() {
 	  if (sessionStorage.getItem('isAuthenticated') === 'false' || !sessionStorage.getItem('isAuthenticated')) {
 	    browserHistory.push('/home');
 	  }
-	}
-
-	handleMediaSubmit(event){
-		event.preventDefault();
-		var selectedFile = document.getElementById('input').files[0];
-		var fileName = document.getElementById('input').val;
-		var form = new FormData();
-		form.append("file", selectedFile);
-		form.append("teacherEmail", localStorage.getItem("email"));
-
-		var settings = {
-		  "async": true,
-		  "crossDomain": true,
-		  "url": "/api/upload/s3",
-		  "method": "POST",
-		  "name": "name",
-		  "headers": {
-		    "cache-control": "no-cache",
-		  },
-		  "processData": false,
-		  "contentType": false,
-		  "mimeType": "multipart/form-data",
-		  "data": form
-		}
-
-		$.ajax(settings).done(function (response) {
-		});
 	}
 
 	render(){
