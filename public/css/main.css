@@ -5,7 +5,7 @@ Teacher Dashboard
 */
 
 .class-bottom-row {
-	height:400px;
+	height: 415px;
 }
 
 .top {
@@ -129,6 +129,7 @@ Upload Form Styling
 
 .uploadForm {
 	margin-top: 15px;
+	display: inline-block;
 }
 
 .uploadForm input {
@@ -163,6 +164,8 @@ Upload Form Styling
 
 .uploadForm form {
     margin: 0px;
+    width: 100%;
+    padding: 0px;
 }
 
 /*
@@ -174,6 +177,18 @@ Profile
 .profile {
 	border: 1px solid #e5e5e5;
 	border-radius: 12px;
+}
+
+/*
+
+Student Profile
+
+*/
+
+.student-profile {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+	height: 382px;
 }
 
 
@@ -286,6 +301,7 @@ Resource Upload Form
 	height: 259px;
 	margin: 0px 21px 15px 0px;
 	width: 48.5%;
+	overflow: hidden;
 }
 
 .resourceUploadForm form {
@@ -326,6 +342,12 @@ Create Assignment
 
 */
 
+.createAssignmentHeader {
+	color: #AEB4B7;
+	font-size: 18px;
+    margin: 10px 0px 10px 0px;
+}
+
 .createAssignment {
 	border: 1px solid #e5e5e5;
 	border-radius: 12px;
@@ -340,13 +362,13 @@ Create Assignment
 .createAssignment .labelForm {
 	text-align: left;
 	margin: 0px;
-	font-size: 12px;
+	font-size: 14px;
 	color: #AEB4B7;
 }
 
 /*
 
-Create Assignment
+Assignment List
 
 */
 
@@ -414,4 +436,34 @@ Class List
 	margin-bottom: 15px;
 	border-bottom: 1px solid #e5e5e5;
 	padding-bottom: 10px;
+}
+
+
+/*
+
+Cards
+
+*/
+
+.card {
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    margin: 8px 8px 8px 8px;
+    width: 31.9%;
+    height: 250px;
+    padding: 0px 15px 0px 15px;
+}
+
+.classCard {
+	margin: 10px 0px;
+}
+
+.cardContainer {
+	border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    margin: 5px 15px 15px 0px;
+    /* padding: 0px 15px 0px 15px; */
+    height: 545px;
+    overflow: hidden;
+    overflow-y: scroll;
 }

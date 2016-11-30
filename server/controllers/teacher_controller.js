@@ -13,58 +13,6 @@ const mapPercentToGrade = require('../helpers/helpers').mapPercentToGrade;
 
 teacherController.SIGNUP = (req, res) => {
 
-	//seeding two classes automatically for this teacher
-	var classArr = [];
-	for (let i = 0; i < 2; i++) {
-		let classI = Class.build({
-			name: 'class ' + i,
-			totalPoints: 400,
-		});
-		classArr.push(classI);
-	};
-
-	var studentArr1 = [];
-	for (let i = 0; i < 10; i++) {
-		let studentI = Student.build({
-			name: 'student' + i,
-			gpa: 4 - (Math.random() * 3).toFixed(2),
-			email: 'email' + i,
-			picture_url: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png',
-		});
-		studentArr1.push(studentI.save());
-	}
-
-	var studentArr2 = [];
-	for (let i = 10; i < 20; i++) {
-		let studentI = Student.build({
-			name: 'student' + i,
-			email: 'email' + i,
-			gpa: 4 - (Math.random()*3).toFixed(2),
-			picture_url: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png',
-		});
-		studentArr2.push(studentI.save());
-	}
-
-	var assignmentArr1 = [];
-	for (let i = 0; i < 4; i++) {
-		let assignmentI = Assignment.build({
-			name: 'Assignment' + i,
-			maxPoints: 100,
-		});
-		assignmentArr1.push(assignmentI.save());
-	}
-
-	var student1Assignment1 = studentArr1.concat(assignmentArr1);
-	var assignmentArr2 = [];
-	for (let i = 4; i < 8; i++) {
-		let assignmentI = Assignment.build({
-			name: 'Assignment' + i,
-			maxPoints: 100,
-		});
-		assignmentArr2.push(assignmentI.save());
-	}
-	var student2Assignment2 = studentArr2.concat(assignmentArr2);
-
 	console.log('i changed the password from 123 to:', req.body.password);
 	Teacher.create({
 		name: req.body.name,
@@ -72,157 +20,211 @@ teacherController.SIGNUP = (req, res) => {
 		password: req.body.password,
 		picture: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png'
 	}).then((teacher) => {
-		//console.log(teacher,"teacher")
+		if (req.body.email === 'teacher@edu.com') {
+			//seeding two classes automatically for this teacher
+			var classArr = [];
+			for (let i = 0; i < 2; i++) {
+				let classI = Class.build({
+					name: 'class ' + i,
+					totalPoints: 400,
+				});
+				classArr.push(classI);
+			};
 
-		//Code below seeds two classes to the teacher;
-		for (let i = 0; i < classArr.length; i++) {
-			classArr[i].save().then(function (savedClass) {
-				savedClass.setTeacher(teacher);
-				if (i === 0) {
-					Promise.all(student1Assignment1)
-						.then(function (results) {
-							//console.log('the results should be a list of students and the length should be 14', results, results.length);
-							var assignmentStudentsGrade = [];
-							for (let k = 10; k < results.length; k++) {
-								var assignmentK = results[k];
-								assignmentK.setClass(savedClass);
-								for (let m = 0; m < 10; m++) {
-									let studentM = results[m];
-									var assignmentGrade = 100 - Math.floor((Math.random() * 40));
-									var studentObjWithAssignGrades = {};
-									studentObjWithAssignGrades.name = studentM.name;
-									studentObjWithAssignGrades.assignmentGrade = assignmentGrade;
-									assignmentStudentsGrade.push(studentObjWithAssignGrades);
-									assignmentK.addStudent(studentM, {
-										grade: assignmentGrade,
-									}).then(function(){
+			var studentArr1 = [];
+			for (let i = 0; i < 10; i++) {
+				let studentI = Student.build({
+					name: 'student' + i,
+					gpa: 4 - (Math.random() * 3).toFixed(2),
+					email: 'email' + i,
+					picture_url: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png',
+				});
+				studentArr1.push(studentI.save());
+			}
 
+			var studentArr2 = [];
+			for (let i = 10; i < 20; i++) {
+				let studentI = Student.build({
+					name: 'student' + i,
+					email: 'email' + i,
+					gpa: 4 - (Math.random()*3).toFixed(2),
+					picture_url: 'https://s3.amazonaws.com/teach.in123454321/blank-profile-picture-973460_960_720.png',
+				});
+				studentArr2.push(studentI.save());
+			}
+
+			var assignmentArr1 = [];
+			for (let i = 0; i < 4; i++) {
+				let assignmentI = Assignment.build({
+					name: 'Assignment' + i,
+					maxPoints: 100,
+				});
+				assignmentArr1.push(assignmentI.save());
+			}
+
+			var student1Assignment1 = studentArr1.concat(assignmentArr1);
+			var assignmentArr2 = [];
+			for (let i = 4; i < 8; i++) {
+				let assignmentI = Assignment.build({
+					name: 'Assignment' + i,
+					maxPoints: 100,
+				});
+				assignmentArr2.push(assignmentI.save());
+			}
+			var student2Assignment2 = studentArr2.concat(assignmentArr2);
+
+			//console.log(teacher,"teacher")
+
+			//Code below seeds two classes to the teacher;
+			for (let i = 0; i < classArr.length; i++) {
+				classArr[i].save().then(function (savedClass) {
+					savedClass.setTeacher(teacher);
+					if (i === 0) {
+						Promise.all(student1Assignment1)
+							.then(function (results) {
+								//console.log('the results should be a list of students and the length should be 14', results, results.length);
+								var assignmentStudentsGrade = [];
+								for (let k = 10; k < results.length; k++) {
+									var assignmentK = results[k];
+									assignmentK.setClass(savedClass);
+									for (let m = 0; m < 10; m++) {
+										let studentM = results[m];
+										var assignmentGrade = 100 - Math.floor((Math.random() * 40));
+										var studentObjWithAssignGrades = {};
+										studentObjWithAssignGrades.name = studentM.name;
+										studentObjWithAssignGrades.assignmentGrade = assignmentGrade;
+										assignmentStudentsGrade.push(studentObjWithAssignGrades);
+										assignmentK.addStudent(studentM, {
+											grade: assignmentGrade,
+										}).then(function(){
+
+										});
+									};
+								}
+								for (let j = 0; j < 10; j++) {
+									var studentJ = results[j];
+									var studentGrades = [];
+									for (var i = 0; i < assignmentStudentsGrade.length; i++) {
+										var studentAssignmentPair = assignmentStudentsGrade[i];
+										if (studentJ.name === studentAssignmentPair.name){
+											studentGrades.push(studentAssignmentPair.assignmentGrade);
+										}
+									}
+
+									var totalStudentPoints = studentGrades.reduce(function (combine, number) {
+										return combine + number;
+									}, 0); 
+									var totalPoints = 400;
+									var percent = totalStudentPoints / totalPoints * 100;
+									var grade;
+									if (percent < 60) {
+										grade = 'F';
+									}
+
+									if (percent >= 60 && percent < 70) {
+										grade = 'D';
+									}
+
+	 								if (percent >= 70 && percent < 80) {
+										grade = 'C';
+									}
+
+									if (percent >= 80 && percent < 90) {
+										grade = 'B';
+									}
+
+									if (percent >= 90) {
+										grade = 'A';
+									}
+
+									// var grades = ['A','B','C','D'];
+									// var index = Math.floor(Math.random()*3);
+									// var randomGrade = grades[index];
+									savedClass.addStudent(studentJ, {
+										grade: grade,
+										percent: percent,
+										points: totalStudentPoints,
 									});
 								};
-							}
-							for (let j = 0; j < 10; j++) {
-								var studentJ = results[j];
-								var studentGrades = [];
-								for (var i = 0; i < assignmentStudentsGrade.length; i++) {
-									var studentAssignmentPair = assignmentStudentsGrade[i];
-									if (studentJ.name === studentAssignmentPair.name){
-										studentGrades.push(studentAssignmentPair.assignmentGrade);
-									}
-								}
+							});
+					};
+					
+					let students2 = {};
+					if (i === 1) {
+						Promise.all(student2Assignment2)
+							.then(function (results) {
+								//console.log('the results should be a list of students and the length should be 14', results, results.length);
 
-								var totalStudentPoints = studentGrades.reduce(function (combine, number) {
-									return combine + number;
-								}, 0); 
-								var totalPoints = 400;
-								var percent = totalStudentPoints / totalPoints * 100;
-								var grade;
-								if (percent < 60) {
-									grade = 'F';
-								}
+								var assignmentStudentsGrade = [];
+								for (let k = 10; k < results.length; k++) {
+									var assignmentK = results[k];
+									assignmentK.setClass(savedClass);
+									for (let m = 0; m < 10; m++) {
+										let studentM = results[m];
+										var assignmentGrade = 100 - Math.floor((Math.random() * 40));
+										var studentObjWithAssignGrades = {};
+										studentObjWithAssignGrades.name = studentM.name;
+										studentObjWithAssignGrades.assignmentGrade = assignmentGrade;
+										assignmentStudentsGrade.push(studentObjWithAssignGrades);
+										assignmentK.addStudent(studentM, {
+											grade: assignmentGrade,
+										}).then(function(){
 
-								if (percent >= 60 && percent < 70) {
-									grade = 'D';
-								}
+										});
 
- 								if (percent >= 70 && percent < 80) {
-									grade = 'C';
-								}
-
-								if (percent >= 80 && percent < 90) {
-									grade = 'B';
-								}
-
-								if (percent >= 90) {
-									grade = 'A';
-								}
-
-								// var grades = ['A','B','C','D'];
-								// var index = Math.floor(Math.random()*3);
-								// var randomGrade = grades[index];
-								savedClass.addStudent(studentJ, {
-									grade: grade,
-									percent: percent,
-									points: totalStudentPoints,
-								});
-							};
-						});
-				};
-				
-				let students2 = {};
-				if (i === 1) {
-					Promise.all(student2Assignment2)
-						.then(function (results) {
-							//console.log('the results should be a list of students and the length should be 14', results, results.length);
-
-							var assignmentStudentsGrade = [];
-							for (let k = 10; k < results.length; k++) {
-								var assignmentK = results[k];
-								assignmentK.setClass(savedClass);
-								for (let m = 0; m < 10; m++) {
-									let studentM = results[m];
-									var assignmentGrade = 100 - Math.floor((Math.random() * 40));
-									var studentObjWithAssignGrades = {};
-									studentObjWithAssignGrades.name = studentM.name;
-									studentObjWithAssignGrades.assignmentGrade = assignmentGrade;
-									assignmentStudentsGrade.push(studentObjWithAssignGrades);
-									assignmentK.addStudent(studentM, {
-										grade: assignmentGrade,
-									}).then(function(){
-
-									});
-
+									};
 								};
-							};
-							for (let j = 0; j < 10; j++) {
-								var studentJ = results[j];
-								var studentGrades = [];
-								for (var i = 0; i < assignmentStudentsGrade.length; i++) {
-									var studentAssignmentPair = assignmentStudentsGrade[i];
-									if (studentJ.name === studentAssignmentPair.name){
-										studentGrades.push(studentAssignmentPair.assignmentGrade);
+								for (let j = 0; j < 10; j++) {
+									var studentJ = results[j];
+									var studentGrades = [];
+									for (var i = 0; i < assignmentStudentsGrade.length; i++) {
+										var studentAssignmentPair = assignmentStudentsGrade[i];
+										if (studentJ.name === studentAssignmentPair.name){
+											studentGrades.push(studentAssignmentPair.assignmentGrade);
+										}
 									}
-								}
 
-								var totalStudentPoints = studentGrades.reduce(function (combine, number) {
-									return combine + number;
-								}, 0); 
-								var totalPoints = 400;
-								var percent = totalStudentPoints / totalPoints * 100;
-								var grade;
-								if (percent < 60) {
-									grade = 'F';
-								}
+									var totalStudentPoints = studentGrades.reduce(function (combine, number) {
+										return combine + number;
+									}, 0); 
+									var totalPoints = 400;
+									var percent = totalStudentPoints / totalPoints * 100;
+									var grade;
+									if (percent < 60) {
+										grade = 'F';
+									}
 
-								if (percent >= 60 && percent < 70) {
-									grade = 'D';
-								}
+									if (percent >= 60 && percent < 70) {
+										grade = 'D';
+									}
 
- 								if (percent >= 70 && percent < 80) {
-									grade = 'C';
-								}
+	 								if (percent >= 70 && percent < 80) {
+										grade = 'C';
+									}
 
-								if (percent >= 80 && percent < 90) {
-									grade = 'B';
-								}
+									if (percent >= 80 && percent < 90) {
+										grade = 'B';
+									}
 
-								if (percent >= 90) {
-									grade = 'A';
-								}
+									if (percent >= 90) {
+										grade = 'A';
+									}
 
-								// var grades = ['A','B','C','D'];
-								// var index = Math.floor(Math.random()*3);
-								// var randomGrade = grades[index];
-								savedClass.addStudent(studentJ, {
-									grade: grade,
-									percent: percent,
-									points: totalStudentPoints,
-								});
-							};
-						});
-				};
-			});
-		};
-        return teacher;
+									// var grades = ['A','B','C','D'];
+									// var index = Math.floor(Math.random()*3);
+									// var randomGrade = grades[index];
+									savedClass.addStudent(studentJ, {
+										grade: grade,
+										percent: percent,
+										points: totalStudentPoints,
+									});
+								};
+							});
+					};
+				});
+			};
+	        return teacher;
+		}
 	})
 	.catch((err) => {
 		console.log('err in creating teacher signup:', err);

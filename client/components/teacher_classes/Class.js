@@ -120,7 +120,7 @@ class Class extends Component {
 		var settings = {
 		  "async": true,
 		  "crossDomain": true,
-		  "url": "http://localhost:8000/api/upload/s3",
+		  "url": "/api/upload/s3",
 		  "method": "POST",
 		  "name": "name",
 		  "headers": {
@@ -155,7 +155,7 @@ class Class extends Component {
   				  <div className="col-lg-4 studentList">
   				  		<div>
 							<h3 className='componentHeader'>{this.state.className} Roster</h3>
-  				  			<Select isLoading={this.state.isLoading} name= "form-field-name" value="one" onValueClick={this.addStudent} options={this.state.foundStudents} onInputChange={this.onChange} onChange={this.addStudent} />
+  				  			<Select placeholder="Add a student ..." isLoading={this.state.isLoading} name= "form-field-name" value="one" onValueClick={this.addStudent} options={this.state.foundStudents} onInputChange={this.onChange} onChange={this.addStudent} />
 							<ul className='listHeight'> {studentList} </ul>
 						</div>
   				  </div>

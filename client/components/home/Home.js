@@ -29,15 +29,15 @@ const Home = function(){
 					  <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="hero-buttons-row">
 					  	<h3 id="mobile-sighnup">Sign Up:</h3>
 					  	<div className="btn-group" id="mobile-buttons">
-					  	<button className="hero-buttons btn btn-primary teacher-hero-button" >Teacher</button>
-					  	<button className="hero-buttons btn btn-primary student-hero-button" >Student</button>
+					  	<Link to="/teacherSignUp" className="hero-buttons btn btn-primary teacher-hero-button hero-button" >Teacher</Link>
+				  		<Link to="studentSignUp"  className="hero-buttons btn btn-primary student-hero-button hero-button" >Student</Link>
 					  	</div>
 					  </div>
 				  </div>
 			  </div>
 		  </div> 
 	  </div>
-	  		<div className="row" id="after-hero"> 
+	  		<div className="row desktop-only" id="after-hero"> 
 		  		<h2 className="text-center">Teach.in</h2>
 				<h3 className="text-center">Enhance your teaching skills by focusing on the important stuff.</h3>
 			</div>
@@ -50,13 +50,13 @@ const Home = function(){
 		  				Select the assignment you’d like to grade and input the scores for each student.</p>
 		  				<p>Submit scores and watch your class’s grade adjust instantly with the interactive chart. </p>
 		  			</div>
-			  			<div className="col-lg-offset-1 col-lg-1">
-			  				<img src="https://s3.amazonaws.com/teach.in123454321/fpo.png" />
+			  			<div className="col-lg-offset-1 col-lg-1 desktop-only">
+			  				<img src="https://s3.amazonaws.com/teach.in123454321/teach-in-icon-set-03.jpg" />
 		  				</div>
 		  		</div>
 		  		<div className="row feature-row">
-		  			<div className="col-lg-offset-2 col-lg-1">
-			  			<img src="https://s3.amazonaws.com/teach.in123454321/fpo.png" />
+		  			<div className="col-lg-offset-2 col-lg-1 desktop-only">
+			  			<img src="https://s3.amazonaws.com/teach.in123454321/teach-in-icon-set-02.jpg" />
 		  			</div>
 		  			<div className="col-lg-offset-3 col-lg-5 feature-text">
 		  				<h3>Organize Schedule</h3>
@@ -76,12 +76,12 @@ const Home = function(){
 		  				<p>Pellentesque eleifend rhoncizzle nisi. In fo habitasse crazy dictumst. Boofron dapibizzle. Curabitur dawg go to hizzle, 
 		  					fo shizzle mah nizzle fo rizzle, mah home g-dizzle you son of a bizzle, mattizzle gangsta, eleifend shiznit, nunc.</p>
 		  			</div>
-			  			<div className="col-lg-offset-1 col-lg-1">
-			  				<img src="https://s3.amazonaws.com/teach.in123454321/fpo.png" />
+			  			<div className="col-lg-offset-1 col-lg-1 desktop-only">
+			  				<img src="https://s3.amazonaws.com/teach.in123454321/teach-in-icon-set-05.jpg" />
 		  				</div>
 		  		</div>
 		  		<div className="row after-feature">
-		  			<div className="col-lg-6" id="home-desk-image">
+		  			<div className="col-lg-6 desktop-only" id="home-desk-image">
 		  			</div>
 			  			<div className="col-lg-6 text-center" id="home-bottom-button-container">
 			  				<Link to="/teacherSignUp">Signup Now</Link>
@@ -93,23 +93,21 @@ const Home = function(){
 			  	<h2 className="text-center">Team Teach.in</h2>
 			  	<div className="row mt centered">	
 					<div className="col-lg-4">
-						<a className="zoom green" href="work01.html"><img className="img-responsive" src="	
-https://s3.amazonaws.com/teach.in123454321/10258615_10201659625042566_8967973574115249312_o.jpg" alt="" /></a>
+						<a className="zoom green" href="https://www.linkedin.com/in/timaneumann"><img className="img-responsive" src="https://s3.amazonaws.com/teach.in123454321/tim.jpg" alt="" /></a>
 						<p className="text-center team-name">Tim Neumann</p>
 					</div>
 					<div className="col-lg-4">
-						<a className="zoom green" href="work01.html"><img className="img-responsive" src="	
-https://s3.amazonaws.com/teach.in123454321/10258615_10201659625042566_8967973574115249312_o.jpg" alt="" /></a>
+						<a className="zoom green" href="https://www.linkedin.com/in/johnhuynh1"><img className="img-responsive" src="	
+https://s3.amazonaws.com/teach.in123454321/john.jpg" alt="" /></a>
 						<p className="text-center team-name">John Huynh</p>
 					</div>
 					<div className="col-lg-4">
-						<a className="zoom green" href="work01.html"><img className="img-responsive" src="	
-https://s3.amazonaws.com/teach.in123454321/10258615_10201659625042566_8967973574115249312_o.jpg" alt="" /></a>
+						<a className="zoom green" href="https://www.linkedin.com/in/jesse-borden"><img className="img-responsive" src="https://s3.amazonaws.com/teach.in123454321/jess.jpg" alt="" /></a>
 						<p className="text-center team-name">Jesse Borden</p>
 					</div>
 				</div>
 			</div>
-			<div className="footer">
+			<div className="footer desktop-only">
 			</div>
   	</div>
   	)}

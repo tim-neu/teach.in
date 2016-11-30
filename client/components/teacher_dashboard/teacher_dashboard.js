@@ -37,7 +37,7 @@ class TeacherDashboard extends Component {
 		var settings = {
 		  "async": true,
 		  "crossDomain": true,
-		  "url": "http://localhost:8000/api/upload/s3",
+		  "url": "/api/upload/s3",
 		  "method": "POST",
 		  "name": "name",
 		  "headers": {
@@ -63,7 +63,9 @@ class TeacherDashboard extends Component {
 						<UserInformation />
 					</div>
 					<div className="col-lg-8">
-						<Calendar teacherEmail={this.state.email}/>
+						<div id="calendar-container">
+							<Calendar teacherEmail={this.state.email}/>
+						</div>
 					</div>
 			  	</div>
 			  	<div className='row top'>
