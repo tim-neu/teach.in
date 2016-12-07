@@ -11,6 +11,9 @@ import AddClass from '../../components/add_class/AddClass.js';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 
+require('../../../public/sass/main.scss');
+
+
 class TeacherDashboard extends Component {
 	constructor(props) {
 	super(props);
