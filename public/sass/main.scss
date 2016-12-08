@@ -5,7 +5,7 @@ $gray-boder: #e5e5e5;
 
 /**********************************
 
-Univarsal Styles
+Universal Styles
 
 **********************************/
 
@@ -21,6 +21,10 @@ Univarsal Styles
 
 .top {
 	margin-top: 15px;
+}
+
+.grayHeader {
+	color: #e5e5e5;
 }
 
 /**********************************
@@ -151,6 +155,7 @@ Resource Upload Form
 	margin: 0px 21px 15px 0px;
 	width: 48.5%;
 	overflow: hidden;
+	overflow-y: scroll;
 	form {
 		margin: 0px;
 		input {
@@ -192,7 +197,7 @@ Roster Component
 .Select-control {
 	margin: 0px 15px;
     width: 90% !important;
-    height: 654px;
+    // height: 654px;
 }
 
 .studentListItem {
