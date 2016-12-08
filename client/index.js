@@ -25,6 +25,8 @@ import reducers from './reducers';
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
+require('../public/sass/main.scss');
+
 // Render
 render(
 	<Provider store={store}>

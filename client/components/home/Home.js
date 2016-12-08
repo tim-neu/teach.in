@@ -20,6 +20,7 @@ const Home = function(){
 				  	</div>
 				  </div>
 				  </div>
+			  <div className="arrow bounce"></div>
 			  </div>
 			  <div className="container" id="mobile-view">
 				  <div className="row" id="mobile-text">
@@ -48,7 +49,7 @@ const Home = function(){
 		  				<h3>Manage Grades</h3>
 		  				<p>Easily create assignments, tests, and quizes for your class and add them to your assignment list. 
 		  				Select the assignment you’d like to grade and input the scores for each student.</p>
-		  				<p>Submit scores and watch your class’s grade adjust instantly with the interactive chart. </p>
+		  				<p>Submit the scores for the assignment and watch your class’s grade instantly adjust with the interactive chart.</p>
 		  			</div>
 			  			<div className="col-lg-offset-1 col-lg-1 desktop-only">
 			  				<img src="https://s3.amazonaws.com/teach.in123454321/teach-in-icon-set-03.jpg" />
@@ -59,22 +60,18 @@ const Home = function(){
 			  			<img src="https://s3.amazonaws.com/teach.in123454321/teach-in-icon-set-02.jpg" />
 		  			</div>
 		  			<div className="col-lg-offset-3 col-lg-5 feature-text">
-		  				<h3>Organize Schedule</h3>
-		  				<p>Lorizzle ipsizzle dolor bling bling amet, consectetizzle adipiscing fo shizzle. Stuff shit gangster, aliquet volutpat, suscipizzle quizzle, tellivizzle vizzle, 
-		  					check it out. Da bomb fo crackalackin. Sed erizzle. Check out this yippiyo tellivizzle stuff turpis tempizzle shiz. 
-		  					Maurizzle pellentesque nibh izzle turpis. You son of a bizzle izzle tortor. </p>
-		  				<p>Pellentesque eleifend rhoncizzle nisi. In fo habitasse crazy dictumst. Boofron dapibizzle. Curabitur dawg go to hizzle, 
-		  					fo shizzle mah nizzle fo rizzle, mah home g-dizzle you son of a bizzle, mattizzle gangsta, eleifend shiznit, nunc.</p>
+		  				<h3>Organize Schedules</h3>
+		  				<p>Map out all of your upcoming events and tasks into the calendar. You can see all events from all of your classes so 
+		  				you can prevent schedule conflicts. View your events however you prefer. Whether that's by month, week, 
+		  				or day, <strong>Teach.in</strong> has you covered. You can even see a list of all your upcoming tasks.</p>
 		  			</div>
 		  		</div>
 		  		<div className="row feature-row">
 		  			<div className="col-lg-offset-1 col-lg-5 feature-text">
-		  				<h3>Manage Grades</h3>
-		  				<p>Lorizzle ipsizzle dolor bling bling amet, consectetizzle adipiscing fo shizzle. Stuff shit gangster, aliquet volutpat, suscipizzle quizzle, tellivizzle vizzle, 
-		  					check it out. Da bomb fo crackalackin. Sed erizzle. Check out this yippiyo tellivizzle stuff turpis tempizzle shiz. 
-		  					Maurizzle pellentesque nibh izzle turpis. You son of a bizzle izzle tortor. </p>
-		  				<p>Pellentesque eleifend rhoncizzle nisi. In fo habitasse crazy dictumst. Boofron dapibizzle. Curabitur dawg go to hizzle, 
-		  					fo shizzle mah nizzle fo rizzle, mah home g-dizzle you son of a bizzle, mattizzle gangsta, eleifend shiznit, nunc.</p>
+		  				<h3>Share Resources</h3>
+		  				<p>Simply upload your documents in your class dashboard and share them with your students. Accepted formats include .jpg, .pdf, and much more.</p>
+		  				<p>You're a student? You want to see all of your resources? No problem. Just sign up and have your teacher add you to
+		  				to their class.</p>
 		  			</div>
 			  			<div className="col-lg-offset-1 col-lg-1 desktop-only">
 			  				<img src="https://s3.amazonaws.com/teach.in123454321/teach-in-icon-set-05.jpg" />
@@ -95,19 +92,49 @@ const Home = function(){
 					<div className="col-lg-4">
 						<a className="zoom green" href="https://www.linkedin.com/in/timaneumann"><img className="img-responsive" src="https://s3.amazonaws.com/teach.in123454321/tim.jpg" alt="" /></a>
 						<p className="text-center team-name">Tim Neumann</p>
+						<p className="text-center team-position">Software Engineer</p>
 					</div>
 					<div className="col-lg-4">
-						<a className="zoom green" href="https://www.linkedin.com/in/johnhuynh1"><img className="img-responsive" src="	
-https://s3.amazonaws.com/teach.in123454321/john.jpg" alt="" /></a>
+						<a className="zoom green" href="https://www.linkedin.com/in/johnhuynh1"><img className="img-responsive" src="https://s3.amazonaws.com/teach.in123454321/john.jpg" alt="" /></a>
 						<p className="text-center team-name">John Huynh</p>
+						<p className="text-center team-position">Software Engineer</p>
 					</div>
 					<div className="col-lg-4">
 						<a className="zoom green" href="https://www.linkedin.com/in/jesse-borden"><img className="img-responsive" src="https://s3.amazonaws.com/teach.in123454321/jess.jpg" alt="" /></a>
 						<p className="text-center team-name">Jesse Borden</p>
+						<p className="text-center team-position">Software Engineer</p>
 					</div>
 				</div>
 			</div>
-			<div className="footer desktop-only">
+			<div className="row techStack desktop-only">
+				<h2 className="text-center grayHeader">Technologies</h2>
+				<div className="container techLogos">
+				<div className="row mt centered">
+					<div className="col-lg-2 logo">
+						<img className="img-responsive" src="https://s3.amazonaws.com/teach.in123454321/react.png" alt="" />
+					</div>
+					<div className="col-lg-2 logo">
+						<img className="img-responsive" src="https://s3.amazonaws.com/teach.in123454321/redux.png" alt="" />
+					</div>
+					<div className="col-lg-2 logo">
+						<img className="img-responsive" src="https://s3.amazonaws.com/teach.in123454321/nodejs.png" alt="" />
+					</div>
+					<div className="col-lg-2 logo">
+						<img className="img-responsive" src="https://s3.amazonaws.com/teach.in123454321/Sequelize.png" alt="" />
+					</div>
+					<div className="col-lg-2 logo">
+						<img className="img-responsive" src="https://s3.amazonaws.com/teach.in123454321/Postgresql.png" alt="" />
+					</div>
+					<div className="col-lg-2 logo">
+						<img className="img-responsive" src="https://s3.amazonaws.com/teach.in123454321/Sass.png" alt="" />
+					</div>
+				</div>
+				</div>
+			</div>
+			<div className="text-center footer desktop-only">
+				<div className="container">
+				<p id="footerContent">© 2016 Teach.in. All rights reserved. Check us out on <a href="https://github.com/team-teachin/teach.in">Github</a> to learn more.</p>
+				</div>
 			</div>
   	</div>
   	)}
