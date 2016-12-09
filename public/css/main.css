@@ -1,0 +1,433 @@
+/*
+Teacher Dashboard
+*/
+
+.class-bottom-row {
+	height: 415px;
+}
+
+.top {
+	margin-top: 15px;
+}
+
+/* 
+Calendar Styling 
+*/
+
+.rbc-active {
+	box-shadow: none !important;
+	background-color: #fff !important;
+	border-color: #7600FF !important;
+}
+
+.rbc-event {
+	background-color: #7600FF !important;
+	border-color: #610a7e !important;
+}
+
+.rbc-current-time-indicator {
+	z-index: 900px;
+}
+
+.rbc-event-content {
+	font-size: 10px;
+}
+
+.rbc-header {
+	font-size: 60%;
+}
+
+.rbc-selected {
+	background-color: #7600FF;
+}
+
+.rbc-date-cell {
+	font-size: 10px;
+}
+
+.rbc-month-view {
+	border-radius: 12px !important;
+}
+
+.rbc-toolbar {
+	border-radius: 12px !important;
+}
+
+a.rbc-show-more {
+	color: #949494;
+	font-size: 10px;
+}
+
+.rbc-overlay {
+	position: absolute;
+	z-index: 5;
+	border: 1px solid #e5e5e5;
+	background-color: #fff;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+	padding: 10px;
+}
+
+ul {
+	padding-left: 0px;
+}
+
+li {
+	list-style: none;
+}
+/*
+Event Form Styling
+*/
+
+.eventForm {
+	margin: 0px;
+	width: 100%;
+	font-size: 10px;
+}
+
+.eventForm input {
+    font-size: 10px;
+    margin-top: 15px;
+    height: 25px;
+    width: 19%;
+}
+
+/*
+Assignment Form Styling
+*/
+
+.assignmentForm input {
+	width: 100%;
+}
+
+.assignmentForm form {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width:100%;
+}
+
+#class-dashboard-container div h3 {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/*
+Upload Form Styling
+*/
+
+.uploadForm {
+	margin-top: 15px;
+	display: inline-block;
+}
+
+.uploadForm input {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 4px;
+    border: none;
+}
+
+#home-style {
+    background: transparent;
+    color: #fff;
+    border: none;
+}
+
+.uploadForm button {
+    background: #7600FF;
+    color: #fff;
+    border: none;
+    border-radius: 180px;
+    padding: 3px 8px;
+    margin-bottom: 10px;
+}
+
+#nameValue {
+	width: 100%;
+	text-align: left;
+	padding: 0px;
+	margin: 10px 0px;
+}
+
+.uploadForm form {
+    margin: 0px;
+    width: 100%;
+    padding: 0px;
+}
+
+/*
+Profile
+*/
+
+.profile {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+}
+
+/*
+Student Profile
+*/
+
+.student-profile {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+	height: 382px;
+}
+
+
+/*
+Add Class Form Styling
+*/
+
+.addClassForm form{
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.addClassForm input{
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 34px;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.addClassForm input:focus {
+	outline: 1px solid #7600FF;
+	box-shadow: none;
+}
+
+.addClassForm button {
+	background-color: #7600FF;
+	color: #fff;
+}
+
+.addClassForm button:hover {
+	background-color: #fff;
+	color: #7600FF;
+	border: 1px solid #7600FF;
+}
+
+.support {
+	height: 500px;
+}
+
+/*
+Student List
+*/
+
+.componentHeader {
+	color: #AEB4B7;
+	font-size: 18px;
+	margin: 10px 0px 0px 15px;
+}
+
+.studentList {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+	height:735px;
+}
+
+.Select-menu-outer {
+	width: 90% !important;
+	margin: 15px 15px;
+}
+
+/*
+Roster Component
+*/
+
+.Select-control {
+	margin: 0px 15px;
+    width: 90% !important;
+    height: 654px;
+}
+
+.studentListItem {
+	margin: 10px 0px 10px 15px;
+    width: 90%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.profileThumbnail {
+	height: 35px;
+	width: 35px;
+	border-radius: 4px;
+	margin-right: 20px;
+}
+
+.listHeight {
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+/* 
+Resource Upload Form
+*/
+
+.resourceUploadForm {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+	height: 259px;
+	margin: 0px 21px 15px 0px;
+	width: 48.5%;
+}
+
+.resourceUploadForm form {
+	margin: 0px;
+}
+
+.resourceUploadForm input {
+    border: 1px solid #d6d6d6;
+    width: 72%;
+    margin: 0px 15px;
+    padding: 7px 9px;
+    font-size: 14px;
+    text-shadow: none;
+    height: 34px;
+    display: inline-block;
+}
+
+#resource-form {
+    width: 100%;
+}
+
+/*
+Chart
+*/
+
+.chart {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+	height: 259px;
+	width: 48.5%;
+}
+
+/*
+Create Assignment
+*/
+
+.createAssignmentHeader {
+	color: #AEB4B7;
+	font-size: 18px;
+    margin: 10px 0px 10px 0px;
+}
+
+.createAssignment {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+	margin-right: 15px;
+}
+
+.createAssignment input {
+	margin: 5px 0px;
+	padding-left: 5px;
+}
+
+.createAssignment .labelForm {
+	text-align: left;
+	margin: 0px;
+	font-size: 14px;
+	color: #AEB4B7;
+}
+
+/*
+Assignment List
+*/
+
+.assignmentList {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+    width: 31%;
+    margin: 0px 21px 15px 0px;
+}
+
+.assignmentList li, .resourceUploadForm li {
+	margin: 10px 0px 10px 15px;
+    width: 90%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
+    cursor: pointer;
+}
+
+.componentHeader, .assignment-name {
+    color: #AEB4B7;
+    font-size: 18px;
+    margin: 10px 0px 0px 15px;
+    display: inline-block;
+}
+
+form.assignment-grade-form {
+    width: 600px;
+}
+
+/*
+Grades
+*/
+
+.grades {
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    width: 31%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+/* 
+Class List
+*/
+
+
+
+.classListHeader {
+	color: #AEB4B7;
+	font-size: 18px;
+    margin: 10px 0px 5px 0px;
+}
+
+.classList {
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+}
+
+.classListItem {
+	margin-bottom: 15px;
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 10px;
+}
+
+
+/*
+Cards
+*/
+
+.card {
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    margin: 8px 8px 8px 8px;
+    width: 31.9%;
+    height: 250px;
+    padding: 0px 15px 0px 15px;
+}
+
+.classCard {
+	margin: 10px 0px;
+}
+
+.cardContainer {
+	border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    margin: 5px 15px 15px 0px;
+    height: 545px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
